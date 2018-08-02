@@ -8,15 +8,15 @@
   <link rel="stylesheet" href="{{ url('client/styles/main.css') }}">
 </head>
 <body>
-  @include('site.partials.graphics')
+  @include('themes.' . env('APP_THEME') . '.partials.graphics')
 
   <div id="app" class="content">
-    @include('site.partials.sidenav')
-    @include('site.partials.beautybox.header')
+    @include('themes.' . env('APP_THEME') . '.partials.sidenav')
+    @include('themes.' . env('APP_THEME') . '.partials.beautybox.header')
 
     @yield('content')
   </div>
-  @include('site.partials.footer')
+  @include('themes.' . env('APP_THEME') . '.partials.footer')
   <script src="{{ url('client/scripts/main.js') }}"></script>
 </body>
 </html>
