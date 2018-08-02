@@ -55,14 +55,18 @@
           <div class="filter">
             <div class="filter_name">Range filter</div>
             <div class="d-flex py-2">
+              <label class="sr-only" for="from">od</label>
               <input class="filter-range_input"
                 type="number"
                 name="from"
+                id="from"
                 placeholder="Od"
               />
+              <label class="sr-only" for="to">do</label>
               <input class="filter-range_input"
                 type="number"
                 name="to"
+                id="to"
                 placeholder="Do"
               />
             </div>
