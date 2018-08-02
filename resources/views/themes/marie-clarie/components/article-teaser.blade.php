@@ -18,7 +18,7 @@
     </div>
     <div class="teaser_primary">
         <div class="{{$details}}">
-            <a href="{{ $post->blog? $post->blog->first()->getLink() : '#' }}" class="details-item details-item--primary">{{ $post->blog? $post->blog->first()->title : '' }}</a>
+            <a href="{{ count($post->blog) ? $post->blog->first()->getLink() : '#' }}" class="details-item details-item--primary">{{ count($post->blog) ? $post->blog->first()->title : '' }}</a>
             <span class="details-item details-item--secondary">{{ \Carbon\Carbon::parse($post->publish_at)->format('d/m/Y') }}</span>
         </div>
         <h3 class="teaser_title"><a href="{{ $post->getLink() }}">{{ $post->title }}</a></h3>

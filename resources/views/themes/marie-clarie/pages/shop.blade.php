@@ -1,4 +1,4 @@
-@extends('site.layouts.main')
+@extends('themes.' . env('APP_THEME') . '.layouts.main')
 
 @section('content')
   <div class="container">
@@ -47,7 +47,7 @@
           @endfor
         </div>
 
-        @include('site.partials.pagination')
+        @include('themes.' . env('APP_THEME') . '.partials.pagination')
       </div>
 
     </div>
@@ -57,8 +57,8 @@
       <div class="row">
         @for($i = 0; $i < 6; $i++)
         <div class="col col--6">
-          @related_item()
-          @endrelated_item
+          {{-- @related_item()
+          @endrelated_item --}}
         </div>
         @endfor
       </div>

@@ -1,4 +1,4 @@
-@extends('site.layouts.beautybox')
+@extends('themes.' . env('APP_THEME') . '.layouts.beautybox')
 
 @section('content')
   <div class="py-4" style="background-color: #b5e2f5;">

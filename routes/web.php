@@ -8,8 +8,8 @@ Route::get('/', 'PagesController@homepage');
 /**
  * Vladan's routes
  */
-Route::get('beauty-box', 'DevController@render');
-Route::get('shop', 'DevController@render');
+Route::get('beauty-box', 'DevController@beautyBox');
+Route::get('shop', 'DevController@shop');
 
 /**
  * gallery page routes
