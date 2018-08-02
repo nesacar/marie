@@ -12,7 +12,7 @@
     &::before,
     &::after {
       content: "";
-      background-color: $theme-primary;
+      background-color: currentColor;
       height: 2px;
       flex-grow: 1;
     }
