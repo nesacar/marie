@@ -72,6 +72,8 @@
             </div>
           </div>
 
+          <button class="btn btn--secondary btn--block mt-1 mb-3">primeni</button>
+
         </collapsible>
 
       </div>
