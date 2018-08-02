@@ -94,7 +94,7 @@
 
                                     <text-area-field :value="post.short" :label="'Kratak opis'" :error="error? error.short : ''" :required="true" @changeValue="post.short = $event"></text-area-field>
 
-                                    <text-area-ckeditor-field :value="post.body" :label="'Opis'" :error="error? error.body : ''" :required="true" @changeValue="post.body = $event"></text-area-ckeditor-field>
+                                    <text-area-ckeditor-field :value="post.content" :label="'Opis'" :error="error? error.content : ''" :required="true" @changeValue="post.content = $event"></text-area-ckeditor-field>
 
                                     <select-multiple-field :options="tags" :error="error? error.tag_ids : ''" :value="post.tag_ids" @changeValue="post.tag_ids = $event"></select-multiple-field>
 
@@ -125,7 +125,7 @@
     export default {
         data(){
             return {
-                fillable: ['user_id', 'title', 'slug', 'short', 'body', 'image', 'image_box', 'publish_at', 'slider', 'is_visible', 'blog_ids', 'tag_ids'],
+                fillable: ['user_id', 'title', 'slug', 'short', 'content', 'image', 'image_box', 'publish_at', 'slider', 'is_visible', 'blog_ids', 'tag_ids'],
                 selected: {},
                 post: false,
                 error: {
