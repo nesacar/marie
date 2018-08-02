@@ -41,7 +41,7 @@
                                 <td>{{ row.title }}</td>
                                 <td>{{ row.brand.title }}</td>
                                 <td>{{ row.is_visible? 'Da' : 'Ne' }}</td>
-                                <td>{{ row.published_at }}</td>
+                                <td>{{ row.publish_at }}</td>
                                 <td>
                                     <font-awesome-icon icon="eye" @click="previewRow(row)" />
                                     <router-link tag="a" :to="'products/' + row['id'] + '/edit'" class="edit-link"><font-awesome-icon icon="pencil-alt"/></router-link>
@@ -106,7 +106,6 @@
                     .then(res => {
                         this.products = res.data.products.data;
                         this.paginate = res.data.products;
-                        console.log(this.products);
                     })
                     .catch(e => {
                         console.log(e);

@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-8">
+                <div class="col-sm-8" v-if="trigger">
                     <div class="card">
                         <form @submit.prevent="submit()">
 
@@ -32,11 +32,11 @@
 
                             <text-field :value="product.code" :label="'Šifra prozivoda'" :error="error? error.code : ''" :required="true" @changeValue="product.code = $event"></text-field>
 
-                            <select-field v-if="brands" :error="error? error.brand_id : ''" :options="brands" :labela="'Brend'" @changeValue="product.brand_id = $event"></select-field>
+                            <select-field v-if="brands" :value="product.brand_list" :error="error? error.brand_id : ''" :options="brands" :labela="'Brend'" @changeValue="product.brand_id = $event"></select-field>
 
-                            <select-field v-if="genders" :error="error? error.gender : ''" :options="genders" :labela="'Pol'" @changeValue="product.gender = $event"></select-field>
+                            <select-field v-if="genders" :value="product.gender_list" :error="error? error.gender_id : ''" :options="genders" :labela="'Pol'" @changeValue="product.gender_id = $event"></select-field>
 
-                            <date-time-picker :label="'Publikovano od'" :value="product.published_at" :error="error? error.published_at : ''" @changeValue="product.published_at = $event"></date-time-picker>
+                            <date-time-picker :label="'Publikovano od'" :value="product.publish_at" :error="error? error.publish_at : ''" @changeValue="product.publish_at = $event"></date-time-picker>
 
                             <text-area-field :value="product.short" :label="'Kratak opis'" :error="error? error.short : ''" :required="true" @changeValue="product.short = $event"></text-area-field>
 
@@ -54,7 +54,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4" v-if="trigger">
                     <upload-image-helper
                             :image="product.image_path"
                             :defaultImage="null"
@@ -101,7 +101,8 @@
     export default {
         data(){
           return {
-              fillable: ['user_id', 'brand_id', 'title', 'slug', 'short', 'content', 'image', 'link', 'code', 'gender', 'price', 'outlet_price', 'published_at', 'is_visible', 'category_ids'],
+              fillable: ['user_id', 'brand_id', 'title', 'slug', 'short', 'content', 'image', 'link', 'code', 'gender_id', 'price', 'outlet_price', 'publish_at', 'is_visible', 'category_ids'],
+              trigger: false,
               product: {
                   title: null,
                   category_ids: [],
@@ -113,8 +114,8 @@
               },
               category_ids: [],
               genders: [
-                  { id: 1, title: 'Muški'},
-                  { id: 2, title: 'Ženski'},
+                  { id: 1, title: 'Muškarci'},
+                  { id: 2, title: 'Žene'},
                   { id: 3, title: 'Unisex'},
               ],
           }
@@ -132,18 +133,21 @@
             'upload-image-helper': UploadImageHelper,
         },
         mounted(){
-            this.getProduct();
             this.getBrands();
         },
         methods: {
             getProduct(){
-                axios.get('api/product/' + this.$route.params.id)
+                axios.get('api/products/' + this.$route.params.id)
                     .then(res => {
                         this.categories = res.data.categories;
                         this.product = res.data.product;
                         this.product.category_ids = res.data.category_ids;
+                        this.product.gender_list = res.data.gender_id;
+                        this.product.brand_list = res.data.brand_id;
                         this.product.image_path = res.data.product.image;
                         this.product.image = '';
+
+                        this.trigger = true;
                     }).catch(e => {
                     console.log(e.response);
                     this.error = e.response.data.errors;
@@ -153,6 +157,7 @@
                 axios.get('api/brands/lists')
                     .then(res => {
                         this.brands = res.data.brands;
+                        this.getProduct();
                     }).catch(e => {
                         console.log(e.response);
                         this.error = e.response.data.errors;
@@ -164,6 +169,9 @@
                 axios.post('api/products/' + this.product.id, data)
                     .then(res => {
                         this.product = res.data.product;
+                        this.product.category_ids = res.data.category_ids;
+                        this.product.gender_list = res.data.gender_id;
+                        this.product.brand_list = res.data.brand_id;
                         this.product.image_path = res.data.product.image;
                         this.product.image = '';
                         swal({
@@ -173,7 +181,6 @@
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        this.$router.push('/products');
                     }).catch(e => {
                         console.log(e.response);
                         this.error = e.response.data.errors;

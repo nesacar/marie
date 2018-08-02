@@ -14,6 +14,7 @@
     export default {
         data () {
             return {
+                date: this.value,
                 options: {
                     format: 'YYYY-MM-DD H:00:00',
                     useCurrent: false,
@@ -25,14 +26,6 @@
         props: ['label', 'value', 'error', 'required'],
         components: {
             datePicker,
-        },
-        computed: {
-            date:{
-                get: function(){
-                    return this.value;
-                },
-                set: function(){}
-            },
         },
         methods: {
             changeValue(){

@@ -89,7 +89,6 @@
             getLink(){
                 axios.get('api/menu-links/' + this.$route.params.id)
                     .then(res => {
-                        console.log(res.data);
                         this.link = res.data.link;
                         this.link.parent_link = res.data.parent;
                         this.links = res.data.links;
@@ -104,7 +103,6 @@
                 this.link.image = image.file;
             },
             submit(){
-                this.link.menu_id = this.$route.params.id
                 let data = fillForm(this.fillable, this.link, 'PUT');
                 axios.post('api/menu-links/' + this.link.id, data)
                     .then(res => {

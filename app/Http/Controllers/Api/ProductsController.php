@@ -38,6 +38,8 @@ class ProductsController extends Controller
         return response()->json([
             'product' => $product,
             'category_ids' => $product->category()->visible()->pluck('id'),
+            'gender_id' => $product->gender()->select('id', 'title')->get(),
+            'brand_id' => $product->brand()->select('id', 'title')->get(),
         ]);
     }
 
@@ -58,6 +60,8 @@ class ProductsController extends Controller
         return response()->json([
             'product' => $product,
             'category_ids' => $product->category()->visible()->pluck('id'),
+            'gender_id' => $product->gender()->select('id', 'title')->get(),
+            'brand_id' => $product->brand()->select('id', 'title')->get(),
         ]);
     }
 

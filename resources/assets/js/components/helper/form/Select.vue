@@ -25,7 +25,11 @@
         },
         watch: {
             selected(value){
-                this.$emit('changeValue', value.id);
+                if(value == null){
+                    this.$emit('changeValue', 0);
+                }else{
+                    this.$emit('changeValue', value.id);
+                }
             },
         },
     }

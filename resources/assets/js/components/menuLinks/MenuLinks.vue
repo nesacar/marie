@@ -109,7 +109,6 @@
                     .then(res => {
                         this.menu = res.data.menu;
                         this.menuLinks = res.data.menuLinks;
-                        console.log(this.menuLinks);
                     }).catch(e => {
                         console.log(e.response);
                         this.error = e.response.data.errors;

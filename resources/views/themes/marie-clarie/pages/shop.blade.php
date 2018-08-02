@@ -1,38 +1,37 @@
 @extends('themes.' . env('APP_THEME') . '.layouts.main')
 
 @section('content')
-  <div class="container">
+    <div class="container">
 
-    <div class="shop-layout">
+        <div class="shop-layout">
 
-      @include('themes.' . env('APP_THEME') . '.partials.shop.filters')
-      
-      <div>
-        <div class="row shop-list mb-4">
-          @for($i = 0; $i < 6; $i++)
-          <div class="col shop-list_item">
-            @shop_product()
-            @endshop_product
-          </div>
-          @endfor
+            @include('themes.' . env('APP_THEME') . '.partials.shop.filters')
+
+            <div>
+                <div class="row shop-list mb-4">
+                    @foreach($products as $product)
+                        <div class="col shop-list_item">
+                            @shop_product(['product' => $product])@endshop_product
+                        </div>
+                    @endforeach
+                </div>
+
+                @include('themes.' . env('APP_THEME') . '.partials.pagination')
+            </div>
+
         </div>
 
-        @include('themes.' . env('APP_THEME') . '.partials.pagination')
-      </div>
-
-    </div>
-
-    <div class="mb-5 pt-2">
-      <h2 class="h6 text-serif mb-3">Ne propustite</h2>
-      <div class="row">
-        @for($i = 0; $i < 6; $i++)
-        <div class="col col--6">
-          {{-- @related_item()
-          @endrelated_item --}}
+        <div class="mb-5 pt-2">
+            <h2 class="h6 text-serif mb-3">Ne propustite</h2>
+            <div class="row">
+                @for($i = 0; $i < 6; $i++)
+                    <div class="col col--6">
+                        {{-- @related_item()
+                        @endrelated_item --}}
+                    </div>
+                @endfor
+            </div>
         </div>
-        @endfor
-      </div>
-    </div>
 
-  </div>
+    </div>
 @endsection

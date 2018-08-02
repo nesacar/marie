@@ -74,10 +74,12 @@ class MenuLinksController extends Controller
     /**
      * method used to remove the specified MenuLink model
      *
-     * @param MenuLink $link
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
-    public function destroy(MenuLink $link){
+    public function destroy($id){
+        $link = MenuLink::find($id);
         $link->delete();
 
         return response()->json([

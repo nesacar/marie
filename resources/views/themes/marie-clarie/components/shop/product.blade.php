@@ -1,19 +1,19 @@
 <div class="shop-product">
-  <a title="image alt attribute"
-    href="#"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <div class="image image--1-1 js-lazy-image"
-    data-src=""
-    data-alt=""
-    ></div>
-  </a>
-  <div class="shop-product_name">Product name and stuff</div>
-  <div class="shop-product_price">999 rsd</div>
-  <a class="btn btn--primary btn--block"
-    href="#"
-    target="_blank"
-    rel="noopener noreferrer"
-  >pogledaj</a>
+    <a title="image alt attribute"
+       href="{{ $product->link }}"
+       target="_blank"
+       rel="noopener noreferrer"
+    >
+        <div class="image image--1-1 js-lazy-image"
+             data-src="{{ $product->image? url(\Imagecache::get($product->image, '267x267')->src): '' }}"
+             data-alt="{{ $product->title }}"
+        ></div>
+    </a>
+    <div class="shop-product_name">{{ $product->title }}</div>
+    <div class="shop-product_price">{{ $product->outlet_price?: $product->price }} rsd</div>
+    <a class="btn btn--primary btn--block"
+       href="{{ $product->link }}"
+       target="_blank"
+       rel="noopener noreferrer"
+    >pogledaj</a>
 </div>

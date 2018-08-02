@@ -34,9 +34,9 @@
 
                             <select-field v-if="brands" :error="error? error.brand_id : ''" :options="brands" :labela="'Brend'" @changeValue="product.brand_id = $event"></select-field>
 
-                            <select-field v-if="genders" :error="error? error.gender : ''" :options="genders" :labela="'Pol'" @changeValue="product.gender = $event"></select-field>
+                            <select-field v-if="genders" :error="error? error.gender_id : ''" :options="genders" :labela="'Pol'" @changeValue="product.gender_id = $event"></select-field>
 
-                            <date-time-picker :label="'Publikovano od'" :value="product.published_at" :error="error? error.published_at : ''" @changeValue="product.published_at = $event"></date-time-picker>
+                            <date-time-picker :label="'Publikovano od'" :value="product.publish_at" :error="error? error.publish_at : ''" @changeValue="product.publish_at = $event"></date-time-picker>
 
                             <text-area-field :value="product.short" :label="'Kratak opis'" :error="error? error.short : ''" :required="true" @changeValue="product.short = $event"></text-area-field>
 
@@ -101,7 +101,7 @@
     export default {
         data(){
           return {
-              fillable: ['user_id', 'brand_id', 'title', 'slug', 'short', 'content', 'image', 'link', 'code', 'gender', 'price', 'outlet_price', 'published_at', 'is_visible', 'category_ids'],
+              fillable: ['user_id', 'brand_id', 'title', 'slug', 'short', 'content', 'image', 'link', 'code', 'gender_id', 'price', 'outlet_price', 'publish_at', 'is_visible', 'category_ids'],
               product: {
                   title: null,
                   category_ids: [],
@@ -115,8 +115,8 @@
               },
               category_ids: [],
               genders: [
-                  { id: 1, title: 'Muški'},
-                  { id: 2, title: 'Ženski'},
+                  { id: 1, title: 'Muškarci'},
+                  { id: 2, title: 'Žene'},
                   { id: 3, title: 'Unisex'},
               ]
           }

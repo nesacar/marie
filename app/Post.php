@@ -189,13 +189,13 @@ class Post extends Model
      *
      * @return \Illuminate\Contracts\Routing\UrlGenerator|string
      */
-    public function getGalleryLink(){
+    public function getGalleryLink($image=1){
         if($this->blog){
             $url = 'galerija/';
             foreach ($this->blog as $blog){
                 $url .= $blog->slug . '/';
             }
-            return url($url . $this->slug . '/' . $this->id);
+            return url($url . $this->slug . '/' . $this->id . '?image=' . $image);
         }else{
             return '#';
         }

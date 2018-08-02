@@ -19,11 +19,18 @@ class Product extends Model
     public static $paginate = 50;
 
     /**
+     * frontend paginate number
+     *
+     * @var integer
+     */
+    public static $frontPaginate = 18;
+
+    /**
      * The attributes that are mass assignable
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'brand_id', 'title', 'slug', 'short', 'content', 'link', 'code', 'gender', 'image', 'price', 'outlet_price', 'published_at', 'is_visible'];
+    protected $fillable = ['user_id', 'brand_id', 'title', 'slug', 'short', 'content', 'link', 'code', 'gender_id', 'image', 'price', 'outlet_price', 'publish_at', 'is_visible'];
 
     /**
      * The attributes that are use for search
@@ -115,5 +122,14 @@ class Product extends Model
      */
     public function category(){
         return $this->belongsToMany(Category::class);
+    }
+
+    /**
+     * method used to make belongs-to connection between Product and Gender model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function gender(){
+        return $this->belongsTo(Gender::class);
     }
 }

@@ -7,6 +7,7 @@
         <div class="content-wrap">
 
             <div class="content-main">
+
                 <div class="d-flex justify-content-between py-2 border-top">
                     <div></div>
                     <a class="btn btn--secondary px-2" href="{{ $post->getImagesLink() }}">
@@ -16,25 +17,26 @@
                         <span class="ml-1 d-none d-sm-inline">sve slike</span>
                     </a>
                 </div>
+
                 @if(!empty($post->gallery))
-                <div class="mb-3 gallery">
-                    <div style="overflow-x: hidden;">
-                        <simple-carousel controls :index="0">
+                    <div class="mb-3 gallery">
+                        <div style="overflow-x: hidden;">
+                            <simple-carousel controls :index="{{ request('image')? request('image') - 1 : 0 }}">
 
-                            @foreach($post->gallery as $image)
+                                @foreach($post->gallery as $image)
 
-                                <div class="slider-item">
-                                    <image-slide src="{{ url($image->file_path) }}" alt="{{ $image->title }}">
-                                        <h2 class="text-sans-serif h6 mb-2">{{ $image->title }}</h2>
-                                        <p>{{ $image->desc }}</p>
-                                    </image-slide>
-                                </div>
+                                    <div class="slider-item">
+                                        <image-slide src="{{ url($image->file_path) }}" alt="{{ $image->title }}">
+                                            <h2 class="text-sans-serif h6 mb-2">{{ $image->title }}</h2>
+                                            <p>{{ $image->desc }}</p>
+                                        </image-slide>
+                                    </div>
 
-                            @endforeach
+                                @endforeach
 
-                        </simple-carousel>
+                            </simple-carousel>
+                        </div>
                     </div>
-                </div>
                 @endif
 
                 <div class="mb-5 pt-2">

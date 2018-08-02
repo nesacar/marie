@@ -28,13 +28,13 @@ class CreateProductRequest extends FormRequest
             'slug' => 'required',
             'link' => 'required',
             'brand_id' => 'required',
-            'gender' => 'required',
+            'gender_id' => 'required',
             'category_ids' => 'required',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif',
             'price' => 'required|numeric|min:1',
-            'outlet_price' => 'required|numeric|min:1',
+            'outlet_price' => 'nullable|numeric|min:0',
             'code' => 'required',
-            'published_at' => 'required|date',
+            'publish_at' => 'required|date',
         ];
     }
 
@@ -50,19 +50,18 @@ class CreateProductRequest extends FormRequest
             'slug.required' => 'Slug je obavezan',
             'link.required' => 'Link je obavezan',
             'brand_id.required' => 'Brend je obavezan',
-            'gender.required' => 'Pol je obavezan',
+            'gender_id.required' => 'Pol je obavezan',
             'image.image' => 'Slika nije u ispravnom formatu',
             'image.mimes' => 'Slika nije u jpg, jpeg, png ili gif formatu',
             'price.required' => 'Cena je obavezna',
             'price.numeric' => 'Cena mora biti broj',
             'price.min' => 'Cena mora biti veća od nule',
-            'outlet_price.required' => 'Outlet cena je obavezna',
             'outlet_price.numeric' => 'Outlet cena mora biti broj',
             'outlet_price.min' => 'Outlet cena mora biti veća od nule',
             'category_ids.required' => 'Kategorija je obavezna',
             'code.required' => 'Šifra proizvoda je obavezna',
-            'published_at.required' => 'Datum publikovanja je obavezan',
-            'published_at.date' => 'Datum publikovanja nije u ispravnom formatu',
+            'publish_at.required' => 'Datum publikovanja je obavezan',
+            'publish_at.date' => 'Datum publikovanja nije u ispravnom formatu',
         ];
     }
 }

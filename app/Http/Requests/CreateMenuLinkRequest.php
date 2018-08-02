@@ -26,6 +26,7 @@ class CreateMenuLinkRequest extends FormRequest
         return [
             'title' => 'required',
             'link' => 'required',
+            'order' => 'required|numeric',
         ];
     }
 
@@ -34,6 +35,8 @@ class CreateMenuLinkRequest extends FormRequest
         return [
             'title.required' => 'Naziv je obavezan',
             'link.required' => 'Link je obavezan',
+            'order.required' => 'Redosled je obavezan',
+            'order.numeric' => 'Redosled je obavezan',
         ];
     }
 }

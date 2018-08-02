@@ -23,11 +23,11 @@ class CreateProductsTable extends Migration
             $table->text('short')->nullable();
             $table->text('content')->nullable();
             $table->string('link');
-            $table->integer('gender')->default(0);
+            $table->integer('gender_id')->default(1);
             $table->string('image')->nullable();
             $table->float('price')->default(0);
             $table->float('outlet_price')->default(0);
-            $table->timestamp('published_at');
+            $table->timestamp('publish_at');
             $table->boolean('is_visible')->default(1);
             $table->timestamps();
         });
