@@ -41,3 +41,9 @@ ol {
   background-color: $theme-secondary;
   color: #FFF;
 }
+
+// vue component styles before JavaScript kicks in
+collapsable-container,
+image-slide {
+  display: block;
+}
