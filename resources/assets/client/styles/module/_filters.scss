@@ -62,3 +62,25 @@
   align-items: center;
   cursor: pointer;
 }
+
+.filter-range_input {
+  display: inline-flex;
+  width: 50%;
+  height: 36px;
+  padding: 0 8px;
+  font-size: 14px;
+  border: 1px solid $border-color-dark;
+  outline: none;
+
+  & + & {
+    border-left-color: transparent;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, .06);
+  }
+
+  &:focus {
+    border-color: $theme-primary;
+  }
+}

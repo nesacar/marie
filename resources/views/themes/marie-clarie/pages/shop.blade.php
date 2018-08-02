@@ -52,6 +52,22 @@
             </ul>
           </div>
 
+          <div class="filter">
+            <div class="filter_name">Range filter</div>
+            <div class="d-flex py-2">
+              <input class="filter-range_input"
+                type="number"
+                name="from"
+                placeholder="Od"
+              />
+              <input class="filter-range_input"
+                type="number"
+                name="to"
+                placeholder="Do"
+              />
+            </div>
+          </div>
+
         </collapsible>
 
       </div>
