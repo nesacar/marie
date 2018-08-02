@@ -25,7 +25,26 @@
                     <input type="checkbox" name="demo">
                     <div class="checkbox_mark"></div>
                   </div>
-                  <span class="ml-2">hello</span>
+                  <span class="ml-2">Hello</span>
+                </label>
+              </li>
+              @endfor
+
+            </ul>
+          </div>
+
+          <div class="filter">
+            <div class="filter_name">Radio filters</div>
+            <ul class="filter_list with-scrollbar">
+
+              @for($i = 0; $i < 4; $i++)
+              <li class="filter_list-item">
+                <label class="filter-item">
+                  <div class="radio-button">
+                    <input type="radio" name="radio">
+                    <div class="radio-button_mark"></div>
+                  </div>
+                  <span class="ml-2">Holla</span>
                 </label>
               </li>
               @endfor
