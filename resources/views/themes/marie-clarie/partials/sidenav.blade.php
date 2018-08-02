@@ -6,14 +6,14 @@
                     <use xlink:href="#logo"></use>
                 </svg>
             </a>
-            <toggler class="icon-btn ml-auto"
+            <event-dispatcher class="icon-btn ml-auto"
                      style="margin-right: -16px;"
                      event="hide:drawer"
             >
                 <svg class="icon" role="presentation" title="Hide sidenav">
                     <use xlink:href="#icon_close"></use>
                 </svg>
-            </toggler>
+            </event-dispatcher>
         </div>
         <nav>
             <ul class="sidenav">

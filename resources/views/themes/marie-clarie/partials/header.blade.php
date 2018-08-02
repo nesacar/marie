@@ -29,11 +29,11 @@
 <header class="header">
     <div class="container header-wrap">
 
-        <toggler class="icon-btn flex-shrink-0" event="show:drawer">
+        <event-dispatcher class="icon-btn flex-shrink-0" event="show:drawer">
             <svg class="icon" role="presentation" title="Toggle navigation">
                 <use xlink:href="#icon_menu"></use>
             </svg>
-        </toggler>
+        </event-dispatcher>
 
         <div class="px-1 d-none d-md-block">
             <a href="{{ url('/') }}" rel="home" class="logo-wrap" title="marie claire">

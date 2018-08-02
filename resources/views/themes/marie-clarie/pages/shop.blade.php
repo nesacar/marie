@@ -7,12 +7,12 @@
 
       <div class="filters">
 
-        <toggler as="div" class="filters_head" event="toggle:filters">
+        <event-dispatcher as="div" class="filters_head" event="toggle:filters">
           <span>Filteri</span>
           <span class="icon">&#9660;</span>
-        </toggler>
+        </event-dispatcher>
 
-        <collapsible class="filters_body" name="filters">
+        <collapsible-container class="filters_body" name="filters">
 
           <div class="filter">
             <div class="filter_name">Filter name</div>
@@ -74,7 +74,7 @@
 
           <button class="btn btn--secondary btn--block mt-1 mb-3">primeni</button>
 
-        </collapsible>
+        </collapsible-container>
 
       </div>
       
