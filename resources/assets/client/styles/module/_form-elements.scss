@@ -11,14 +11,14 @@
   }
 }
 
-.checkbox {
+@mixin toggle-base($type) {
   position: relative;
   display: inline-block;
   width: 16px;
   height: 16px;
   vertical-align: middle;
-  
-  input[type="checkbox"] {
+
+  input[type="#{$type}"] {
     position: absolute;
     top: 0;
     left: 0;
@@ -28,14 +28,22 @@
     z-index: 1;
     cursor: pointer;
   }
+}
+
+@mixin mark-base() {
+  border: 2px solid $border-color-dark;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  pointer-events: none;
+  color: transparent;
+}
+
+.checkbox {
+  @include toggle-base("checkbox");
   
   &_mark {
-    border: 2px solid $border-color-dark;
-    width: 100%;
-    height: 100%;
-    border-radius: 2px;
-    pointer-events: none;
-    color: transparent;
+    @include mark-base();
 
     input[type="checkbox"]:checked + & {
       background-color: $theme-primary;
@@ -59,30 +67,11 @@
 }
 
 .radio-button {
-  position: relative;
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  vertical-align: middle;
-  
-  input[type="radio"] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 1;
-    cursor: pointer;
-  }
+  @include toggle-base("radio");
   
   &_mark {
-    border: 2px solid $border-color-dark;
-    width: 100%;
-    height: 100%;
-    border-radius: 2px;
-    pointer-events: none;
-    color: transparent;
+    @include mark-base();
+
     border-radius: 50%;
 
     input[type="radio"]:checked + & {
