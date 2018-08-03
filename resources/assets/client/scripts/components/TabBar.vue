@@ -45,7 +45,7 @@ export default {
       const clientWidth = this.$refs.wrap.getBoundingClientRect().width;
 
       this.isTouching = false;
-      this.disableClicks = false;
+
       this.delta = 0;
       this.currentX = 0;
       this.min = 0;
@@ -72,7 +72,6 @@ export default {
      */
     onTouchMove(evt) {
       this.delta = (evt.pageX || evt.touches[0].pageX) - this.startX;
-      this.disableClicks = true;
     },
 
     /**
@@ -81,10 +80,6 @@ export default {
     onTouchEnd(evt) {
       this.isTouching = false;
       this.removeEventListeners();
-
-      setTimeout(() => {
-        this.disableClicks = false;
-      }, 0);
     },
 
     /**
@@ -92,8 +87,9 @@ export default {
      * https://github.com/nolimits4web/Swiper/issues/25
      */
     onClick(evt) {
-      if (this.disableClicks) {
+      if (this.delta !== 0) {
         evt.preventDefault();
+        this.delta = 0;
       }
     },
 

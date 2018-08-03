@@ -47,7 +47,11 @@
             @if(!empty($menu))
                 @foreach($menu as $link)
                     <div class="nav-item">
-                        <a class="nav-link {{ request()->is($link->link) ? 'active' : '' }}" href="{{ url($link->link) }}">{{ $link->title }}</a>
+                        <a
+                            class="nav-link {{ request()->is($link->link) ? 'active' : '' }}"
+                            href="{{ url($link->link) }}"
+                            draggable="false"
+                        >{{ $link->title }}</a>
                     </div>
                 @endforeach
             @endif
