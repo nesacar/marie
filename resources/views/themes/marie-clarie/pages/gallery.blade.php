@@ -25,7 +25,7 @@
 
                                 @foreach($post->gallery as $image)
 
-                                    <div class="slider-item">
+                                    <div class="slider-item gallery-slide">
                                         <image-slide src="{{ url($image->file_path) }}" alt="{{ $image->title }}">
                                             <h2 class="text-sans-serif h6 mb-2">{{ $image->title }}</h2>
                                             <p>{{ $image->desc }}</p>
