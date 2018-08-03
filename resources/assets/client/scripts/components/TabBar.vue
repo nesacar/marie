@@ -60,7 +60,6 @@ export default {
      * Touchstart/mousedown event handler.
      */
     onTouchStart(evt) {
-      evt.preventDefault();
       this.isTouching = true;
       this.delta = 0;
       this.startX = evt.pageX || evt.touches[0].pageX;

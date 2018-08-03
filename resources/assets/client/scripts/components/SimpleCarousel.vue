@@ -126,7 +126,6 @@ export default {
      * Touchstart/mousedown event handler.
      */
     onTouchStart(evt) {
-      evt.preventDefault();
       this.isTouching = true;
       this.animate = false;
       this.delta = 0;
