@@ -2,7 +2,7 @@
   <div class="tab-bar-wrap" ref="wrap">
     <div class="tab-bar"
       v-on:touchstart='onTouchStart'
-      v-on:mousedown='onTouchStart'
+      v-on:mousedown='onMouseDown'
       v-on:click='onClick'
       v-bind:style='{transform: translateX}'
     >
@@ -57,6 +57,14 @@ export default {
     },
 
     /**
+     * mousedown event handler.
+     */
+    onMouseDown(evt) {
+      evt.preventDefault();
+      this.onTouchStart(evt);
+    },
+
+    /**
      * Touchstart/mousedown event handler.
      */
     onTouchStart(evt) {
@@ -89,7 +97,6 @@ export default {
     onClick(evt) {
       if (this.delta !== 0) {
         evt.preventDefault();
-        this.delta = 0;
       }
     },
 

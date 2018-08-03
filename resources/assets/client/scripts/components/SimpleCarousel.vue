@@ -3,7 +3,7 @@
     <div class="simple-carousel"
       ref="host"
       v-on:touchstart='onTouchStart'
-      v-on:mousedown='onTouchStart'
+      v-on:mousedown='onMouseDown'
       v-on:click='onClick'
       v-on:transitionend='onTransitionEnd'
       v-bind:style='{transform: translateX, transition}'
@@ -122,7 +122,15 @@ export default {
     },
 
     /**
-     * Touchstart/mousedown event handler.
+     * mousedown event handler.
+     */
+    onMouseDown(evt) {
+      evt.preventDefault()
+      this.onTouchStart(evt);
+    },
+
+    /**
+     * Touchstart event handler.
      */
     onTouchStart(evt) {
       this.isTouching = true;
@@ -156,7 +164,6 @@ export default {
     onClick(evt) {
       if (this.delta !== 0) {
         evt.preventDefault();
-        this.delta = 0;
       }
     },
 
