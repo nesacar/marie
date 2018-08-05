@@ -30,6 +30,7 @@
                                 <th scope="col">id</th>
                                 <th scope="col">naslov</th>
                                 <th scope="col">brend</th>
+                                <th scope="col">kategorija</th>
                                 <th scope="col">vidljivo</th>
                                 <th scope="col">vidljivo od</th>
                                 <th>akcija</th>
@@ -40,6 +41,7 @@
                                 <td>{{ row.id }}</td>
                                 <td>{{ row.title }}</td>
                                 <td>{{ row.brand.title }}</td>
+                                <td>{{ row.category[0].title }}</td>
                                 <td>{{ row.is_visible? 'Da' : 'Ne' }}</td>
                                 <td>{{ row.publish_at }}</td>
                                 <td>

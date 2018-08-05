@@ -111,7 +111,7 @@ class CategoriesController extends Controller
 
         return response()->json([
             'categories' => $categories,
-            'lists' => $categories->pluck('title', 'id'),
+            'lists' => $categories->pluck('title', 'id')->prepend('Izaberi kategoriju', 0),
         ]);
     }
 
@@ -135,11 +135,8 @@ class CategoriesController extends Controller
      */
     public function saveOrder(){
         Category::orderCategories(request('categories'), 0);
-
-        $categories = Category::tree();
-
         return response()->json([
-            'categories' => $categories,
+            'categories' => Category::tree(),
         ]);
     }
 }

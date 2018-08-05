@@ -6,8 +6,8 @@
                     <div id="breadcrumbs">
                         <ul class="list-group list-group-flush">
                             <li><router-link tag="a" :to="'/home'">Početna</router-link></li>
-                            <li><router-link tag="a" :to="'/banners'">Baneri</router-link></li>
-                            <li>Izmena banera</li>
+                            <li><router-link tag="a" :to="'/partners'">Partneri</router-link></li>
+                            <li>Izmena partnera</li>
                         </ul>
                     </div>
                 </div>
@@ -16,23 +16,25 @@
             <div class="row bela">
                 <div class="col-md-12">
                     <div class="card">
-                        <h5>Kreiranje banera</h5>
+                        <h5>Kreiranje partnera</h5>
                     </div>
                 </div>
 
                 <div class="col-sm-8">
-                    <div class="card">
+                    <div class="card" v-if="trigger">
                         <form @submit.prevent="submit()">
 
-                            <text-field :value="banner.title" :label="'Naziv'" :error="error? error.title : ''" :required="true" @changeValue="banner.title = $event"></text-field>
+                            <text-field :value="partner.title" :label="'Naziv'" :error="error? error.title : ''" :required="true" @changeValue="partner.title = $event"></text-field>
 
-                            <text-field :value="banner.link" :label="'Link'" :error="error? error.link : ''" @changeValue="banner.link = $event"></text-field>
+                            <text-field :value="partner.slug" :label="'slug'" :error="error? error.slug : ''" @changeValue="partner.slug = $event"></text-field>
 
-                            <text-field :value="banner.width" :label="'Širina'" :error="error? error.width : ''" @changeValue="banner.width = $event"></text-field>
+                            <text-field :value="partner.link" :label="'Link'" :error="error? error.link : ''" @changeValue="partner.link = $event"></text-field>
 
-                            <text-field :value="banner.height" :label="'Visina'" :error="error? error.height : ''" @changeValue="banner.height = $event"></text-field>
+                            <text-area-ckeditor-field :value="partner.short" :label="'Kratak opis'" :error="error? error.short : ''" @changeValue="partner.short = $event"></text-area-ckeditor-field>
 
-                            <checkbox-field :value="banner.is_visible" :label="'Vidljivo'" @changeValue="banner.is_visible = $event"></checkbox-field>
+                            <text-field :value="partner.order" :label="'Redosled'" :error="error? error.order : ''" @changeValue="partner.order = $event"></text-field>
+
+                            <checkbox-field :value="partner.is_visible" :label="'Vidljivo'" @changeValue="partner.is_visible = $event"></checkbox-field>
 
                             <div class="form-group">
                                 <button class="btn btn-primary" type="submit">Izmeni</button>
@@ -43,9 +45,9 @@
                 </div>
                 <div class="col-sm-4">
                     <upload-image-helper
-                            :image="banner.image_path"
+                            :image="partner.image_path"
                             :defaultImage="null"
-                            :titleImage="'banera'"
+                            :titleImage="'partnera'"
                             :error="error"
                             :dimensions="''"
                             @uploadImage="prepare($event)"
@@ -66,8 +68,9 @@
     export default {
         data(){
           return {
-              fillable: ['title', 'link', 'width', 'height', 'image', 'is_visible'],
-              banner: {
+              fillable: ['title', 'slug', 'link', 'short', 'order', 'image', 'is_visible'],
+              trigger: false,
+              partner: {
                   title: null,
                   is_visible: false,
               },
@@ -87,15 +90,16 @@
             'upload-image-helper': UploadImageHelper,
         },
         mounted(){
-            this.getBanner();
+            this.getPartner();
         },
         methods: {
-            getBanner(){
-                axios.get('api/banners/' + this.$route.params.id)
+            getPartner(){
+                axios.get('api/partners/' + this.$route.params.id)
                     .then(res => {
-                        this.banner = res.data.banner;
-                        this.banner.image_path = this.banner.image;
-                        this.banner.image = null;
+                        this.partner = res.data.partner;
+                        this.partner.image_path = this.partner.image;
+                        this.partner.image = null;
+                        this.trigger = true;
                     })
                     .catch(e => {
                         console.log(e);
@@ -103,10 +107,10 @@
                     });
             },
             submit(){
-                let data = fillForm(this.fillable, this.banner, 'PUT')
-                axios.post('api/banners/' + this.banner.id, data)
+                let data = fillForm(this.fillable, this.partner, 'PUT')
+                axios.post('api/partners/' + this.partner.id, data)
                     .then(res => {
-                        this.banner = res.data.banner;
+                        this.partner = res.data.partner;
                         swal({
                             position: 'center',
                             type: 'success',
@@ -120,8 +124,13 @@
                     });
             },
             prepare(image){
-                this.banner.image_path = image.src;
-                this.banner.image = image.file;
+                this.partner.image_path = image.src;
+                this.partner.image = image.file;
+            },
+        },
+        watch: {
+            'partner.title'(){
+                this.partner.slug = Slug(this.partner.title);
             },
         },
     }

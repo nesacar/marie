@@ -1,5 +1,5 @@
 <template>
-    <div id="leftMenu" :class="{ 'hide': hideLeftBar }" v-if="user">
+    <div id="leftMenu" :class="{ 'hide': hideLeftBar }">
         <div class="logo-holder">
             <div class="logo">
                 <a :href="domain" target="_blank">
@@ -37,6 +37,8 @@
                     <template>
                         <li><router-link tag="a" :to="'/categories'">Kategorije</router-link></li>
                         <li><router-link tag="a" :to="'/brands'">Brendovi</router-link></li>
+                        <li><router-link tag="a" :to="'/beauty-boxes'">Beauty box</router-link></li>
+                        <li><router-link tag="a" :to="'/partners'">Partneri</router-link></li>
                     </template>
                 </ul>
             </li>

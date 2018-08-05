@@ -66,10 +66,11 @@ class BannersController extends Controller
     }
 
     /**
-     * method ised to remove the specified Banner model
+     * method used to remove the specified Banner model
      *
-     * @param  \App\Banner  $banner
-     * @return \Illuminate\Http\Response
+     * @param Banner $banner
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function destroy(Banner $banner){
         $banner->delete();

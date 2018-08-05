@@ -1,52 +1,55 @@
 @extends('themes.' . env('APP_THEME') . '.layouts.beautybox')
 
 @section('content')
-  <div class="py-4" style="background-color: #b5e2f5;">
-    @beautybox_hero()
-    @endbeautybox_hero
-  </div>
-
-  <div class="container">
-
-    <div class="mb-5">
-      <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, praesentium? Qui voluptatem corporis in error repudiandae dignissimos inventore repellat. Eligendi esse voluptatum vitae distinctio, dignissimos pariatur tempore harum voluptas amet?</p>
-      <div class="text-center">
-        <img src="http://beautybox.marieclaire.cz/imgs/marieclaire_sig.png" alt="marie claire signature">
-      </div>
+    <div class="py-4" style="background-color: #b5e2f5;">
+        @beautybox_hero(['beauty_box' => $beauty_box]) @endbeautybox_hero
     </div>
 
-    <h2 class="text-uppercase text-center mb-4 h5">sadržaj beauty box-a</h2>
+    <div class="container">
 
-    <div class="row mb-5">
-      @for($i = 0; $i < 6; $i++)
-      <div class="col beautybox-list_item">
-        @beautybox_product()
-        @endbeautybox_product
-      </div>
-      @endfor
+        <div class="mb-5">
+            <p class="mt-4">{!! $category->short !!}</p>
+            <div class="text-center">
+                <img src="{{ url('client/images/marieclaire_sig.png') }}" alt="marie claire signature">
+            </div>
+        </div>
+
+        @if(!empty($products))
+        <h2 class="text-uppercase text-center mb-4 h5">sadržaj beauty box-a</h2>
+
+        <div class="row mb-5">
+            @foreach($products as $product)
+                <div class="col beautybox-list_item">
+                    @beautybox_product(['product' => $product]) @endbeautybox_product
+                </div>
+            @endforeach
+        </div>
+        @endif
+
+        @if(!empty($beauty_box->partner))
+        <h2 class="text-uppercase text-center mb-4 h5">partneri</h2>
+
+        <div class="row mb-5">
+            @foreach($beauty_box->partner as $partner)
+                <div class="col beautybox-list_item">
+                    @beautybox_partner(['partner' => $partner]) @endbeautybox_partner
+                </div>
+            @endforeach
+        </div>
+        @endif
+
+        <h2 class="h6">#beautybox</h2>
+
+        <div>
+            instagram plugin and stuff...
+        </div>
+
+        <div class="text-center py-5 small">
+            <div>Legal crap and stuff</div>
+            <div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum rerum hic quas! Atque nostrum
+                dolores excepturi!
+            </div>
+        </div>
+
     </div>
-
-    <h2 class="text-uppercase text-center mb-4 h5">partneri</h2>
-
-    <div class="row mb-5">
-      @for($i = 0; $i < 6; $i++)
-      <div class="col beautybox-list_item">
-        @beautybox_partner()
-        @endbeautybox_partner
-      </div>
-      @endfor
-    </div>
-
-    <h2 class="h6">#beautybox</h2>
-
-    <div>
-      instagram plugin and stuff...
-    </div>
-
-    <div class="text-center py-5 small">
-      <div>Legal crap and stuff</div>
-      <div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum rerum hic quas! Atque nostrum dolores excepturi!</div>
-    </div>
-
-  </div>
 @endsection

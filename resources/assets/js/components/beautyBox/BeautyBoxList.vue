@@ -6,7 +6,7 @@
                     <div id="breadcrumbs">
                         <ul class="list-group list-group-flush">
                             <li><router-link tag="a" :to="'/home'">Početna</router-link></li>
-                            <li>Baneri</li>
+                            <li>Beauty Box</li>
                         </ul>
                     </div>
                 </div>
@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <h5>Baneri</h5>
+                        <h5>Beauty Box</h5>
                         <font-awesome-icon icon="plus" @click="addRow()" class="new-link-add" />
                     </div>
                 </div>
@@ -27,21 +27,17 @@
                             <tr>
                                 <th scope="col">id</th>
                                 <th scope="col">naziv</th>
-                                <th scope="col">širina</th>
-                                <th scope="col">visina</th>
                                 <th scope="col">vidljivo</th>
                                 <th>akcija</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="row in banners">
+                            <tr v-for="row in beauty_boxes">
                                 <td>{{ row.id }}</td>
                                 <td>{{ row.title }}</td>
-                                <td>{{ row.width }}</td>
-                                <td>{{ row.height }}</td>
                                 <td>{{ row.is_visible? 'Da' : 'Ne' }}</td>
                                 <td>
-                                    <router-link tag="a" :to="'banners/' + row['id'] + '/edit'" class="edit-link"><font-awesome-icon icon="pencil-alt"/></router-link>
+                                    <router-link tag="a" :to="'beauty-boxes/' + row['id'] + '/edit'" class="edit-link"><font-awesome-icon icon="pencil-alt"/></router-link>
                                     <font-awesome-icon icon="times" @click="deleteRow(row)" />
                                 </td>
                             </tr>
@@ -67,7 +63,7 @@
     export default {
         data(){
             return {
-                banners: {},
+                beauty_boxes: {},
                 paginate: {},
             }
         },
@@ -76,21 +72,21 @@
             'font-awesome-icon': FontAwesomeIcon,
         },
         mounted(){
-            this.getBanners();
+            this.getBeautyBoxes();
         },
         methods: {
-            getBanners(){
-                axios.get('api/banners')
+            getBeautyBoxes(){
+                axios.get('api/beauty-boxes')
                     .then(res => {
-                        this.banners = res.data.banners.data;
-                        this.paginate = res.data.banners;
+                        this.beauty_boxes = res.data.beauty_boxes.data;
+                        this.paginate = res.data.beauty_boxes;
                     })
                     .catch(e => {
                         console.log(e);
                     });
             },
             editRow(id){
-                this.$router.push('banners/' + id + '/edit');
+                this.$router.push('beauty-boxes/' + id + '/edit');
             },
             deleteRow(row){
                 swal({
@@ -104,14 +100,14 @@
                     cancelButtonText: 'Odustani'
                 }).then((result) => {
                     if (result.value) {
-                        axios.delete('api/banners/' + row.id)
+                        axios.delete('api/beauty-boxes/' + row.id)
                             .then(res => {
-                                this.banners = this.banners.filter(function (item) {
+                                this.beauty_boxes = this.beauty_boxes.filter(function (item) {
                                     return row.id != item.id;
                                 });
                                 swal(
                                     'Obrisano!',
-                                    'Baner je uspešno obrisan.',
+                                    'Beauty box je uspešno obrisan.',
                                     'success'
                                 );
                             })
@@ -122,17 +118,17 @@
                 });
             },
             clickToLink(index){
-                axios.get('api/banners?page=' + index)
+                axios.get('api/beauty-boxes?page=' + index)
                     .then(res => {
-                        this.banners = res.data.banners.data;
-                        this.paginate = res.data.banners;
+                        this.beauty_boxes = res.data.beauty_boxes.data;
+                        this.paginate = res.data.beauty_boxes;
                     })
                     .catch(e => {
                         console.log(e);
                     });
             },
             addRow(){
-                this.$router.push('/banners/create');
+                this.$router.push('/beauty-boxes/create');
             },
         },
     }

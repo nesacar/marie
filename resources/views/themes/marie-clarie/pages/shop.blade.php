@@ -24,12 +24,11 @@
         <div class="mb-5 pt-2">
             <h2 class="h6 text-serif mb-3">Ne propustite</h2>
             <div class="row">
-                @for($i = 0; $i < 6; $i++)
+                @foreach($do_not_miss_it as $post)
                     <div class="col col--6">
-                        {{-- @related_item()
-                        @endrelated_item --}}
+                        @related_item(['post' => $post]) @endrelated_item
                     </div>
-                @endfor
+                @endforeach
             </div>
         </div>
 

@@ -58,9 +58,9 @@
                     <upload-image-helper
                             :image="product.image_path"
                             :defaultImage="null"
-                            :titleImage="'slajdera'"
+                            :titleImage="'proizvoda'"
                             :error="error.image"
-                            :dimensions="'800x450 px'"
+                            :dimensions="''"
                             @uploadImage="prepare($event)"
                             @removeRow="remove($event)"
                     ></upload-image-helper>
@@ -196,10 +196,6 @@
     ul.no-parent{
         padding-left: 0;
         list-style: none;
-    }
-
-    ul.blogs li {
-        margin-top: 1em;
     }
 
     label {

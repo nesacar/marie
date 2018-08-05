@@ -18,7 +18,7 @@ class Subscriber extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'block'];
+    protected $fillable = ['name', 'email', 'verification', 'block'];
 
     /**
      * method used to set block attribute

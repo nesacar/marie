@@ -21,7 +21,7 @@
                 @if(!empty($post->gallery))
                     <div class="mb-3 gallery">
                         <div style="overflow-x: hidden;">
-                            <simple-carousel controls :index="{{ request('image')? request('image') - 1 : 0 }}">
+                            <simple-carousel controls :index="{{ request('image')? (int) request('image') - 1 : 0 }}">
 
                                 @foreach($post->gallery as $image)
 

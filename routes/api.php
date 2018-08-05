@@ -18,6 +18,8 @@ Route::middleware('auth:api')->group(function () {
 
     Route::resource('banners', 'Api\BannersController');
 
+    Route::resource('beauty-boxes', 'Api\BeautyBoxesController');
+
     Route::get('brands/lists', 'Api\BrandsController@lists');
     Route::resource('brands', 'Api\BrandsController');
 
@@ -42,6 +44,9 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('menu-links', 'Api\MenuLinksController');
     Route::get('menu-links/{id}/sort', 'Api\MenuLinksController@sort');
     Route::post('menu-links/{id}/order', 'Api\MenuLinksController@saveOrder');
+
+    Route::get('partners/lists', 'Api\PartnersController@lists');
+    Route::resource('partners', 'Api\PartnersController');
 
     Route::resource('permissions', 'Api\PermissionsController');
 

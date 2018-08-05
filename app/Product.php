@@ -35,9 +35,15 @@ class Product extends Model
     /**
      * The attributes that are use for search
      *
+     * title - used for admin panel search products
+     * category - used for admin panel search products
+     * brands - using for shop page
+     * genders - using for shop page
+     * prices - using for shop page
+     *
      * @var array
      */
-    protected static $searchable = ['title', 'category'];
+    protected static $searchable = ['title', 'category', 'brands', 'genders', 'prices'];
 
     /**
      *method used when instance of this model is created

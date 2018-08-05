@@ -10,7 +10,7 @@
                 @if(!empty($post->gallery))
                 <div class="mb-3 gallery">
 
-                    @image_gallery(['images' => $post->gallery]) @endimage_gallery
+                    @image_gallery(['images' => $post->gallery, 'post' => $post,]) @endimage_gallery
 
                 </div>
                 @endif

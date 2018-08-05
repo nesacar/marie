@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Category;
 use App\Http\Requests\CreateProductRequest;
 use App\Product;
 use Illuminate\Http\Request;
@@ -40,6 +41,7 @@ class ProductsController extends Controller
             'category_ids' => $product->category()->visible()->pluck('id'),
             'gender_id' => $product->gender()->select('id', 'title')->get(),
             'brand_id' => $product->brand()->select('id', 'title')->get(),
+            'categories' => Category::tree(),
         ]);
     }
 
@@ -62,6 +64,7 @@ class ProductsController extends Controller
             'category_ids' => $product->category()->visible()->pluck('id'),
             'gender_id' => $product->gender()->select('id', 'title')->get(),
             'brand_id' => $product->brand()->select('id', 'title')->get(),
+            'categories' => Category::tree(),
         ]);
     }
 
@@ -88,7 +91,7 @@ class ProductsController extends Controller
      */
     public function search(){
         Product::setCategoryValue();
-        $products = Product::search()->with('brand')->paginate(Product::$paginate);
+        $products = Product::search()->with('brand', 'category')->paginate(Product::$paginate);
 
         return response()->json([
             'products' => $products,

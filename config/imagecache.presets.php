@@ -37,6 +37,11 @@ return array(
         'height' => 173,
         'method' => 'crop',
     ),
+    '305x305' => array(
+        'width' => 305,
+        'height' => 305,
+        'method' => 'crop',
+    ),
     '650x278' => array(
         'width' => 650,
         'height' => 278,

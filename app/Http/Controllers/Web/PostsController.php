@@ -29,7 +29,7 @@ class PostsController extends Controller
     /**
      * method used to return sub post page
      *
-     * @param string $slug1 - present parent parent category slug
+     * @param string $slug1 - present parent category slug
      * @param string $slug2 - present parent child category slug
      * @param string $slug3 - present post slug
      * @param integer $id - present post id
