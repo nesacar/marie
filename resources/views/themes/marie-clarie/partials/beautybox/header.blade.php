@@ -29,7 +29,7 @@
             <tab-bar>
                 @foreach($menu as $link)
                 <div class="nav-item">
-                    <a class="nav-link" href="{{ url($link->link) }}">{{ $link->title }}</a>
+                    <a class="nav-link {{ request()->is($link->link) ? 'active' : '' }}" href="{{ url($link->link) }}">{{ $link->title }}</a>
                 </div>
                 @endforeach
             </tab-bar>
