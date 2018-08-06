@@ -12,10 +12,6 @@ import toggler from '../mixins/toggler';
 export default {
   mixins: [toggler],
 
-  data() {
-    return {open: true};
-  },
-
   mounted() {
     this.$root.$on('show:modal', this.show);
     window.addEventListener('keyup', this.onKeyUp);

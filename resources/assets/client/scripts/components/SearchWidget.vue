@@ -67,8 +67,6 @@ export default {
         this.show = true;
         return;
       }
-
-      console.log(`fetch data that match the query: "${this.value}"`);
     },
 
     /**
