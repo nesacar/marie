@@ -9,7 +9,7 @@
              data-alt="{{ $product->title }}"
         ></div>
     </a>
-    <div class="shop-product_name">{{ $product->title }}</div>
+    <div class="shop-product_name" title="{{$product->title}}">{{ $product->title }}</div>
     <div class="shop-product_price">{{ $product->outlet_price?: $product->price }} rsd</div>
     <a class="btn btn--primary btn--block"
        href="{{ $product->link }}"
