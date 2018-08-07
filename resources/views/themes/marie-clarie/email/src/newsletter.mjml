@@ -1,0 +1,48 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Playfair" href="https://fonts.googleapis.com/css?family=Playfair+Display:700&amp;subset=cyrillic" />
+    <mj-style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        background-color: #FFF;
+        color: rgba(0, 0, 0, .87);
+      }
+
+      .serif {
+        font-family: "Playfair", serif;
+      }
+    </mj-style>
+
+    <mj-attributes>
+      <mj-class name="dark-bg"
+        background-color="#333"
+      />
+    </mj-attributes>
+  </mj-head>
+  <mj-body>
+    <mj-section mj-class="dark-bg"><!-- header -->
+      <mj-column>
+        <mj-image
+          src=""
+          href="http://marie.mia.rs"
+        />
+      </mj-column>
+    </mj-section><!-- ./header -->
+
+    <mj-section><!-- body -->
+      <mj-column>
+        <mj-text>
+          body
+        </mj-text>
+      </mj-column>
+    </mj-section><!-- ./body -->
+
+    <mj-section mj-class="dark-bg"><!-- footer -->
+      <mj-column>
+        <mj-text>
+          footer
+        </mj-text>
+      </mj-column>
+    </mj-section><!-- ./footer -->
+  </mj-body>
+</mjml>
