@@ -96,7 +96,7 @@
       </mj-column>
     </mj-section><!-- ./body -->
 
-    <mj-section mj-class="dark-bg"><!-- footer -->
+    <mj-section mj-class="dark-bg" padding-bottom="0px"><!-- footer -->
       <mj-column width="33.3333%">
         <mj-image
           src="http://marie.mia.rs/img/marie-claire-logo.png"
@@ -104,7 +104,32 @@
         />
       </mj-column>
     </mj-section>
-    <mj-section mj-class="py-0" background-color="#000">
+    
+    <mj-section mj-class="dark-bg py-0">
+      <mj-column>
+        <mj-social
+          icon-size="32px"
+          inner-padding="8px"
+          mode="horizontal"
+          padding-bottom="24px"
+        >
+          <mj-social-element
+            src="http://marie.mia.rs/img/facebook-logo.png"
+            href="https://facebook.com/"
+          ></mj-social-element>
+          <mj-social-element
+            src="http://marie.mia.rs/img/twitter-logo.png"
+            href="https://twitter.com/"
+          ></mj-social-element>
+          <mj-social-element
+            src="http://marie.mia.rs/img/instagram-logo.png"
+            href="https://www.instagram.com/"
+          ></mj-social-element>
+        </mj-social>
+      </mj-column>
+    </mj-section>
+
+    <mj-section mj-class="py-0" background-color="#121212">
       <mj-column>
         <mj-text align="center">
           <p class="sub-footer">Dobili ste ovu poruku jer ste se prijavili na mailing listu na sajtu <a class="link" href="http://marie.mia.rs/">marie-claire.rs</a>. Da bi ste se odjavili sa mailing liste, kliknite <a class="link" href="#">ovde</a>.</p>
