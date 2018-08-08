@@ -93,50 +93,52 @@
     </mj-attributes>
   </mj-head>
   <mj-body>
-    <mj-section mj-class="dark-bg"><!-- header -->
-      <mj-column width="50%">
-        <mj-image
-          src="http://marie.mia.rs/img/marie-claire-logo.png"
-          href="http://marie.mia.rs"
-        />
-      </mj-column>
-    </mj-section>
-    <mj-section mj-class="dark-bg">
-      <mj-column>
-        <mj-navbar base-url="http://marie.mia.rs/">
-          <mj-navbar-link
-            mj-class="nav-link py-0"
-            href="/moda"
-          >
-            <span class="link">moda</span>
-          </mj-navbar-link>
-          <mj-navbar-link
-            mj-class="nav-link py-0"
-            href="/lepota"
-          >
-            <span class="link">lepota</span>
-          </mj-navbar-link>
-          <mj-navbar-link
-            mj-class="nav-link py-0"
-            href="/lifestyle"
-          >
-            <span class="link">lifestyle</span>
-          </mj-navbar-link>
-          <mj-navbar-link
-            mj-class="nav-link py-0"
-            href="/ljubav"
-          >
-            <span class="link">ljubav</span>
-          </mj-navbar-link>
-          <mj-navbar-link
-            mj-class="nav-link py-0"
-            href="/biznis"
-          >
-            <span class="link">biznis</span>
-          </mj-navbar-link>
-        </mj-navbar>
-      </mj-column>
-    </mj-section><!-- ./header -->
+    <mj-wrapper mj-class="py-0 dark-bg" full-width="full-width"><!-- header -->
+      <mj-section>
+        <mj-column width="50%">
+          <mj-image
+            src="http://marie.mia.rs/img/marie-claire-logo.png"
+            href="http://marie.mia.rs"
+          />
+        </mj-column>
+      </mj-section>
+      <mj-section>
+        <mj-column>
+          <mj-navbar base-url="http://marie.mia.rs/">
+            <mj-navbar-link
+              mj-class="nav-link py-0"
+              href="/moda"
+            >
+              <span class="link">moda</span>
+            </mj-navbar-link>
+            <mj-navbar-link
+              mj-class="nav-link py-0"
+              href="/lepota"
+            >
+              <span class="link">lepota</span>
+            </mj-navbar-link>
+            <mj-navbar-link
+              mj-class="nav-link py-0"
+              href="/lifestyle"
+            >
+              <span class="link">lifestyle</span>
+            </mj-navbar-link>
+            <mj-navbar-link
+              mj-class="nav-link py-0"
+              href="/ljubav"
+            >
+              <span class="link">ljubav</span>
+            </mj-navbar-link>
+            <mj-navbar-link
+              mj-class="nav-link py-0"
+              href="/biznis"
+            >
+              <span class="link">biznis</span>
+            </mj-navbar-link>
+          </mj-navbar>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper><!-- ./header -->
 
     <mj-section><!-- body -->
       <mj-column vertical-align="top"><!-- fetured article -->
@@ -195,45 +197,49 @@
 
     </mj-section><!-- ./body -->
 
-    <mj-section mj-class="dark-bg" padding-bottom="0px"><!-- footer -->
-      <mj-column width="33.3333%">
-        <mj-image
-          src="http://marie.mia.rs/img/marie-claire-logo.png"
-          href="http://marie.mia.rs"
-        />
-      </mj-column>
-    </mj-section>
-    
-    <mj-section mj-class="dark-bg py-0">
-      <mj-column>
-        <mj-social
-          icon-size="32px"
-          inner-padding="8px"
-          mode="horizontal"
-          padding-bottom="24px"
-        >
-          <mj-social-element
-            src="http://marie.mia.rs/img/facebook-logo.png"
-            href="https://facebook.com/"
-          ></mj-social-element>
-          <mj-social-element
-            src="http://marie.mia.rs/img/twitter-logo.png"
-            href="https://twitter.com/"
-          ></mj-social-element>
-          <mj-social-element
-            src="http://marie.mia.rs/img/instagram-logo.png"
-            href="https://www.instagram.com/"
-          ></mj-social-element>
-        </mj-social>
-      </mj-column>
-    </mj-section>
+    <mj-wrapper mj-class="dark-bg" full-width="full-width"><!-- footer -->
+      <mj-section padding-bottom="0px">
+        <mj-column width="33.3333%">
+          <mj-image
+            src="http://marie.mia.rs/img/marie-claire-logo.png"
+            href="http://marie.mia.rs"
+          />
+        </mj-column>
+      </mj-section>
+      
+      <mj-section mj-class="dark-bg py-0">
+        <mj-column>
+          <mj-social
+            icon-size="32px"
+            inner-padding="8px"
+            mode="horizontal"
+            padding-bottom="24px"
+          >
+            <mj-social-element
+              src="http://marie.mia.rs/img/facebook-logo.png"
+              href="https://facebook.com/"
+            ></mj-social-element>
+            <mj-social-element
+              src="http://marie.mia.rs/img/twitter-logo.png"
+              href="https://twitter.com/"
+            ></mj-social-element>
+            <mj-social-element
+              src="http://marie.mia.rs/img/instagram-logo.png"
+              href="https://www.instagram.com/"
+            ></mj-social-element>
+          </mj-social>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
 
-    <mj-section mj-class="py-0" background-color="#121212">
-      <mj-column>
-        <mj-text align="center">
-          <p class="sub-footer">Dobili ste ovu poruku jer ste se prijavili na mailing listu na sajtu <a class="link" href="http://marie.mia.rs/">marie-claire.rs</a>. Da bi ste se odjavili sa mailing liste, kliknite <a class="link" href="#">ovde</a>.</p>
-        </mj-text>
-      </mj-column>
-    </mj-section><!-- ./footer -->
+    <mj-wrapper mj-class="py-0" full-width="full-width"  background-color="#121212">
+      <mj-section>
+        <mj-column>
+          <mj-text align="center">
+            <p class="sub-footer">Dobili ste ovu poruku jer ste se prijavili na mailing listu na sajtu <a class="link" href="http://marie.mia.rs/">marie-claire.rs</a>. Da bi ste se odjavili sa mailing liste, kliknite <a class="link" href="#">ovde</a>.</p>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper><!-- ./footer -->
   </mj-body>
 </mjml>
