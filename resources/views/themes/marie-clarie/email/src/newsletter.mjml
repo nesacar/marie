@@ -8,6 +8,10 @@
         color: rgba(0, 0, 0, .87);
       }
 
+      a {
+        color: inherit;
+      }
+
       .serif {
         font-family: "Playfair", serif;
       }
@@ -25,6 +29,34 @@
         line-height: 1.5;
         margin: 0;
         color: #9E9E9E;
+      }
+
+      .detail {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 12px;
+        color: #9E9E9E;
+        padding: 4px 0;
+      }
+
+      .detail_cat {
+        color: rgba(0, 0, 0, .87);;
+        text-decoration: none;
+        margin-right: 4px;
+      }
+
+      .detail_cat:hover {
+        text-decoration: underline;
+        color: rgba(0, 0, 0, .87);
+      }
+
+      .detail_date {
+        margin-left: 4px;
+      }
+
+      .p {
+        font-size: 14px;
+        line-height: 1.5;
       }
     </mj-style>
 
@@ -89,9 +121,17 @@
     </mj-section><!-- ./header -->
 
     <mj-section><!-- body -->
-      <mj-column>
+      <mj-column vertical-align="top">
+        <mj-image mj-class="py-0"
+          src="http://www.marieclaire.cz/sites/default/files/styles/610x300/public/images/icons8-team-643492-unsplash.jpg?itok=ox_KmGEE&c=d77069ef9f94e1ef5e2a106672afe9a9"
+          href="#"
+        />
         <mj-text>
-          body
+          <div class="detail">
+            <a class="detail_cat" href="#">kategoriy</a> | <span class="detail_date">date</span>
+          </div>
+          <h1 class="serif">Article title</h1>
+          <p class="p">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In in lectus in eros varius lobortis. Sed porta sed purus sed mollis</p>
         </mj-text>
       </mj-column>
     </mj-section><!-- ./body -->
