@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\UploudableImageTrait;
 use Illuminate\Database\Eloquent\Model;
 use File;
+use Illuminate\Database\Eloquent\Builder;
 
 class Blog extends Model
 {
@@ -30,6 +31,10 @@ class Blog extends Model
     public static function boot()
     {
         parent::boot();
+
+        static::addGlobalScope('parent', function (Builder $builder) {
+            $builder->with('parentBlog');
+        });
 
         self::deleting(function($blog){
             self::where('parent', $blog->id)->get()->each(function($item){
@@ -84,7 +89,7 @@ class Blog extends Model
      * @return \Illuminate\Contracts\Routing\UrlGenerator|string
      */
     public function getLink(){
-        return url($this->slug . '/');
+        return $this->parent_blog? $this->parent_blog->slug . '/' . $this->slug . '/' : $this->slug . '/';
     }
 
     /**

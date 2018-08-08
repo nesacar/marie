@@ -26,9 +26,11 @@
             },
             filtered(){
                 let filteredIds = [];
-                this.selected.forEach(function(element) {
-                    filteredIds.push(element.id);
-                });
+                if(this.selected){
+                    this.selected.forEach(function(element) {
+                        filteredIds.push(element.id);
+                    });
+                }
                 return filteredIds;
             }
         },

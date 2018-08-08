@@ -33,14 +33,14 @@
                 <simple-carousel>
                     @foreach($most_views as $most)
                         <div class="slider-item home-popular_item">
-                            <a href="{{ $most->getLink() }}" title="alt tag">
+                            <a href="{{ $most->link }}" title="alt tag">
                                 <div class="js-lazy-image image image--1-1 tint tint--light tint--hover"
                                      data-src="{{ $most->image_box }}"
                                      data-alt="alt tag"
                                 ></div>
                             </a>
                             <div class="home-popular_title">
-                                <a href="{{ $most->getLink() }}">{{ $most->title }}</a>
+                                <a href="{{ $most->link }}">{{ $most->title }}</a>
                             </div>
                         </div>
                     @endforeach

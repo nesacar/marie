@@ -26,9 +26,9 @@
 
                             <text-field :value="post.title" :label="'Naslov'" :error="error? error.title : ''" :required="true" @changeValue="post.title = $event"></text-field>
 
-                            <text-field :value="post.slug" :label="'Slug'" :error="error? error.slug : ''" @changeValue="post.slug = $event"></text-field>
+                            <text-field :value="post.slug" :label="'Slug'" :error="error? error.slug : ''" :required="true" @changeValue="post.slug = $event"></text-field>
 
-                            <date-time-picker :label="'Publikovano od'" :value="post.publish_at" :error="error? error.publish_at : ''" @changeValue="post.publish_at = $event"></date-time-picker>
+                            <date-time-picker :label="'Publikovano od'" :value="post.publish_at" :error="error? error.publish_at : ''" :required="true" @changeValue="post.publish_at = $event"></date-time-picker>
 
                             <text-area-field :value="post.short" :label="'Kratak opis'" :error="error? error.short : ''" :required="true" @changeValue="post.short = $event"></text-area-field>
 
@@ -52,14 +52,24 @@
                             :defaultImage="null"
                             :titleImage="'slajdera'"
                             :error="error.image"
-                            :dimensions="''"
+                            :dimensions="'800x450px'"
                             @uploadImage="prepare($event)"
+                            @removeRow="remove($event)"
+                    ></upload-image-helper>
+
+                    <upload-image-helper
+                            :image="post.image_box_path"
+                            :defaultImage="null"
+                            :titleImage="'članka'"
+                            :error="error.image_box"
+                            :dimensions="'600x600 px'"
+                            @uploadImage="prepareBox($event)"
                             @removeRow="remove($event)"
                     ></upload-image-helper>
 
                     <div class="card" v-if="lists">
                         <div class="card-body">
-                            <h3>Kategorije</h3>
+                            <h3>Kategorije <span style="color: red">*</span></h3>
                             <small class="form-text text-muted" v-if="error != null && error.blog_ids">{{ error.blog_ids[0] }}</small>
                             <ul class="no-parent">
                                 <li v-for="blog in lists" :id="`list_${blog.id}`">

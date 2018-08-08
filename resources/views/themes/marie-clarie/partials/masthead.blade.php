@@ -7,10 +7,10 @@
                 <div class="masthead-item">
                     <div class="masthead-item_content">
                         <a class="details-item details-item--primary" href="{{ $post->blog->first()->getLink() }}">{{ $post->blog->first()->title }}</a>
-                        <div class="masthead-item_title"><a href="{{ $post->getLink() }}">{{ $post->title }}</a></div>
+                        <div class="masthead-item_title"><a href="{{ $post->link }}">{{ $post->title }}</a></div>
                     </div>
                     <div class="masthead-item_image">
-                        <a href="{{ $post->getLink() }}" title="alt tag">
+                        <a href="{{ $post->link }}" title="alt tag">
                             <div class="image image--16-9 js-lazy-image"
                                 data-src="{{ $post->image? url($post->image) : '' }}"
                                 data-alt="{{ $post->title }}"

@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use File;
 use Illuminate\Support\Facades\Cache;
-use phpDocumentor\Reflection\DocBlock\Tags\See;
+use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model
 {
@@ -33,7 +33,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $appends = ['crop_image'];
+    protected $appends = ['crop_image', 'link'];
 
     /**
      * The attributes that are use for search
@@ -50,6 +50,10 @@ class Post extends Model
     protected static function boot(){
         parent::boot();
 
+        static::addGlobalScope('blog', function (Builder $builder) {
+            $builder->with('blog');
+        });
+
         static::deleting(function ($post) {
             if(!empty($post->image)) File::delete($post->image);
         });
@@ -62,6 +66,15 @@ class Post extends Model
      */
     public function setSlugAttribute($value){
         $this->attributes['slug'] = str_slug($value);
+    }
+
+    /**
+     * method used to set link attribute
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getLinkAttribute(){
+        return url($this->getLink());
     }
 
     /**
@@ -173,15 +186,7 @@ class Post extends Model
      * @return \Illuminate\Contracts\Routing\UrlGenerator|string
      */
     public function getLink(){
-        if($this->blog){
-            $url = '';
-            foreach ($this->blog as $blog){
-                $url .= $blog->slug . '/';
-            }
-            return url($url . $this->slug . '/' . $this->id);
-        }else{
-            return '#';
-        }
+        return $this->blog->first()->getLink() . $this->slug . '/' . $this->id;
     }
 
     /**
@@ -190,15 +195,7 @@ class Post extends Model
      * @return \Illuminate\Contracts\Routing\UrlGenerator|string
      */
     public function getGalleryLink($image=1){
-        if($this->blog){
-            $url = 'galerija/';
-            foreach ($this->blog as $blog){
-                $url .= $blog->slug . '/';
-            }
-            return url($url . $this->slug . '/' . $this->id . '?image=' . $image);
-        }else{
-            return '#';
-        }
+        return 'galerija/' . $this->getLink() . '?image=' . $image;
     }
 
     /**
@@ -207,15 +204,7 @@ class Post extends Model
      * @return \Illuminate\Contracts\Routing\UrlGenerator|string
      */
     public function getImagesLink(){
-        if($this->blog){
-            $url = 'slike/';
-            foreach ($this->blog as $blog){
-                $url .= $blog->slug . '/';
-            }
-            return url($url . $this->slug . '/' . $this->id);
-        }else{
-            return '#';
-        }
+        return 'slike/' . $this->getLink();
     }
 
     /**
