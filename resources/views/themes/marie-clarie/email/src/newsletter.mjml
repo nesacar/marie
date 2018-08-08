@@ -139,22 +139,58 @@
     </mj-section><!-- ./header -->
 
     <mj-section><!-- body -->
-      <mj-column vertical-align="top">
+      <mj-column vertical-align="top"><!-- fetured article -->
         <mj-image mj-class="py-0"
           src="http://www.marieclaire.cz/sites/default/files/styles/610x300/public/images/icons8-team-643492-unsplash.jpg?itok=ox_KmGEE&c=d77069ef9f94e1ef5e2a106672afe9a9"
           href="#"
         />
         <mj-text>
           <div class="detail">
-            <a class="detail_cat" href="#">kategoriy</a> | <span class="detail_date">date</span>
+            <a class="detail_cat" href="#">kategory</a> | <span class="detail_date">01.02.2018</span>
           </div>
-          <h1 class="serif">Article title</h1>
+          <h1 class="serif">Featured article title</h1>
           <p class="p">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In in lectus in eros varius lobortis. Sed porta sed purus sed mollis</p>
           <div class="action-footer">
             <a class="btn" href="#">saznaj više</a>
           </div>
         </mj-text>
-      </mj-column>
+      </mj-column><!-- ./fetured article -->
+    </mj-section>
+
+    <mj-section>
+
+      <mj-column width="50%"><!-- signle article -->
+        <mj-image mj-class="py-0"
+          src="http://www.marieclaire.cz/sites/default/files/styles/290x270/public/images/gettyimages-875968990.jpg?itok=5joCI0Wy&c=adc4c2de107697a04b93aa679a39d812"
+          href="#"
+        />
+        <mj-text>
+          <div class="detail">
+            <a class="detail_cat" href="#">kategory</a> | <span class="detail_date">01.02.2018</span>
+          </div>
+          <h2 class="serif">Article title</h2>
+          <div class="action-footer">
+            <a class="btn" href="#">saznaj više</a>
+          </div>
+        </mj-text>
+      </mj-column><!-- ./single article -->
+
+      <mj-column width="50%"><!-- signle article -->
+        <mj-image mj-class="py-0"
+          src="http://www.marieclaire.cz/sites/default/files/styles/290x270/public/images/gettyimages-928795498.jpg?itok=sWBN4NrB&c=aefe2a7a4fd1610ac3abb00bc5d612f4"
+          href="#"
+        />
+        <mj-text>
+          <div class="detail">
+            <a class="detail_cat" href="#">kategory</a> | <span class="detail_date">01.02.2018</span>
+          </div>
+          <h2 class="serif">Article title</h2>
+          <div class="action-footer">
+            <a class="btn" href="#">saznaj više</a>
+          </div>
+        </mj-text>
+      </mj-column><!-- ./single article -->
+
     </mj-section><!-- ./body -->
 
     <mj-section mj-class="dark-bg" padding-bottom="0px"><!-- footer -->
