@@ -169,6 +169,7 @@
             <a class="detail_cat" href="#">kategory</a> | <span class="detail_date">01.02.2018</span>
           </div>
           <h2 class="serif">Article title</h2>
+          <p class="p">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
           <div class="action-footer">
             <a class="btn" href="#">saznaj više</a>
           </div>
@@ -185,6 +186,7 @@
             <a class="detail_cat" href="#">kategory</a> | <span class="detail_date">01.02.2018</span>
           </div>
           <h2 class="serif">Article title</h2>
+          <p class="p">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
           <div class="action-footer">
             <a class="btn" href="#">saznaj više</a>
           </div>
