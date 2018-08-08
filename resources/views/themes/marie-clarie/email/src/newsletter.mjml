@@ -58,6 +58,24 @@
         font-size: 14px;
         line-height: 1.5;
       }
+
+      .action-footer {
+        text-align: right;
+      }
+
+      .btn {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: inline-block;
+        padding: 10px 12px;
+        border: 1px solid rgba(0, 0, 0, .12);
+        color: #9E9E9E;
+      }
+
+      .btn:hover {
+        color: initial;
+      }
     </mj-style>
 
     <mj-attributes>
@@ -132,6 +150,9 @@
           </div>
           <h1 class="serif">Article title</h1>
           <p class="p">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In in lectus in eros varius lobortis. Sed porta sed purus sed mollis</p>
+          <div class="action-footer">
+            <a class="btn" href="#">saznaj više</a>
+          </div>
         </mj-text>
       </mj-column>
     </mj-section><!-- ./body -->
