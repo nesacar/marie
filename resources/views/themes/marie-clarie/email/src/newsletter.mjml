@@ -11,17 +11,34 @@
       .serif {
         font-family: "Playfair", serif;
       }
+
+      .link {
+        color: inherit;
+      }
+
+      .link:hover {
+        color: #1ca9c7;
+      }
+
+      .sub-footer {
+        font-size: 12px;
+        line-height: 1.5;
+        margin: 0;
+        color: #9E9E9E;
+      }
     </mj-style>
 
     <mj-attributes>
       <mj-class name="dark-bg"
         background-color="#212121"
       />
+      <mj-class name="py-0"
+        padding-top="0"
+        padding-bottom="0"
+      />
       <mj-class name="nav-link"
         color="white"
         font-weight="bold"
-        padding-top="0"
-        padding-bottom="0"
       />
     </mj-attributes>
   </mj-head>
@@ -38,25 +55,35 @@
       <mj-column>
         <mj-navbar base-url="http://marie.mia.rs/">
           <mj-navbar-link
-            mj-class="nav-link"
+            mj-class="nav-link py-0"
             href="/moda"
-          >moda</mj-navbar-link>
+          >
+            <span class="link">moda</span>
+          </mj-navbar-link>
           <mj-navbar-link
-            mj-class="nav-link"
+            mj-class="nav-link py-0"
             href="/lepota"
-          >lepota</mj-navbar-link>
+          >
+            <span class="link">lepota</span>
+          </mj-navbar-link>
           <mj-navbar-link
-            mj-class="nav-link"
+            mj-class="nav-link py-0"
             href="/lifestyle"
-          >lifestyle</mj-navbar-link>
+          >
+            <span class="link">lifestyle</span>
+          </mj-navbar-link>
           <mj-navbar-link
-            mj-class="nav-link"
+            mj-class="nav-link py-0"
             href="/ljubav"
-          >ljubav</mj-navbar-link>
+          >
+            <span class="link">ljubav</span>
+          </mj-navbar-link>
           <mj-navbar-link
-            mj-class="nav-link"
+            mj-class="nav-link py-0"
             href="/biznis"
-          >biznis</mj-navbar-link>
+          >
+            <span class="link">biznis</span>
+          </mj-navbar-link>
         </mj-navbar>
       </mj-column>
     </mj-section><!-- ./header -->
@@ -70,9 +97,17 @@
     </mj-section><!-- ./body -->
 
     <mj-section mj-class="dark-bg"><!-- footer -->
+      <mj-column width="33.3333%">
+        <mj-image
+          src="http://marie.mia.rs/img/marie-claire-logo.png"
+          href="http://marie.mia.rs"
+        />
+      </mj-column>
+    </mj-section>
+    <mj-section mj-class="py-0" background-color="#000">
       <mj-column>
-        <mj-text>
-          footer
+        <mj-text align="center">
+          <p class="sub-footer">Dobili ste ovu poruku jer ste se prijavili na mailing listu na sajtu <a class="link" href="http://marie.mia.rs/">marie-claire.rs</a>. Da bi ste se odjavili sa mailing liste, kliknite <a class="link" href="#">ovde</a>.</p>
         </mj-text>
       </mj-column>
     </mj-section><!-- ./footer -->
