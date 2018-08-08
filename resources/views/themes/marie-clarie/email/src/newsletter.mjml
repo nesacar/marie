@@ -15,17 +15,49 @@
 
     <mj-attributes>
       <mj-class name="dark-bg"
-        background-color="#333"
+        background-color="#212121"
+      />
+      <mj-class name="nav-link"
+        color="white"
+        font-weight="bold"
+        padding-top="0"
+        padding-bottom="0"
       />
     </mj-attributes>
   </mj-head>
   <mj-body>
     <mj-section mj-class="dark-bg"><!-- header -->
-      <mj-column>
+      <mj-column width="50%">
         <mj-image
-          src=""
+          src="http://marie.mia.rs/img/marie-claire-logo.png"
           href="http://marie.mia.rs"
         />
+      </mj-column>
+    </mj-section>
+    <mj-section mj-class="dark-bg">
+      <mj-column>
+        <mj-navbar base-url="http://marie.mia.rs/">
+          <mj-navbar-link
+            mj-class="nav-link"
+            href="/moda"
+          >moda</mj-navbar-link>
+          <mj-navbar-link
+            mj-class="nav-link"
+            href="/lepota"
+          >lepota</mj-navbar-link>
+          <mj-navbar-link
+            mj-class="nav-link"
+            href="/lifestyle"
+          >lifestyle</mj-navbar-link>
+          <mj-navbar-link
+            mj-class="nav-link"
+            href="/ljubav"
+          >ljubav</mj-navbar-link>
+          <mj-navbar-link
+            mj-class="nav-link"
+            href="/biznis"
+          >biznis</mj-navbar-link>
+        </mj-navbar>
       </mj-column>
     </mj-section><!-- ./header -->
 
