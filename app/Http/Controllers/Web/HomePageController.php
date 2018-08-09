@@ -34,4 +34,8 @@ class HomePageController extends Controller
         Subscriber::create($data);
         return back()->with('message', 'Uspešno ste se prijavili na našu newsletter listu.');
     }
+
+    public function newsletterPreview(){
+        return view('themes.' . env('APP_THEME') . '.email.dist.newsletter');
+    }
 }
