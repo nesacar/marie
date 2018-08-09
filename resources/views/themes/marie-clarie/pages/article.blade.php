@@ -10,7 +10,7 @@
                 <div class="article pb-4"><!-- article -->
 
                     <div class="article_header">
-                        <div class="image image--21-9 js-lazy-image"
+                        <div class="image image--16-9 js-lazy-image"
                              data-src="{{ $post->image? url(\Imagecache::get($post->image, '650x278')->src) : '' }}"
                              data-alt="{{ $post->title }}"></div>
                         <div class="article_details">
