@@ -28,7 +28,8 @@ class SettingsController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Setting $setting){
-        $setting->update(request()->all());
+        $setting->update(request()->except('magazine_image'));
+        $setting->update(['magazine_image' => $setting->storeImage('magazine_image', 'magazine_image')]);
 
         return response()->json([
             'setting' => $setting,

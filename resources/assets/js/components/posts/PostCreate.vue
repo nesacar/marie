@@ -28,6 +28,8 @@
 
                             <text-field :value="post.slug" :label="'Slug'" :error="error? error.slug : ''" :required="true" @changeValue="post.slug = $event"></text-field>
 
+                            <text-field :value="post.author" :label="'Autor'" :error="error? error.author : ''" @changeValue="post.author = $event"></text-field>
+
                             <date-time-picker :label="'Publikovano od'" :value="post.publish_at" :error="error? error.publish_at : ''" :required="true" @changeValue="post.publish_at = $event"></date-time-picker>
 
                             <text-area-field :value="post.short" :label="'Kratak opis'" :error="error? error.short : ''" :required="true" @changeValue="post.short = $event"></text-area-field>
@@ -98,7 +100,7 @@
     export default {
         data(){
           return {
-              fillable: ['user_id', 'title', 'slug', 'short', 'content', 'image', 'image_box', 'publish_at', 'slider', 'is_visible', 'blog_ids', 'tag_ids'],
+              fillable: ['user_id', 'author', 'title', 'slug', 'short', 'content', 'image', 'image_box', 'publish_at', 'slider', 'is_visible', 'blog_ids', 'tag_ids'],
               post: {
                   title: null,
                   blog_ids: [],

@@ -319,6 +319,8 @@
 
       }
 
+      /* purgecss start ignore */
+
       li{
         position: relative;
 
@@ -337,6 +339,9 @@
           }
         }
       }
+
+      /* purgecss end ignore */
+
     }
   }
 
@@ -384,6 +389,8 @@
           transform: scaleY(1);
         }
 
+        /* purgecss start ignore */
+
         svg {
           -webkit-transition: all 0.5s; /* Safari */
           transition: all 0.5s;
@@ -392,6 +399,9 @@
             transform: rotate(90deg);
           }
         }
+
+        /* purgecss end ignore */
+
       }
 
       &:hover{
@@ -408,6 +418,8 @@
         }
       }
 
+      /* purgecss start ignore */
+
       svg{
         position: absolute;
         left: 8px;
@@ -423,6 +435,8 @@
           color: white;
         }
       }
+
+      /* purgecss end ignore */
 
       ul{
         height: 0;
