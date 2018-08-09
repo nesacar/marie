@@ -15,7 +15,7 @@ class BlogsController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(){
-        $blogs = Blog::with('parentBlog')->orderBy('created_at', 'DESC')->paginate(50);
+        $blogs = Blog::with('parentBlog')->orderBy('created_at', 'DESC')->paginate(Blog::$paginate);
 
         return response()->json([
             'blogs' => $blogs,
@@ -92,6 +92,25 @@ class BlogsController extends Controller
     public function tree(){
         return response()->json([
             'blogs' => Blog::tree(),
+        ]);
+    }
+
+    /**
+     * method used to return list of blogs
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function lists(){
+        $parent = request('parent')?: false;
+        $blogs = Blog::where(function ($query) use ($parent){
+            if($parent){
+                $query->where('parent', 0);
+            }
+        })->visible()->orderBy('created_at', 'DESC')->get();
+
+        return response()->json([
+            'blogs' => $blogs,
+            'lists' => $blogs->pluck('title', 'id')->prepend('Izberi kategoriju', 0),
         ]);
     }
 }

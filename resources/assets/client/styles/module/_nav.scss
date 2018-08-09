@@ -21,7 +21,8 @@
   }
 
   &:hover,
-  &:focus {
+  &:focus
+  &.active {
     color: $theme-secondary;
     text-decoration: none;
   }

@@ -1,0 +1,245 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Playfair" href="https://fonts.googleapis.com/css?family=Playfair+Display:700&amp;subset=cyrillic" />
+    <mj-style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        background-color: #FFF;
+        color: rgba(0, 0, 0, .87);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .serif {
+        font-family: "Playfair", serif;
+      }
+
+      .link {
+        color: inherit;
+      }
+
+      .link:hover {
+        color: #1ca9c7;
+      }
+
+      .sub-footer {
+        font-size: 12px;
+        line-height: 1.5;
+        margin: 0;
+        color: #9E9E9E;
+      }
+
+      .detail {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 12px;
+        color: #9E9E9E;
+        padding: 4px 0;
+      }
+
+      .detail_cat {
+        color: rgba(0, 0, 0, .87);;
+        text-decoration: none;
+        margin-right: 4px;
+      }
+
+      .detail_cat:hover {
+        text-decoration: underline;
+        color: rgba(0, 0, 0, .87);
+      }
+
+      .detail_date {
+        margin-left: 4px;
+      }
+
+      .p {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .action-footer {
+        text-align: right;
+      }
+
+      .btn {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: inline-block;
+        padding: 10px 12px;
+        border: 1px solid rgba(0, 0, 0, .12);
+        color: #9E9E9E;
+      }
+
+      .btn:hover {
+        color: initial;
+      }
+    </mj-style>
+
+    <mj-attributes>
+      <mj-class name="dark-bg"
+        background-color="#212121"
+      />
+      <mj-class name="py-0"
+        padding-top="0"
+        padding-bottom="0"
+      />
+      <mj-class name="nav-link"
+        color="white"
+        font-weight="bold"
+      />
+    </mj-attributes>
+  </mj-head>
+  <mj-body>
+    <mj-wrapper mj-class="py-0 dark-bg" full-width="full-width"><!-- header -->
+      <mj-section>
+        <mj-column width="50%">
+          <mj-image
+            src="http://marie.mia.rs/img/marie-claire-logo.png"
+            href="http://marie.mia.rs"
+          />
+        </mj-column>
+      </mj-section>
+      <mj-section>
+        <mj-column>
+          <mj-navbar base-url="http://marie.mia.rs/">
+            <mj-navbar-link
+              mj-class="nav-link py-0"
+              href="/moda"
+            >
+              <span class="link">moda</span>
+            </mj-navbar-link>
+            <mj-navbar-link
+              mj-class="nav-link py-0"
+              href="/lepota"
+            >
+              <span class="link">lepota</span>
+            </mj-navbar-link>
+            <mj-navbar-link
+              mj-class="nav-link py-0"
+              href="/lifestyle"
+            >
+              <span class="link">lifestyle</span>
+            </mj-navbar-link>
+            <mj-navbar-link
+              mj-class="nav-link py-0"
+              href="/ljubav"
+            >
+              <span class="link">ljubav</span>
+            </mj-navbar-link>
+            <mj-navbar-link
+              mj-class="nav-link py-0"
+              href="/biznis"
+            >
+              <span class="link">biznis</span>
+            </mj-navbar-link>
+          </mj-navbar>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper><!-- ./header -->
+
+    <mj-section><!-- body -->
+      <mj-column vertical-align="top"><!-- fetured article -->
+        <mj-image mj-class="py-0"
+          src="http://www.marieclaire.cz/sites/default/files/styles/610x300/public/images/icons8-team-643492-unsplash.jpg?itok=ox_KmGEE&c=d77069ef9f94e1ef5e2a106672afe9a9"
+          href="#"
+        />
+        <mj-text>
+          <div class="detail">
+            <a class="detail_cat" href="#">kategory</a> | <span class="detail_date">01.02.2018</span>
+          </div>
+          <h1 class="serif">Featured article title</h1>
+          <p class="p">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In in lectus in eros varius lobortis. Sed porta sed purus sed mollis</p>
+          <div class="action-footer">
+            <a class="btn" href="#">saznaj više</a>
+          </div>
+        </mj-text>
+      </mj-column><!-- ./fetured article -->
+    </mj-section>
+
+    <mj-section>
+
+      <mj-column width="50%"><!-- signle article -->
+        <mj-image mj-class="py-0"
+          src="http://www.marieclaire.cz/sites/default/files/styles/290x270/public/images/gettyimages-875968990.jpg?itok=5joCI0Wy&c=adc4c2de107697a04b93aa679a39d812"
+          href="#"
+        />
+        <mj-text>
+          <div class="detail">
+            <a class="detail_cat" href="#">kategory</a> | <span class="detail_date">01.02.2018</span>
+          </div>
+          <h2 class="serif">Article title</h2>
+          <p class="p">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+          <div class="action-footer">
+            <a class="btn" href="#">saznaj više</a>
+          </div>
+        </mj-text>
+      </mj-column><!-- ./single article -->
+
+      <mj-column width="50%"><!-- signle article -->
+        <mj-image mj-class="py-0"
+          src="http://www.marieclaire.cz/sites/default/files/styles/290x270/public/images/gettyimages-928795498.jpg?itok=sWBN4NrB&c=aefe2a7a4fd1610ac3abb00bc5d612f4"
+          href="#"
+        />
+        <mj-text>
+          <div class="detail">
+            <a class="detail_cat" href="#">kategory</a> | <span class="detail_date">01.02.2018</span>
+          </div>
+          <h2 class="serif">Article title</h2>
+          <p class="p">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+          <div class="action-footer">
+            <a class="btn" href="#">saznaj više</a>
+          </div>
+        </mj-text>
+      </mj-column><!-- ./single article -->
+
+    </mj-section><!-- ./body -->
+
+    <mj-wrapper mj-class="dark-bg" full-width="full-width"><!-- footer -->
+      <mj-section padding-bottom="0px">
+        <mj-column width="33.3333%">
+          <mj-image
+            src="http://marie.mia.rs/img/marie-claire-logo.png"
+            href="http://marie.mia.rs"
+          />
+        </mj-column>
+      </mj-section>
+      
+      <mj-section mj-class="dark-bg py-0">
+        <mj-column>
+          <mj-social
+            icon-size="32px"
+            inner-padding="8px"
+            mode="horizontal"
+            padding-bottom="24px"
+          >
+            <mj-social-element
+              src="http://marie.mia.rs/img/facebook-logo.png"
+              href="https://facebook.com/"
+            ></mj-social-element>
+            <mj-social-element
+              src="http://marie.mia.rs/img/twitter-logo.png"
+              href="https://twitter.com/"
+            ></mj-social-element>
+            <mj-social-element
+              src="http://marie.mia.rs/img/instagram-logo.png"
+              href="https://www.instagram.com/"
+            ></mj-social-element>
+          </mj-social>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+
+    <mj-wrapper mj-class="py-0" full-width="full-width"  background-color="#121212">
+      <mj-section>
+        <mj-column>
+          <mj-text align="center">
+            <p class="sub-footer">Dobili ste ovu poruku jer ste se prijavili na mailing listu na sajtu <a class="link" href="http://marie.mia.rs/">marie-claire.rs</a>. Da bi ste se odjavili sa mailing liste, kliknite <a class="link" href="#">ovde</a>.</p>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper><!-- ./footer -->
+  </mj-body>
+</mjml>

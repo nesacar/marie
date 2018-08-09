@@ -111,7 +111,7 @@
                                 });
                                 swal(
                                     'Obrisano!',
-                                    'Članak je uspešno obrisan.',
+                                    'Baner je uspešno obrisan.',
                                     'success'
                                 );
                             })

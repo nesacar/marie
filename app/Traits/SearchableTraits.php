@@ -13,16 +13,20 @@ trait SearchableTraits
      *
      * @return mixed
      */
-    protected static function search()
+    protected static function search($category_id=false)
     {
-        $items = self::query();
+        $query = self::query();
         foreach (request()->all() as $key => $attribute) {
             if (in_array($key, self::$searchable)) {
-                $items->$key($attribute);
+                $query->$key($attribute);
             }
         }
 
-        return $items;
+        if($category_id){
+            $query->category($category_id);
+        }
+
+        return $query;
     }
 
     /**
@@ -51,10 +55,62 @@ trait SearchableTraits
     public function scopeBlog(Builder $query, $blog)
     {
         if(!empty($blog)){
-            return $query->with([$blog => function ($query) use ($blog){
-                $query->where('id', $blog);
+            return $query->join('blog_post', 'posts.id', '=', 'blog_post.post_id')
+                ->where('blog_post.blog_id', $blog);
+        }
+    }
 
-            }]);
+    /**
+     * method used to search model by category
+     *
+     * @param Builder $query
+     * @param $category
+     * @return mixed
+     */
+    public function scopeCategory(Builder $query, $category)
+    {
+        if(!empty($category)){
+            return $query->join('category_product', 'products.id', '=', 'category_product.product_id')
+                ->where('category_product.category_id', $category);
+        }
+    }
+
+    /**
+     * method used to search model by brand ids
+     *
+     * @param Builder $query
+     * @param int $brand_ids
+     * @return Builder
+     */
+    public function scopeBrands(Builder $query, $brand_ids){
+        if(!empty($brand_ids)){
+            return $query->whereIn('products.brand_id', $brand_ids);
+        }
+    }
+
+    /**
+     * method used to search model by gender ids
+     *
+     * @param Builder $query
+     * @param int $gender_ids - present array of genders
+     * @return Builder
+     */
+    public function scopeGenders(Builder $query, $gender_ids){
+        if(!empty($gender_ids)){
+            return $query->whereIn('products.gender_id', $gender_ids);
+        }
+    }
+
+    /**
+     * method used to search model by prices
+     *
+     * @param Builder $query
+     * @param array $prices - present array of min and max prices
+     * @return Builder
+     */
+    public function scopePrices(Builder $query, $prices){
+        if(!empty($prices['min']) && !empty($prices['max'])){
+            return $query->whereBetween('products.price', [$prices['min'], $prices['max']]);
         }
     }
 

@@ -4,8 +4,11 @@ namespace App;
 
 use App\Traits\SearchableTraits;
 use App\Traits\UploudableImageTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use File;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model
 {
@@ -23,21 +26,21 @@ class Post extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'title', 'slug', 'short', 'body', 'image', 'image_box', 'publish_at', 'views', 'is_visible'];
+    protected $fillable = ['user_id', 'title', 'slug', 'short', 'content', 'image', 'image_box', 'publish_at', 'views', 'slider', 'is_visible'];
 
     /**
      * append to Post model crop_image attribute
      *
      * @var array
      */
-    protected $appends = ['crop_image'];
+    protected $appends = ['crop_image', 'link'];
 
     /**
      * The attributes that are use for search
      *
      * @var array
      */
-    protected static $searchable = ['title'];
+    protected static $searchable = ['title', 'blog'];
 
     /**
      * The "booting" method of the model.
@@ -46,6 +49,10 @@ class Post extends Model
      */
     protected static function boot(){
         parent::boot();
+
+        static::addGlobalScope('blog', function (Builder $builder) {
+            $builder->with('blog');
+        });
 
         static::deleting(function ($post) {
             if(!empty($post->image)) File::delete($post->image);
@@ -62,12 +69,30 @@ class Post extends Model
     }
 
     /**
+     * method used to set link attribute
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getLinkAttribute(){
+        return url($this->getLink());
+    }
+
+    /**
      * method used to set is_visible attribute
      *
      * @param $value
      */
     public function setIsVisibleAttribute($value){
         $this->attributes['is_visible'] = !empty($value)?: 0;
+    }
+
+    /**
+     * method used to set slider attribute
+     *
+     * @param $value
+     */
+    public function setSliderAttribute($value){
+        $this->attributes['slider'] = !empty($value)?: 0;
     }
 
     /**
@@ -80,12 +105,115 @@ class Post extends Model
     }
 
     /**
+     * method used to set request('blog') value for search posts
+     *
+     * @return array
+     */
+    public static function setBlogValue(){
+        request()->merge(['blog' => request('list')]);
+    }
+
+    /**
+     * method used to return slider posts to homepage
+     *
+     * @param int $limit
+     * @return mixed
+     */
+    public static function getSlider($limit=4){
+        return Cache::remember('home.slider', Helper::getMinutesToTheNextHour(), function () use ($limit){
+            return self::with('blog')->where('slider', 1)->orderBy('publish_at', 'DESC')->visible()->take($limit)->get();
+        });
+    }
+
+    /**
+     * method used to return latest posts to homepage
+     *
+     * @param int $limit
+     * @return mixed
+     */
+    public static function getLatest($category=false, $limit=7){
+        if($category){
+            return Cache::remember($category->slug . '.latest', Helper::getMinutesToTheNextHour(), function () use ($category, $limit){
+                return $category->post()->with('blog')->orderBy('publish_at', 'DESC')->visible()->paginate($limit);
+            });
+        }else{
+            return Cache::remember('home.latest', Helper::getMinutesToTheNextHour(), function () use ($limit){
+                return self::with('blog')->orderBy('publish_at', 'DESC')->visible()->paginate($limit);
+            });
+        }
+    }
+
+    /**
+     * method used to return most viewed posts to homepage
+     *
+     * @param int $limit
+     * @return mixed
+     */
+    public static function getViewed($category=false, $limit=4){
+        if($category){
+            return Cache::remember($category->slug . '.viewed', Helper::getMinutesToTheNextHour(), function () use ($category, $limit){
+                return $category->post()->with('blog')->orderBy('views', 'DESC')->visible()->take($limit)->get();
+            });
+        }else{
+            return Cache::remember('home.viewed', Helper::getMinutesToTheNextHour(), function () use ($limit){
+                return self::with('blog')->orderBy('views', 'DESC')->visible()->take($limit)->get();
+            });
+        }
+    }
+
+    /**
+     * method used to return most do not miss it posts
+     * I'm not sure which logic should be here, but we can change it later
+     *
+     * @param int $limit
+     * @return mixed
+     */
+    public static function getDoNotMissIt($category=false, $limit=6, $months=2){
+        if($category){
+            return Cache::remember($category->slug . '.do_not_miss_it', Helper::getMinutesToTheNextHour(), function () use ($category, $limit, $months){
+                return $category->post()->with('blog')->where('publish_at', '>', Carbon::now()->subMonth($months))->take($limit)->get();
+            });
+        }else{
+            return Cache::remember('home.do_not_miss_it', Helper::getMinutesToTheNextHour(), function () use ($limit, $months){
+                return self::with('blog')->where('publish_at', '>', Carbon::now()->subMonth($months))->inRandomOrder()->take($limit)->get();
+            });
+        }
+    }
+
+    /**
+     * method used to return post link
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getLink(){
+        return $this->blog->first()->getLink() . $this->slug . '/' . $this->id;
+    }
+
+    /**
+     * method used to return gallery post link
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getGalleryLink($image=1){
+        return 'galerija/' . $this->getLink() . '?image=' . $image;
+    }
+
+    /**
+     * method used to return images post link
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getImagesLink(){
+        return 'slike/' . $this->getLink();
+    }
+
+    /**
      * method use to centralise is visible Post logic
      *
      * @param $query
      * @return mixed
      */
-    public function scopePublished($query){
+    public function scopeVisible($query){
         return $query->where('is_visible', 1);
     }
 
@@ -115,5 +243,14 @@ class Post extends Model
      */
     public function tag(){
         return $this->belongsToMany(Tag::class);
+    }
+
+    /**
+     * method used to make morph-many connection between Post and Gallery model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function gallery(){
+        return $this->morphMany(Gallery::class, 'gallery');
     }
 }

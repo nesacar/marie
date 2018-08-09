@@ -6,6 +6,7 @@ use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\EditUserRequest;
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use File;
@@ -20,7 +21,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(){
-        $users = User::orderBy('created_at', 'DESC')->paginate(50);
+        $users = User::with('role')->orderBy('created_at', 'DESC')->paginate(50);
 
         return response()->json([
             'users' => $users,
@@ -36,6 +37,7 @@ class UsersController extends Controller
     public function store(CreateUserRequest $request){
         $user = User::create($request->except('image'));
         $user->update(['image' => $user->storeImage()]);
+        request('role_ids')? $user->role()->sync(explode(',', request('role_ids'))) : $user->role()->sync([]);
 
         return response()->json([
             'user' => $user,
@@ -51,6 +53,8 @@ class UsersController extends Controller
     public function show(User $user){
         return response()->json([
             'user' => $user,
+            'roles' => Role::select('id', 'name as title')->visible()->orderBy('created_at', 'DESC')->get(),
+            'role_ids' => $user->role()->get(['name as title', 'id']),
         ]);
     }
 
@@ -64,9 +68,11 @@ class UsersController extends Controller
     public function update(EditUserRequest $request, User $user){
         $user->update($request->except('image'));
         $user->update(['image' => $user->storeImage()]);
+        request('role_ids')? $user->role()->sync(explode(',', request('role_ids'))) : $user->role()->sync([]);
 
         return response()->json([
             'user' => $user,
+            'role_ids' => $user->role()->get(['name as title', 'id']),
         ]);
     }
 
@@ -77,7 +83,6 @@ class UsersController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(User $user){
-        if(!empty($user->image)) File::delete($user->image);
         $user->delete();
 
         return response()->json([

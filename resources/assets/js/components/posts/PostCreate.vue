@@ -26,15 +26,17 @@
 
                             <text-field :value="post.title" :label="'Naslov'" :error="error? error.title : ''" :required="true" @changeValue="post.title = $event"></text-field>
 
-                            <text-field :value="post.slug" :label="'Slug'" :error="error? error.slug : ''" @changeValue="post.slug = $event"></text-field>
+                            <text-field :value="post.slug" :label="'Slug'" :error="error? error.slug : ''" :required="true" @changeValue="post.slug = $event"></text-field>
 
-                            <date-time-picker :label="'Publikovano od'" :value="post.publish_at" :error="error? error.publish_at : ''" @changeValue="post.publish_at = $event"></date-time-picker>
+                            <date-time-picker :label="'Publikovano od'" :value="post.publish_at" :error="error? error.publish_at : ''" :required="true" @changeValue="post.publish_at = $event"></date-time-picker>
 
                             <text-area-field :value="post.short" :label="'Kratak opis'" :error="error? error.short : ''" :required="true" @changeValue="post.short = $event"></text-area-field>
 
-                            <text-area-ckeditor-field :value="post.body" :label="'Opis'" :error="error? error.body : ''" :required="true" @changeValue="post.body = $event"></text-area-ckeditor-field>
+                            <text-area-ckeditor-field :value="post.content" :label="'Opis'" :error="error? error.content : ''" :required="true" @changeValue="post.content = $event"></text-area-ckeditor-field>
 
                             <select-multiple-field v-if="tags" :error="error? error.tag_ids : ''" :options="tags" :labela="'Tagovi'" @changeValue="post.tag_ids = $event"></select-multiple-field>
+
+                            <checkbox-field :value="post.slider" :label="'Prikazuje se u slajderu'" @changeValue="post.slider = $event"></checkbox-field>
 
                             <checkbox-field :value="post.is_visible" :label="'Publikovano'" @changeValue="post.is_visible = $event"></checkbox-field>
 
@@ -50,7 +52,7 @@
                             :defaultImage="null"
                             :titleImage="'slajdera'"
                             :error="error.image"
-                            :dimensions="'800x450 px'"
+                            :dimensions="'800x450px'"
                             @uploadImage="prepare($event)"
                             @removeRow="remove($event)"
                     ></upload-image-helper>
@@ -67,7 +69,8 @@
 
                     <div class="card" v-if="lists">
                         <div class="card-body">
-                            <h3>Kategorije</h3>
+                            <h3>Kategorije <span style="color: red">*</span></h3>
+                            <small class="form-text text-muted" v-if="error != null && error.blog_ids">{{ error.blog_ids[0] }}</small>
                             <ul class="no-parent">
                                 <li v-for="blog in lists" :id="`list_${blog.id}`">
                                     <label><input type="checkbox" v-model="post.blog_ids" :value="blog.id"> {{ blog.title }}</label>
@@ -95,7 +98,7 @@
     export default {
         data(){
           return {
-              fillable: ['user_id', 'title', 'slug', 'short', 'body', 'image', 'image_box', 'publish_at', 'is_visible', 'blog_ids', 'tag_ids'],
+              fillable: ['user_id', 'title', 'slug', 'short', 'content', 'image', 'image_box', 'publish_at', 'slider', 'is_visible', 'blog_ids', 'tag_ids'],
               post: {
                   title: null,
                   blog_ids: [],

@@ -12,7 +12,7 @@
     &::before,
     &::after {
       content: "";
-      background-color: $theme-primary;
+      background-color: currentColor;
       height: 2px;
       flex-grow: 1;
     }
@@ -33,6 +33,10 @@
 .h3 { font-size: 48px; }
 .h2 { font-size: 60px; }
 .h1 { font-size: 96px; }
+
+.small {
+  font-size: 12px;
+}
 
 .text-serif {
   font-family: $font-family-serif !important;

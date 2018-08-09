@@ -1,4 +1,17 @@
 let mix = require('laravel-mix');
+require('laravel-mix-purgecss');
+require('dotenv').config();
+
+const DEFAULT_PROXY_ULR = 'localhost/';
+const proxy_url = process.env.BROWSERSYNC_PROXY_URL || DEFAULT_PROXY_ULR;
+
+mix.browserSync({
+  proxy: proxy_url,
+  files: [
+    'resources/**/*.*',
+  ],
+  notify: false,
+});
 
 /*
  |--------------------------------------------------------------------------
@@ -22,7 +35,19 @@ mix.options({
     processCssUrls: false // Process/optimize relative stylesheet url()'s. Set to false, if you don't want them touched.
 });
 
+// mix.js('resources/assets/js/app.js', 'public/js')
+//     .js('resources/assets/client/scripts/main.js', 'public/client/scripts')
+//     .sass('resources/assets/sass/app.scss', 'public/css')
+//     .sass('resources/assets/client/styles/main.scss', 'public/client/styles');
+
+// server side.
 mix.js('resources/assets/js/app.js', 'public/js')
-  .js('resources/assets/client/scripts/main.js', 'public/client/scripts')
-  .sass('resources/assets/sass/app.scss', 'public/css')
-  .sass('resources/assets/client/styles/main.scss', 'public/client/styles');
+  .sass('resources/assets/sass/app.scss', 'public/css');
+
+// client side.
+mix.js('resources/assets/client/scripts/main.js', 'public/client/scripts')
+  .sass('resources/assets/client/styles/main.scss', 'public/client/styles')
+  .purgeCss({
+    whitelistPatterns: [/^slide--/],
+  });
+  // .extract(['vue']);

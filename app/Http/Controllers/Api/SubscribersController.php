@@ -29,7 +29,9 @@ class SubscribersController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function store(CreateSubscriberRequest $request){
-        $subscriber = Subscriber::create(request()->all());
+        $data = request()->all();
+        $data['verification'] = str_random(16);
+        $subscriber = Subscriber::create($data);
 
         return response([
             'subscriber' => $subscriber,

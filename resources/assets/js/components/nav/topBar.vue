@@ -5,7 +5,7 @@
                 <div class="logo-holder">
                     <div class="logo">
                         <a :href="domain" target="_blank">
-                            <img :src="domain + 'img/logo.png'" alt="Fusion Tables">
+                            <!--<img :src="domain + 'img/logo.png'" alt="Fusion Tables">-->
                         </a>
                     </div>
                 </div>
@@ -21,9 +21,8 @@
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
                                 <a class="dropdown-item" href="#" @click.prevent="newProduct()">Proizvod</a>
-                                <template v-if="admin">
+                                <template>
                                     <a class="dropdown-item" href="#" @click.prevent="newBrand()">Brend</a>
-                                    <a class="dropdown-item" href="#" @click.prevent="newCollection()">Kolekcija</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#" @click.prevent="newPost()">Članak</a>
                                     <a class="dropdown-item" href="#" @click.prevent="newBlog()">Kategorija</a>
@@ -67,7 +66,7 @@
                     <li class="user">
                         <a class="btn btn-primary transparent dropdown-toggle" href="#" role="button" id="dropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img :src="domain + 'img/user-image.png'" class="avatar-image" alt="User image" v-if="!user">
-                            <img :src="user.imagePath" alt="User image" class="avatar-image" v-if="user">
+                            <img :src="domain + user.image" alt="User image" class="avatar-image" v-if="user">
                             <font-awesome-icon icon="chevron-circle-down" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink4">

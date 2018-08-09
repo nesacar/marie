@@ -11,6 +11,8 @@ window.Vue = require('vue');
 window.Slug = require('slug');
 Slug.defaults.mode = 'rfc3986';
 
+Vue.component('app', require('./components/app.vue'));
+
 /** NAVIGATION **/
 Vue.component('side-bar', require('./components/nav/sideBar.vue'));
 Vue.component('top-bar', require('./components/nav/topBar.vue'));
@@ -70,10 +72,11 @@ import faEye from '@fortawesome/fontawesome-free-solid/faEye';
 import faShoppingBasket from '@fortawesome/fontawesome-free-solid/faShoppingBasket';
 import faExclamation from '@fortawesome/fontawesome-free-solid/faExclamation';
 import faStream from '@fortawesome/fontawesome-free-solid/faStream';
+import faChess from '@fortawesome/fontawesome-free-solid/faChess';
 
 fontawesome.library.add(
     faPlus, faEnvelope, faBell, faCommentAlt, faChevronCircleDown, faCogs, faAngleRight, faHome, faUsers, faPaste, faShoppingCart, faAlignJustify, faPencilAlt, faTimes,
-    faLink, faBars, faAmountUp, faImages, faRandom, faThLarge, faTags, faCopy, faEye, faShoppingBasket, faExclamation, faStream
+    faLink, faBars, faAmountUp, faImages, faRandom, faThLarge, faTags, faCopy, faEye, faShoppingBasket, faExclamation, faStream, faChess
 );
 
 Vue.use(Auth);

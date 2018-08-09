@@ -1,24 +1,63 @@
 <?php
 
-Route::get('/', 'DevController@render');
+/**
+ * home page route
+ **/
+Route::get('/', 'Web\HomePageController@homepage');
+Route::post('subscribe', 'Web\HomePageController@subscribe')->name('newsletter.subscribe');
 
-// filemanager
+/**
+ * gallery page routes
+ **/
+Route::get('galerija/{category}/{post}/{id}', 'Web\GalleriesController@gallery');
+Route::get('galerija/{category1}/{category2}/{post}/{id}', 'Web\GalleriesController@subGallery');
+
+/**
+ * images page routes
+ **/
+Route::get('slike/{category}/{post}/{id}', 'Web\ImagesController@images');
+Route::get('slike/{category1}/{category2}/{post}/{id}', 'Web\ImagesController@subImages');
+
+/**
+ * shop page routes
+ **/
+Route::get('shop', 'Web\ShopsController@shop');
+Route::get('shop/{category}', 'Web\ShopsController@shopCategory');
+Route::get('shop/{category1}/{category2}', 'Web\ShopsController@shopSubCategory');
+
+/**
+ * filemanager route
+ **/
 Route::middleware('auth')->get('filemanager/show', 'FilemanagerController@index');
 
-Route::get('home', 'HomeController@index')->name('home');
+/**
+ * auth routes
+ */
+Auth::routes();
 
+/**
+ * admin dashboard route
+ **/
 Route::get('admin', function () {
     return view('layouts.admin-app');
 });
 
-Auth::routes();
-
-Route::get('home', 'HomeController@index')->name('home');
-
-Route::get('test', 'TestController@index');
+/**
+ * beauty-box page route
+ */
+Route::get('beauty-box', 'Web\BeautyBoxesController@beautyBox');
+Route::get('beauty-box/{category}', 'Web\BeautyBoxesController@beautyBoxCategory');
 
 /**
- * ostavi ovu rutu poslednju, jer je ona zamena sa osvale rute
- */
-Route::get('{view}', 'DevController@render');
+ * category page routes
+ **/
+Route::get('{category}', 'Web\BlogsController@category');
+Route::get('{category1}/{category2}', 'Web\BlogsController@subCategory');
+
+/**
+ * post page routes
+ **/
+Route::get('{category}/{post}/{id}', 'Web\PostsController@post');
+Route::get('{category1}/{category2}/{post}/{id}', 'Web\PostsController@subPost');
+
 

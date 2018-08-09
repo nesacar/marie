@@ -1,0 +1,191 @@
+.beautybox-hero {
+  position: relative;
+
+  &_content {
+    padding: 0 16px;
+
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+
+  &_desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  &_subtitle {
+    font-weight: $font-weight-light;
+  }
+
+  &_title {
+    font-size: 60px;
+    font-weight: bolder;
+  }
+
+  &_underline {
+    font-size: 24px;
+    font-weight: $font-weight-regular;
+  }
+
+  &_actions {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    
+    @include media-breakpoint-up(sm) {
+      flex-direction: row;
+    }
+  }
+
+  &_price {
+    font-weight: $font-weight-bold;
+    font-size: 36px;
+    line-height: 1;
+    vertical-align: middle;
+    margin-bottom: 16px;
+
+    @include media-breakpoint-up(sm) {
+      margin: 0 0 0 (4 * $baseline);
+    }
+  }
+
+  &_image {
+    width: 100%;
+    
+    @include media-breakpoint-up(sm) {
+      margin: 0 auto;
+      width: 80%;
+    }
+    
+    @include media-breakpoint-up(md) {
+      margin-right: 0;
+      margin-left: auto;
+      width: 60%;
+    }
+
+    > img {
+      max-width: 100%;
+    }
+  }
+}
+
+.beautybox-list {
+  &_item {
+    width: 50%;
+
+    @include media-breakpoint-up(sm) {
+      width: 33.3333%;
+    }
+  }
+}
+
+.beautybox-product {
+  position: relative;
+  margin-bottom: (4 * $baseline);
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: (8 * $baseline);
+  }
+
+  &_title {
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 1.2;
+    min-height: 2.4em;
+    overflow: hidden;
+    margin: (2 * $baseline) 0;
+
+    @include media-breakpoint-up(md) {
+      font-size: 18px;
+      margin: (4 * $baseline) 0;
+    }
+  }
+
+  &_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+    pointer-events: none;
+    visibility: hidden;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.2);
+    overflow: hidden;
+    border-radius: 2px;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+
+  &:hover &_overlay {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  &_desc {
+    position: relative;
+    padding: 12px 8px 8px;
+    font-size: 12px;
+    line-height: 1.2;
+
+    @include media-breakpoint-up(md) {
+      font-size: 14px;
+      padding: 20px 16px 16px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 4px;
+      background-color: $theme-secondary;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+    }
+  }
+
+  &_link {
+    font-weight: $font-weight-bold;
+    color: $theme-secondary;
+  }
+}
+
+.beautyshop-partner {
+  margin-bottom: 16px;
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: 32px;
+  }
+
+  &_image {
+    text-align: center;
+
+    > img {
+      max-width: 100%;
+      filter: grayscale(100%);
+      opacity: .5;
+    }
+
+    &:hover {
+      > img {
+        filter: none;
+        opacity: 1;
+      }
+    }
+  }
+}

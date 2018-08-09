@@ -152,8 +152,8 @@ return [
          */
         Intervention\Image\ImageServiceProvider::class,
         Devfactory\Imagecache\ImagecacheServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        App\Providers\ViewsComposerServiseProvider::class,
         /*
          * Application Service Providers...
          */

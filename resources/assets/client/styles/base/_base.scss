@@ -24,3 +24,26 @@ a {
     color: initial;
   }
 }
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+::placeholder {
+  color: inherit;
+  opacity: .5;
+}
+
+::selection {
+  background-color: $theme-secondary;
+  color: #FFF;
+}
+
+// vue component styles before JavaScript kicks in
+collapsable-container,
+image-slide {
+  display: block;
+}

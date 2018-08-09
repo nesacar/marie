@@ -1,11 +1,14 @@
 window.Vue = require('vue');
 import LazyImages from './components/lazy-images';
 
-Vue.component('my-header', require('./components/Header.vue'));
+Vue.component('event-dispatcher', require('./components/EventDispatcher.vue'));
 Vue.component('tab-bar', require('./components/TabBar.vue'));
 Vue.component('simple-carousel', require('./components/SimpleCarousel.vue'));
 Vue.component('search-widget', require('./components/SearchWidget.vue'));
-Vue.component('slide', require('./components/Slide.vue'));
+Vue.component('image-slide', require('./components/ImageSlide.vue'));
+Vue.component('temporary-drawer', require('./components/TemporaryDrawer.vue'));
+Vue.component('modal-container', require('./components/ModalContainer.vue'));
+Vue.component('collapsible-container', require('./components/CollapsibleContainer.vue'));
 
 const mc = new Vue({
   el: '#app',

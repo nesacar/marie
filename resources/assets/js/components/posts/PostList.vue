@@ -44,6 +44,7 @@
                                 <td>{{ row.publish_at }}</td>
                                 <td>
                                     <font-awesome-icon icon="eye" @click="previewRow(row)" />
+                                    <router-link tag="a" :to="'posts/' + row['id'] + '/gallery'" class="edit-link"><font-awesome-icon icon="images"/></router-link>
                                     <router-link tag="a" :to="'posts/' + row['id'] + '/edit'" class="edit-link"><font-awesome-icon icon="pencil-alt"/></router-link>
                                     <font-awesome-icon icon="times" @click="deleteRow(row)" />
                                 </td>
@@ -87,14 +88,23 @@
             },
         },
         mounted(){
-            this.getPosts();
+            this.getBlogs();
         },
         methods: {
+            getBlogs(){
+                axios.get('api/blogs/lists?parent=1')
+                    .then(res => {
+                        this.blogs = res.data.lists;
+                        this.getPosts();
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
+            },
             getPosts(){
                 this.$store.dispatch('search/changeSearchPostPage', 1);
                 axios.post('api/posts/search', this.searchPost)
                     .then(res => {
-                        this.blogs = res.data.blogs;
                         this.posts = res.data.posts.data;
                         this.paginate = res.data.posts;
                     })
@@ -104,6 +114,9 @@
             },
             editRow(id){
                 this.$router.push('posts/' + id + '/edit');
+            },
+            galleryRow(id){
+                this.$router.push('posts/' + id + '/gallery');
             },
             deleteRow(row){
                 swal({

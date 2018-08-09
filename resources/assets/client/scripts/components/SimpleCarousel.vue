@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="host"
+    <div class="simple-carousel"
       ref="host"
       v-on:touchstart='onTouchStart'
-      v-on:mousedown='onTouchStart'
+      v-on:mousedown='onMouseDown'
       v-on:click='onClick'
       v-on:transitionend='onTransitionEnd'
       v-bind:style='{transform: translateX, transition}'
@@ -31,8 +31,14 @@
 </template>
 
 <script>
+import {cloneElements} from '../utils';
+
 export default {
   props: {
+    index: {
+      type: Number,
+      default: 0,
+    },
     controls: {
       type: Boolean,
       default: false,
@@ -78,12 +84,15 @@ export default {
   },
 
   mounted() {
+    const host = this.$refs.host;
+    const hasChildren = host.children.length < 1;
+    // if no child was passed, just ignore.
+    if (hasChildren) {
+      return;
+    }
+
     if (this.loop) {
-      const host = this.$refs.host;
-      const first = host.firstElementChild.cloneNode(true);
-      const last = host.lastElementChild.cloneNode(true);
-      host.append(first);
-      host.prepend(last);
+      cloneElements(host);
     }
 
     this.init();
@@ -106,18 +115,24 @@ export default {
       this.perView = Math.round(gBCR.width / this.childWidth);
 
       this.isTouching = false;
-      this.disableClicks = false;
       this.delta = 0;
 
-      // reset state
-      this.setActive(this.loop ? 1 : 0);
+      // reset states
+      this.goTo(this.loop ? this.index + 1 : this.index);
     },
 
     /**
-     * Touchstart/mousedown event handler.
+     * mousedown event handler.
+     */
+    onMouseDown(evt) {
+      evt.preventDefault()
+      this.onTouchStart(evt);
+    },
+
+    /**
+     * Touchstart event handler.
      */
     onTouchStart(evt) {
-      evt.preventDefault();
       this.isTouching = true;
       this.animate = false;
       this.delta = 0;
@@ -131,7 +146,6 @@ export default {
      */
     onTouchMove(evt) {
       this.delta = (evt.pageX || evt.touches[0].pageX) - this.startX;
-      this.disableClicks = true;
     },
 
     /**
@@ -141,10 +155,6 @@ export default {
       this.isTouching = false;
       this.animate = true;
       this.removeEventListeners();
-
-      setTimeout(() => {
-        this.disableClicks = false;
-      }, 0);
     },
 
     /**
@@ -152,7 +162,7 @@ export default {
      * https://github.com/nolimits4web/Swiper/issues/25
      */
     onClick(evt) {
-      if (this.disableClicks) {
+      if (this.delta !== 0) {
         evt.preventDefault();
       }
     },
@@ -287,22 +297,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-  .host {
-    display: block;
-    white-space: nowrap;
-    overflow-x: visible;
-    will-change: transform;
-    transform: translateX(0);
-    font-size: 0;
-  }
-
-  .host > .slider-item {
-    display: inline-block;
-    overflow: hidden;
-    font-size: initial;
-    white-space: initial;
-    vertical-align: top;
-  }
-</style>

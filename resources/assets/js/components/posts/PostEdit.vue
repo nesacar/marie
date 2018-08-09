@@ -20,18 +20,18 @@
                     </div>
                 </div>
 
-                <div class="col-md-12">
-                    <div class="card">
-                        <h5>Gallery images</h5>
-                        <hr>
-                        <div id="gallery" v-if="gallery">
-                            <div v-for="photo in gallery" class="photo">
-                                <font-awesome-icon icon="times" @click="deletePhoto(photo)" />
-                                <img :src="photo.tmb" class="img-thumbnail" alt="post.title">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!--<div class="col-md-12">-->
+                    <!--<div class="card">-->
+                        <!--<h5>Gallery images</h5>-->
+                        <!--<hr>-->
+                        <!--<div id="gallery" v-if="gallery">-->
+                            <!--<div v-for="photo in gallery" class="photo">-->
+                                <!--<font-awesome-icon icon="times" @click="deletePhoto(photo)" />-->
+                                <!--<img :src="photo.tmb" class="img-thumbnail" alt="post.title">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <div class="col-md-4">
                     <div class="card" v-if="post">
@@ -59,6 +59,7 @@
                         <div class="card" v-if="lists">
                             <div class="card-body">
                                 <h3>Kategorije</h3>
+                                <small class="form-text text-muted" v-if="error != null && error.blog_ids">{{ error.blog_ids[0] }}</small>
                                 <ul class="no-parent">
                                     <li v-for="blog in lists" :id="`list_${blog.id}`">
                                         <label><input type="checkbox" v-model="post.blog_ids" :value="blog.id"> {{ blog.title }}</label>
@@ -74,9 +75,9 @@
 
                     </div><!-- .card -->
 
-                    <div class="card">
-                        <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" @vdropzone-success="showSuccess()"></vue-dropzone>
-                    </div>
+                    <!--<div class="card">-->
+                        <!--<vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" @vdropzone-success="showSuccess()"></vue-dropzone>-->
+                    <!--</div>-->
 
                 </div>
                 <div class="col-md-8">
@@ -85,17 +86,19 @@
                             <div class="tab-pane fade show active" id="srb" role="tabpanel" aria-labelledby="srb-tab">
                                 <form @submit.prevent="submit()">
 
-                                    <date-time-picker :labela="'Publikovano od'" :value="post.publish_at" :error="error? error.publish_at : ''" @changeValue="post.publish_at = $event"></date-time-picker>
+                                    <date-time-picker :labela="'Publikovano od'" :value="post.publish_at" :error="error? error.publish_at : ''" :required="true" @changeValue="post.publish_at = $event"></date-time-picker>
 
                                     <text-field :value="post.title" :label="'Naslov'" :error="error? error.title : ''" :required="true" @changeValue="post.title = $event"></text-field>
 
-                                    <text-field :value="post.slug" :label="'Slug'" :error="error? error.slug : ''" @changeValue="post.slug = $event"></text-field>
+                                    <text-field :value="post.slug" :label="'Slug'" :error="error? error.slug : ''" :required="true" @changeValue="post.slug = $event"></text-field>
 
                                     <text-area-field :value="post.short" :label="'Kratak opis'" :error="error? error.short : ''" :required="true" @changeValue="post.short = $event"></text-area-field>
 
-                                    <text-area-ckeditor-field :value="post.body" :label="'Opis'" :error="error? error.body : ''" :required="true" @changeValue="post.body = $event"></text-area-ckeditor-field>
+                                    <text-area-ckeditor-field :value="post.content" :label="'Opis'" :error="error? error.content : ''" :required="true" @changeValue="post.content = $event"></text-area-ckeditor-field>
 
-                                    <select-multiple-field :options="tags" :error="error? error.tag_ids : ''" :value="post.tag_ids" @changeValue="post.tag_ids = $event"></select-multiple-field>
+                                    <select-multiple-field v-if="tags" :options="tags" :error="error? error.tag_ids : ''" :value="post.tag_ids" @changeValue="post.tag_ids = $event"></select-multiple-field>
+
+                                    <checkbox-field :value="post.slider" :label="'Prikazuje se u slajderu'" @changeValue="post.slider = $event"></checkbox-field>
 
                                     <checkbox-field :value="post.is_visible" :label="'Publikovano'" @changeValue="post.is_visible = $event"></checkbox-field>
 
@@ -121,24 +124,24 @@
 
     export default {
         data(){
-          return {
-              fillable: ['user_id', 'title', 'slug', 'short', 'body', 'image', 'image_box', 'publish_at', 'is_visible', 'blog_ids', 'tag_ids'],
-              selected: {},
-              post: false,
-              error: {
-                  image: false,
-                  image_box: false,
-              },
-              lists: false,
-              gallery: {},
-              tags: false,
-              dropzoneOptions: {
-                  url: 'api/posts/' + this.$route.params.id + '/gallery',
-                  thumbnailWidth: 150,
-                  maxFilesize: 0.5,
-                  headers: { "Authorization": "Bearer " + this.$auth.getToken() }
-              },
-          }
+            return {
+                fillable: ['user_id', 'title', 'slug', 'short', 'content', 'image', 'image_box', 'publish_at', 'slider', 'is_visible', 'blog_ids', 'tag_ids'],
+                selected: {},
+                post: false,
+                error: {
+                    image: false,
+                    image_box: false,
+                },
+                lists: false,
+                gallery: {},
+                tags: false,
+                dropzoneOptions: {
+                    url: 'api/posts/' + this.$route.params.id + '/gallery',
+                    thumbnailWidth: 150,
+                    maxFilesize: 0.5,
+                    headers: { "Authorization": "Bearer " + this.$auth.getToken() }
+                },
+            }
         },
         computed: {
             post_id(){
@@ -176,8 +179,6 @@
 
                         this.lists = res.data.blogs;
                         this.tags = res.data.tags;
-
-                        this.trigger = true;
                     })
                     .catch(e => {
                         console.log(e);
@@ -196,7 +197,10 @@
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        this.error = null;
+                        this.error = {
+                            image: false,
+                            image_box: false,
+                        };
                     }).catch(e => {
                         console.log(e.response);
                         this.error = e.response.data.errors;
@@ -209,9 +213,9 @@
                             return photo.id != item.id;
                         });
                     }).catch(e => {
-                        console.log(e.response);
-                        this.error = e.response.data.errors;
-                    });
+                    console.log(e.response);
+                    this.error = e.response.data.errors;
+                });
             },
             showSuccess(){
                 this.getGallery();

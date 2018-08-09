@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\UploudableImageTrait;
 use Illuminate\Database\Eloquent\Model;
 use File;
+use Illuminate\Database\Eloquent\Builder;
 
 class Blog extends Model
 {
@@ -18,7 +19,7 @@ class Blog extends Model
     public static $paginate = 50;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass assignable
      *
      * @var array
      */
@@ -30,6 +31,10 @@ class Blog extends Model
     public static function boot()
     {
         parent::boot();
+
+        static::addGlobalScope('parent', function (Builder $builder) {
+            $builder->with('parentBlog');
+        });
 
         self::deleting(function($blog){
             self::where('parent', $blog->id)->get()->each(function($item){
@@ -57,7 +62,7 @@ class Blog extends Model
      * @param $value
      */
     public function setLevelAttribute($value){
-        $this->attributes['level'] = !empty($value)?: 1;
+        $this->attributes['level'] = !empty($value)? $value: 1;
     }
 
     /**
@@ -66,7 +71,7 @@ class Blog extends Model
      * @param $value
      */
     public function setParentAttribute($value){
-        $this->attributes['parent'] = !empty($value)?: 1;
+        $this->attributes['parent'] = !empty($value)? $value: 0;
     }
 
     /**
@@ -76,6 +81,15 @@ class Blog extends Model
      */
     public function setIsVisibleAttribute($value){
         $this->attributes['is_visible'] = !empty($value)?: 0;
+    }
+
+    /**
+     * method used to return blog link
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getLink(){
+        return $this->parent_blog? $this->parent_blog->slug . '/' . $this->slug . '/' : $this->slug . '/';
     }
 
     /**
@@ -94,7 +108,7 @@ class Blog extends Model
      */
     public static function tree($level=2) {
         return static::with(implode('.', array_fill(0, $level, 'children')))
-            ->where('parent', 0)->orderBy('order', 'ASC')->published()->get();
+            ->where('parent', 0)->orderBy('order', 'ASC')->visible()->get();
     }
 
     /**
@@ -103,7 +117,7 @@ class Blog extends Model
      * @param $query
      * @return mixed
      */
-    public function scopePublished($query){
+    public function scopeVisible($query){
         return $query->where('is_visible', 1);
     }
 
@@ -133,5 +147,4 @@ class Blog extends Model
     public function post(){
         return $this->belongsToMany(Post::class);
     }
-
 }

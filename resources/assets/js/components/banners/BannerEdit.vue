@@ -95,6 +95,7 @@
                     .then(res => {
                         this.banner = res.data.banner;
                         this.banner.image_path = this.banner.image;
+                        this.banner.image = null;
                     })
                     .catch(e => {
                         console.log(e);

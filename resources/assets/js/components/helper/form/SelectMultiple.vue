@@ -17,15 +17,20 @@
         },
         props: ['options', 'value', 'labela', 'required', 'error'],
         components: { Multiselect },
+        mounted(){
+            this.$emit('changeValue', this.filtered());
+        },
         methods: {
             customLabel (option) {
                 return `${option.title}`
             },
             filtered(){
                 let filteredIds = [];
-                this.selected.forEach(function(element) {
-                    filteredIds.push(element.id);
-                });
+                if(this.selected){
+                    this.selected.forEach(function(element) {
+                        filteredIds.push(element.id);
+                    });
+                }
                 return filteredIds;
             }
         },

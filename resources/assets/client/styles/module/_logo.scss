@@ -1,16 +1,43 @@
+@mixin logo($w) {
+  width: $w;
+  height: (38.89 / 215.95) * $w;
+}
+
 .logo {
   display: inline-flex;
   fill: currentColor;
-  
+
+  &-wrap {
+    color: inherit !important;
+    will-change: opacity;
+
+    &:hover,
+    &:focus {
+      opacity: .9;
+    }
+  }
+
+  &--nav {
+    @include logo(86px);
+  }
+
+  &--sidenav {
+    @include logo(180px);
+  }
+
   &--header {
-    width: 220px;
+    @include logo(220px);
 
     @include media-breakpoint-up(sm) {
-      width: 280px;
+      @include logo(280px);
     }
 
-    @include media-breakpoint-up(lg) {
-      width: 470px;
+    @include media-breakpoint-up(md) {
+      @include logo(470px);
     }
+  }
+
+  &--footer {
+    @include logo(156px);
   }
 }
