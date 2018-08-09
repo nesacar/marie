@@ -2,7 +2,7 @@
     $isFeatured = isset($featured) ? $featured : false;
     $hasActions = isset($actions) ? $actions : false;
     $teaser = 'teaser'.($isFeatured ? ' teaser--featured' : '');
-    $image = 'image js-lazy-image image--'.($isFeatured ? '21-9' : '1-1');
+    $image = 'image js-lazy-image image--'.($isFeatured ? '16-9' : '1-1');
     $details = 'details'.($isFeatured ? ' details--fixed' : '');
     $body = 'teaser_body'.(!$isFeatured ? ' text-truncate' : '');
 @endphp
