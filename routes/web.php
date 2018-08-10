@@ -31,6 +31,11 @@ Route::get('shop/{category}', 'Web\ShopsController@shopCategory');
 Route::get('shop/{category1}/{category2}', 'Web\ShopsController@shopSubCategory');
 
 /**
+ * Search results helper route.
+ */
+Route::get('/search-results', 'DevController@search');
+
+/**
  * filemanager route
  **/
 Route::middleware('auth')->get('filemanager/show', 'FilemanagerController@index');
@@ -64,5 +69,4 @@ Route::get('{category1}/{category2}', 'Web\BlogsController@subCategory');
  **/
 Route::get('{category}/{post}/{id}', 'Web\PostsController@post');
 Route::get('{category1}/{category2}/{post}/{id}', 'Web\PostsController@subPost');
-
 
