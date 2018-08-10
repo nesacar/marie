@@ -7,6 +7,11 @@ Route::get('/', 'Web\HomePageController@homepage');
 Route::post('subscribe', 'Web\HomePageController@subscribe')->name('newsletter.subscribe');
 
 /**
+ * Newsletter preview
+ */
+Route::get('mail', 'Web\HomePageController@newsletterPreview');
+
+/**
  * gallery page routes
  **/
 Route::get('galerija/{category}/{post}/{id}', 'Web\GalleriesController@gallery');
