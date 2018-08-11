@@ -5,8 +5,8 @@
                 <div class="col-md-12">
                     <div id="breadcrumbs">
                         <ul class="list-group list-group-flush">
-                            <li><router-link tag="a" :to="'/home'">Home</router-link></li>
-                            <li><router-link tag="a" :to="'/newsletters'">Newsletters</router-link></li>
+                            <li><router-link tag="a" :to="'/home'">Početna</router-link></li>
+                            <li><router-link tag="a" :to="'/newsletters'">Newsletter</router-link></li>
                             <li v-if="newsletter"><router-link tag="a" :to="'/newsletters/' + newsletter.id + '/edit'">{{ newsletter.title }}</router-link></li>
                             <li v-if="banner">{{ banner.title }}</li>
                         </ul>
@@ -61,7 +61,7 @@
             'paginate-helper': PaginateHelper,
             'font-awesome-icon': FontAwesomeIcon
         },
-        created(){
+        mounted(){
             this.getClicks();
         },
         methods: {

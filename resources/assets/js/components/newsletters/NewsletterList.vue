@@ -104,8 +104,8 @@
                     showCancelButton: true,
                     confirmButtonColor: '#51d2b7',
                     cancelButtonColor: '#fb9678',
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'Cancel'
+                    confirmButtonText: 'Da, obriši ga!',
+                    cancelButtonText: 'Odustani'
                 }).then((result) => {
                     if (result.value) {
                         axios.delete('api/newsletters/' + row.id)
@@ -114,8 +114,8 @@
                                     return row.id != item.id;
                                 });
                                 swal(
-                                    'Deleted!',
-                                    'Newsletter is deleted.',
+                                    'Obrisano!',
+                                    'Newslettr je uspešno obrisan.',
                                     'success'
                                 );
                             })

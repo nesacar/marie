@@ -81,6 +81,10 @@ Route::middleware('auth:api')->group(function () {
 
     Route::resource('settings', 'Api\SettingsController');
 
+    Route::get('statistics/{id}/day', 'Api\StatisticsController@day');
+    Route::get('statistics/{id}/month', 'Api\StatisticsController@month');
+    Route::get('statistics/{id}/year', 'Api\StatisticsController@year');
+
     Route::resource('subscribers', 'Api\SubscribersController');
 
     Route::resource('tags', 'Api\TagsController');

@@ -16,18 +16,16 @@ export const router = new VueRouter({
         { path: "/beauty-boxes/create", component: require('./components/beautyBox/BeautyBoxCreate.vue'), meta: { forAuth: true } },
         { path: "/beauty-boxes/:id/edit", component: require('./components/beautyBox/BeautyBoxEdit.vue'), meta: { forAuth: true } },
 
+        { path: "/banners", component: require('./components/banners/BannerList.vue'), meta: { forAuth: true } },
+        { path: "/banners/create", component: require('./components/banners/BannerCreate.vue'), meta: { forAuth: true } },
+        { path: "/banners/:id/edit", component: require('./components/banners/BannerEdit.vue'), meta: { forAuth: true } },
+
         { path: "/blogs", component: require('./components/blogs/BlogList.vue'), meta: { forAuth: true } },
         { path: "/blogs/create", component: require('./components/blogs/BlogCreate.vue'), meta: { forAuth: true } },
         { path: "/blogs/:id/edit", component: require('./components/blogs/BlogEdit.vue'), meta: { forAuth: true } },
 
-        { path: "/posts", component: require('./components/posts/PostList.vue'), meta: { forAuth: true } },
-        { path: "/posts/create", component: require('./components/posts/PostCreate.vue'), meta: { forAuth: true } },
-        { path: "/posts/:id/edit", component: require('./components/posts/PostEdit.vue'), meta: { forAuth: true } },
-        { path: "/posts/:id/gallery", component: require('./components/posts/PostGallery.vue'), meta: { forAuth: true } },
-
-        { path: "/banners", component: require('./components/banners/BannerList.vue'), meta: { forAuth: true } },
-        { path: "/banners/create", component: require('./components/banners/BannerCreate.vue'), meta: { forAuth: true } },
-        { path: "/banners/:id/edit", component: require('./components/banners/BannerEdit.vue'), meta: { forAuth: true } },
+        { path: "/clicks/:newsletter/posts/:post", component: require('./components/newsletters/clicks/ClickPost.vue'), meta: { forAuth: true } },
+        { path: "/clicks/:newsletter/banners/:banner", component: require('./components/newsletters/clicks/ClickBanner.vue'), meta: { forAuth: true } },
 
         { path: "/brands", component: require('./components/brands/BrandList.vue'), meta: { forAuth: true } },
         { path: "/brands/create", component: require('./components/brands/BrandCreate.vue'), meta: { forAuth: true } },
@@ -45,6 +43,11 @@ export const router = new VueRouter({
         { path: "/newsletters", component: require('./components/newsletters/NewsletterList.vue'), meta: { forAuth: true } },
         { path: "/newsletters/create", component: require('./components/newsletters/NewsletterCreate.vue'), meta: { forAuth: true } },
         { path: "/newsletters/:id/edit", component: require('./components/newsletters/NewsletterEdit.vue'), meta: { forAuth: true } },
+
+        { path: "/posts", component: require('./components/posts/PostList.vue'), meta: { forAuth: true } },
+        { path: "/posts/create", component: require('./components/posts/PostCreate.vue'), meta: { forAuth: true } },
+        { path: "/posts/:id/edit", component: require('./components/posts/PostEdit.vue'), meta: { forAuth: true } },
+        { path: "/posts/:id/gallery", component: require('./components/posts/PostGallery.vue'), meta: { forAuth: true } },
 
         { path: "/roles", component: require('./components/roles/RoleList.vue'), meta: { forAdmin: true } },
         { path: "/roles/create", component: require('./components/roles/RoleCreate.vue'), meta: { forAuth: true } },
@@ -77,6 +80,10 @@ export const router = new VueRouter({
         { path: "/tags", component: require('./components/tags/TagList.vue'), meta: { forAuth: true } },
         { path: "/tags/create", component: require('./components/tags/TagCreate.vue'), meta: { forAuth: true } },
         { path: "/tags/:id/edit", component: require('./components/tags/TagEdit.vue'), meta: { forAuth: true } },
+
+        { path: "/statistics/:id/day", component: require('./components/newsletters/statistics/TodayNewsletter.vue'), meta: { forAuth: true } },
+        { path: "/statistics/:id/month", component: require('./components/newsletters/statistics/MonthNewsletter.vue'), meta: { forAuth: true } },
+        { path: "/statistics/:id/year", component: require('./components/newsletters/statistics/YearNewsletter.vue'), meta: { forAuth: true } },
 
         { path: "/subscribers", component: require('./components/subscribers/SubscriberList.vue'), meta: { forAuth: true } },
         { path: "/subscribers/create", component: require('./components/subscribers/SubscriberCreate.vue'), meta: { forAuth: true } },
