@@ -33,6 +33,19 @@ export const router = new VueRouter({
         { path: "/brands/create", component: require('./components/brands/BrandCreate.vue'), meta: { forAuth: true } },
         { path: "/brands/:id/edit", component: require('./components/brands/BrandEdit.vue'), meta: { forAuth: true } },
 
+        { path: "/menus", component: require('./components/menus/MenuList.vue'), meta: { forAuth: true } },
+        { path: "/menus/create", component: require('./components/menus/MenuCreate.vue'), meta: { forAuth: true } },
+        { path: "/menus/:id/edit", component: require('./components/menus/MenuEdit.vue'), meta: { forAuth: true } },
+        { path: "/menus/:id/sort", component: require('./components/menus/MenuSort.vue'), meta: { forAuth: true } },
+
+        { path: "/menu-links/:id", component: require('./components/menuLinks/MenuLinks.vue'), meta: { forAuth: true } },
+        { path: "/menu-links/:id/create", component: require('./components/menuLinks/MenuLinkCreate.vue'), meta: { forAuth: true } },
+        { path: "/menu-links/:id/edit", component: require('./components/menuLinks/MenuLinkEdit.vue'), meta: { forAuth: true } },
+
+        { path: "/newsletters", component: require('./components/newsletters/NewsletterList.vue'), meta: { forAuth: true } },
+        { path: "/newsletters/create", component: require('./components/newsletters/NewsletterCreate.vue'), meta: { forAuth: true } },
+        { path: "/newsletters/:id/edit", component: require('./components/newsletters/NewsletterEdit.vue'), meta: { forAuth: true } },
+
         { path: "/roles", component: require('./components/roles/RoleList.vue'), meta: { forAdmin: true } },
         { path: "/roles/create", component: require('./components/roles/RoleCreate.vue'), meta: { forAuth: true } },
         { path: "/roles/:id/edit", component: require('./components/roles/RoleEdit.vue'), meta: { forAuth: true } },
@@ -56,15 +69,6 @@ export const router = new VueRouter({
         { path: "/products/:id/edit", component: require('./components/products/ProductEdit.vue'), meta: { forAuth: true } },
 
         { path: "/settings/:id/edit", component: require('./components/settings/SettingEdit.vue'), meta: { forAuth: true } },
-
-        { path: "/menus", component: require('./components/menus/MenuList.vue'), meta: { forAuth: true } },
-        { path: "/menus/create", component: require('./components/menus/MenuCreate.vue'), meta: { forAuth: true } },
-        { path: "/menus/:id/edit", component: require('./components/menus/MenuEdit.vue'), meta: { forAuth: true } },
-        { path: "/menus/:id/sort", component: require('./components/menus/MenuSort.vue'), meta: { forAuth: true } },
-
-        { path: "/menu-links/:id", component: require('./components/menuLinks/MenuLinks.vue'), meta: { forAuth: true } },
-        { path: "/menu-links/:id/create", component: require('./components/menuLinks/MenuLinkCreate.vue'), meta: { forAuth: true } },
-        { path: "/menu-links/:id/edit", component: require('./components/menuLinks/MenuLinkEdit.vue'), meta: { forAuth: true } },
 
         { path: "/partners", component: require('./components/partners/PartnerList'), meta: { forAuth: true } },
         { path: "/partners/create", component: require('./components/partners/PartnerCreate'), meta: { forAuth: true } },

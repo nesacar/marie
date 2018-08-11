@@ -79,4 +79,17 @@ class BannersController extends Controller
             'message' => 'Banner je obrisan.'
         ]);
     }
+
+    /**
+     * Display a listing of Banner model
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function lists(){
+        $banners = Banner::visible()->orderBy('id', 'DESC')->get();
+
+        return response()->json([
+            'banners' => $banners,
+        ]);
+    }
 }

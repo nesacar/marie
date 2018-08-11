@@ -43,4 +43,14 @@ class Banner extends Model{
     public function setIsVisibleAttribute($value){
         $this->attributes['is_visible'] = !empty($value)?: 0;
     }
+
+    /**
+     * method use to centralise is visible Banner logic
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeVisible($query){
+        return $query->where('is_visible', 1);
+    }
 }

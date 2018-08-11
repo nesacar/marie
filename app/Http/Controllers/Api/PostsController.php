@@ -91,4 +91,17 @@ class PostsController extends Controller
             'posts' => Post::search()->with('blog')->orderBy('publish_at', 'DESC')->paginate(Post::$paginate),
         ]);
     }
+
+    /**
+     * Display a listing of Post model
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function lists(){
+        $posts = Post::with('blog')->visible()->orderBy('created_at', 'DESC')->get();
+
+        return response()->json([
+            'posts' => $posts,
+        ]);
+    }
 }

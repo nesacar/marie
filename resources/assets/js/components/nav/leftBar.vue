@@ -72,7 +72,7 @@
                 <a href="#" @click="changeShowNewslettersItemActive()">Newsletteri</a>
                 <font-awesome-icon icon="envelope" />
                 <ul>
-                    <li><a href="#">Newsletteri</a></li>
+                    <li><router-link tag="a" :to="'/newsletters'">Newsletteri</router-link></li>
                     <li><router-link tag="a" :to="'/subscribers'">Pretplatnici</router-link></li>
                     <li><router-link tag="a" :to="'/banners'">Banneri</router-link></li>
                 </ul>

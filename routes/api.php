@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->group(function () {
 
+    Route::get('banners/lists', 'Api\BannersController@lists');
     Route::resource('banners', 'Api\BannersController');
 
     Route::resource('beauty-boxes', 'Api\BeautyBoxesController');
@@ -33,6 +34,12 @@ Route::middleware('auth:api')->group(function () {
     Route::post('categories/order', 'Api\CategoriesController@saveOrder');
     Route::resource('categories', 'Api\CategoriesController');
 
+    Route::get('clicks/{newsletter_id}/posts/{post_id}', 'Api\ClicksController@post');
+    Route::get('clicks/{newsletter_id}/banners/{banner_id}', 'Api\ClicksController@banner');
+
+    Route::get('clicks/{newsletter_id}/posts/{post_id}/clicks', 'Api\ClicksController@postClicks');
+    Route::get('clicks/{newsletter_id}/banners/{banner_id}/clicks', 'Api\ClicksController@bannerClicks');
+
     Route::get('galleries/{post_id}', 'Api\GalleriesController@show');
     Route::post('galleries/{post_id}', 'Api\GalleriesController@update');
     Route::post('galleries/{post_id}/serialize', 'Api\GalleriesController@serialize');
@@ -45,6 +52,12 @@ Route::middleware('auth:api')->group(function () {
     Route::get('menu-links/{id}/sort', 'Api\MenuLinksController@sort');
     Route::post('menu-links/{id}/order', 'Api\MenuLinksController@saveOrder');
 
+    Route::resource('newsletters', 'Api\NewslettersController');
+    Route::get('newsletters/{id}/post', 'Api\NewslettersController@post');
+    Route::get('newsletters/{id}/banner', 'Api\NewslettersController@banner');
+    Route::post('newsletters/{id}/prepare', 'Api\NewslettersController@prepare');
+    Route::post('newsletters/{id}/send', 'Api\NewslettersController@send');
+
     Route::get('partners/lists', 'Api\PartnersController@lists');
     Route::resource('partners', 'Api\PartnersController');
 
@@ -53,6 +66,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('permission-groups/lists', 'Api\PermissionGroupsController@lists');
     Route::resource('permission-groups', 'Api\PermissionGroupsController');
 
+    Route::get('posts/lists', 'Api\PostsController@lists');
     Route::resource('posts', 'Api\PostsController');
     Route::post('posts/search', 'Api\PostsController@search');
     Route::get('posts/{id}/gallery', 'Api\PostsController@gallery');
