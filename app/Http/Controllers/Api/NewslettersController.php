@@ -136,7 +136,7 @@ class NewslettersController extends Controller
         $post = Post::with('blog')->find($id);
 
         return response()->json([
-            'post' => $post
+            'post' => $post,
         ]);
     }
 
@@ -150,10 +150,16 @@ class NewslettersController extends Controller
         $banner = Banner::find($id);
 
         return response()->json([
-            'banner' => $banner
+            'banner' => $banner,
         ]);
     }
 
+    /**
+     * method used to prepare newsletter sending
+     *
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function prepare($id){
         $newsletter = Newsletter::find($id);
         $templates = Newsletter_template::where('newsletter_id', $newsletter->id)->orderBy('index', 'ASC')->get();
@@ -168,10 +174,16 @@ class NewslettersController extends Controller
         $newsletter->update();
 
         return response()->json([
-            'message' => 'done'
+            'message' => 'done',
         ]);
     }
 
+    /**
+     * method used to send newsletter
+     *
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function send($id){
         $newsletter = Newsletter::find($id);
         $newsletter->active = 0;
@@ -183,7 +195,7 @@ class NewslettersController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'done'
+            'message' => 'done',
         ]);
     }
 }

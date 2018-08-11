@@ -134,7 +134,6 @@
                     for(let i=0;i<template.length;i++){
                         this.items.push(template[i]);
                     }
-                    console.log(this.items);
                 }
             }
         }

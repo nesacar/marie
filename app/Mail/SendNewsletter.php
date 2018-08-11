@@ -34,7 +34,7 @@ class SendNewsletter extends Mailable
      * @return $this
      */
     public function build(){
-        return $this->view('themes. ' . env('APP_THEME') . '.email.dist.newsletter')->subject($this->newsletter->title)
+        return $this->view('themes.' . env('APP_THEME') . '.email.dist.newsletter')->subject($this->newsletter->title)
             ->from('marie.clarie@mia.rs', 'Newsletter Marie Clarie');
         //return $this->view('themes. ' . env('APP_THEME') . '.email.dist.newsletter');
     }

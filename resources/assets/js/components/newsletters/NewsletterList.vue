@@ -137,8 +137,8 @@
             },
             sendRow(index){
                 swal(
-                    'Send!',
-                    'Newsletter was sent.',
+                    'Slanje!',
+                    'Newsletter je počeo da se salje.',
                     'success'
                 );
                 this.sent = false;
@@ -151,12 +151,11 @@
                     });
             },
             prepareRow(index){
-                console.log('prepare: ' + index);
                 axios.post('api/newsletters/' + index + '/prepare')
                     .then(res => {
                         swal(
-                            'Prepared!',
-                            'Newsletter was prepared.',
+                            'Spremno!',
+                            'Newsletter je spreman.',
                             'success'
                         );
                         this.getNewsletters();

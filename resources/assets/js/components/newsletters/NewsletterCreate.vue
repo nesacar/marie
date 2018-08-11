@@ -64,7 +64,7 @@
         },
         methods: {
             getPosts(){
-                axios.get('api/posts')
+                axios.get('api/posts/lists')
                     .then(res => {
                         this.posts = _.map(res.data.posts, (data) => {
                             var pick = _.pick(data, 'title', 'id');
