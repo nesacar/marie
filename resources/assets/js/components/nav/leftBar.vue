@@ -3,7 +3,7 @@
         <div class="logo-holder">
             <div class="logo">
                 <a :href="domain" target="_blank">
-                    <!--<img :src="domain + 'img/logo.png'" alt="Fusion Tables">-->
+                    <img :src="domain + 'img/marie-claire-black-logo.png'" alt="Marie Clarie">
                 </a>
             </div>
         </div>

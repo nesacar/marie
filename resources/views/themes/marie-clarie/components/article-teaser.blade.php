@@ -11,7 +11,7 @@
     <div class="teaser_media">
         <a href="{{ $post->link }}" title="image alt">
             <div class="{{$image}} tint tint--light tint--hover"
-                 data-src="{{ !empty($post->image)? ($isFeatured? url(\Imagecache::get($post->image, '650x278')->src) : url($post->image_box)) : '' }}"
+                 data-src="{{ !empty($post->image)? ($isFeatured? url(\Imagecache::get($post->image, '650x366')->src) : url($post->image_box)) : '' }}"
                  data-alt="image alt"
             ></div>
         </a>

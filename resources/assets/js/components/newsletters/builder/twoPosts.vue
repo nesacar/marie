@@ -61,7 +61,7 @@
 
                                         <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;" v-else>
                                             <div class="detail">
-                                                <a class="detail_cat" href="#">{{ item.post1.blog[0].title }}</a> | <span class="detail_date">01.02.2018</span> </div>
+                                                <a class="detail_cat" :href="item.post1.blog[0].link">{{ item.post1.blog[0].title }}</a> | <span class="detail_date">01.02.2018</span> </div>
                                             <h2 class="serif">{{ item.post1.title }}</h2>
                                             <p class="p">{{ item.post1.short }}</p>
                                             <div class="action-footer"> <a class="btn" :href="item.post1.link">saznaj više</a> </div>
@@ -126,7 +126,7 @@
 
                                         <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;" v-else>
                                             <div class="detail">
-                                                <a class="detail_cat" href="#">{{ item.post2.blog[0].title }}</a> | <span class="detail_date">01.02.2018</span> </div>
+                                                <a class="detail_cat" :href="item.post2.blog[0].link">{{ item.post2.blog[0].title }}</a> | <span class="detail_date">01.02.2018</span> </div>
                                             <h2 class="serif">{{ item.post2.title }}</h2>
                                             <p class="p">{{ item.post2.short }}</p>
                                             <div class="action-footer"> <a class="btn" :href="item.post2.link">saznaj više</a> </div>

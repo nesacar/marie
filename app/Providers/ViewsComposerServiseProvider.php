@@ -5,8 +5,8 @@ namespace App\Providers;
 use App\Helper;
 use App\MenuLink;
 use App\Setting;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Cache;
 
 class ViewsComposerServiseProvider extends ServiceProvider
 {
@@ -36,9 +36,7 @@ class ViewsComposerServiseProvider extends ServiceProvider
      * method used to return primary menu links
      */
     private function composerMenuTop(){
-        $menu = Cache::remember('menu', Helper::getMinutesToTheNextHour(), function (){
-            return MenuLink::tree(1);
-        });
+        $menu = MenuLink::getMenu(1);
 
         view()->composer('themes.' .env('APP_THEME') .'.partials.header', function($view) use ($menu){
             $view->with('menu', $menu);
@@ -47,6 +45,9 @@ class ViewsComposerServiseProvider extends ServiceProvider
             $view->with('menu', $menu);
         });
         view()->composer('themes.' . env('APP_THEME') .'.partials.footer', function($view) use ($menu){
+            $view->with('menu', $menu);
+        });
+        view()->composer('themes.' . env('APP_THEME') .'.email.dist.newsletter', function($view) use ($menu){
             $view->with('menu', $menu);
         });
     }

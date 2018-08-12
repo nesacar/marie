@@ -26,6 +26,13 @@ class Blog extends Model
     protected $fillable = ['title', 'slug', 'short', 'seo_title', 'seo_keywords', 'order', 'parent', 'level', 'image', 'is_visible'];
 
     /**
+     * append to Blog model link attribute
+     *
+     * @var array
+     */
+    protected $appends = ['link'];
+
+    /**
      *method used when instance of this model is created
      */
     public static function boot()
@@ -81,6 +88,15 @@ class Blog extends Model
      */
     public function setIsVisibleAttribute($value){
         $this->attributes['is_visible'] = !empty($value)?: 0;
+    }
+
+    /**
+     * method used to set link attribute
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getLinkAttribute(){
+        return url($this->getLink());
     }
 
     /**

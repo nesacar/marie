@@ -29,11 +29,18 @@ class Post extends Model
     protected $fillable = ['user_id', 'author', 'title', 'slug', 'short', 'content', 'image', 'image_box', 'publish_at', 'views', 'slider', 'is_visible'];
 
     /**
-     * append to Post model crop_image attribute
+     * append to Post model crop_image and link attribute
      *
      * @var array
      */
     protected $appends = ['crop_image', 'link'];
+
+    /**
+     * The attributes that are dates
+     *
+     * @var array
+     */
+    protected $dates = ['publish_at'];
 
     /**
      * The attributes that are use for search
@@ -178,6 +185,18 @@ class Post extends Model
                 return self::with('blog')->where('publish_at', '>', Carbon::now()->subMonth($months))->inRandomOrder()->take($limit)->get();
             });
         }
+    }
+
+    /**
+     * method used to return Newsletter post cached for 5 minutes
+     *
+     * @param $post_id
+     * @return mixed
+     */
+    public static function getNewsletterPost($post_id){
+        return Cache::remember('newsletter_post.' . $post_id, 5, function () use ($post_id){
+            return self::with('blog')->find($post_id);
+        });
     }
 
     /**

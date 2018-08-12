@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\UploudableImageTrait;
 use Illuminate\Database\Eloquent\Model;
 use File;
+use Illuminate\Support\Facades\Cache;
 
 class Banner extends Model{
 
@@ -42,6 +43,19 @@ class Banner extends Model{
      */
     public function setIsVisibleAttribute($value){
         $this->attributes['is_visible'] = !empty($value)?: 0;
+    }
+
+
+    /**
+     * method used to return Newsletter banner cached for 5 minutes
+     *
+     * @param $post_id
+     * @return mixed
+     */
+    public static function getNewsletterBanner($banner_id){
+        return Cache::remember('newsletter_banner.' . $banner_id, 5, function () use ($banner_id){
+            return self::find($banner_id);
+        });
     }
 
     /**

@@ -42,9 +42,9 @@ return array(
         'height' => 305,
         'method' => 'crop',
     ),
-    '650x278' => array(
+    '650x366' => array(
         'width' => 650,
-        'height' => 278,
+        'height' => 366,
         'method' => 'crop',
     ),
     '800x342' => array(

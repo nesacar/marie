@@ -56,13 +56,13 @@
                             <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                     <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;" v-if="item.post == null">
-                                        <div class="detail"> <a class="detail_cat" href="#">kategory</a> | <span class="detail_date">01.02.2018</span> </div>
+                                        <div class="detail"> <a class="detail_cat" href="$">kategory</a> | <span class="detail_date">01.02.2018</span> </div>
                                         <h1 class="serif">Naslov članka</h1>
                                         <p class="p">Kratak opis članka</p>
                                         <div class="action-footer"> <a class="btn" href="#">saznaj više</a> </div>
                                     </div>
                                     <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;" v-else>
-                                        <div class="detail"> <a class="detail_cat" href="#">{{ item.post.blog[0].title }}</a> | <span class="detail_date">01.02.2018</span> </div>
+                                        <div class="detail"> <a class="detail_cat" :href="item.post.blog[0].link">{{ item.post.blog[0].title }}</a> | <span class="detail_date">01.02.2018</span> </div>
                                         <h1 class="serif">{{ item.post.title }}</h1>
                                         <p class="p">{{ item.post.short }}</p>
                                         <div class="action-footer"> <a class="btn" :href="item.post.link">saznaj više</a> </div>

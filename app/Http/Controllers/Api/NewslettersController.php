@@ -22,7 +22,7 @@ class NewslettersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $newsletters = Newsletter::select('id', 'title', 'send', 'last_send', 'active', 'send')->orderBy('last_send', 'DESC')->paginate(50);
+        $newsletters = Newsletter::orderBy('last_send', 'DESC')->paginate(50);
 
         return response()->json([
             'newsletters' => $newsletters,

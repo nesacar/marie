@@ -44,6 +44,7 @@
                                         <button class="btn btn-primary" @click="prepareRow(row.id)" v-if="row.active == 0">Primeri za slanje</button>
                                         <button class="btn btn-primary" @click="sendRow(row.id)" v-if="row.active == 1 && sent">Posalji</button>
                                     </span>
+                                    <font-awesome-icon icon="eye" @click="previewRow(row)" />
                                     <font-awesome-icon icon="pencil-alt" @click="editRow(row['id'])"/>
                                     <font-awesome-icon icon="times" @click="deleteRow(row)" />
                                 </td>
@@ -169,6 +170,9 @@
             },
             addRow(){
                 this.$router.push('/newsletters/create');
+            },
+            previewRow(row){
+                window.open(domain + 'newsletter/preview?verification=' + row.verification, '_blank');
             },
         }
     }
