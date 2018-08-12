@@ -17,7 +17,6 @@ toc_footers:
 
 Welcome to the generated API reference.
 [Get Postman Collection](http://localhost/docs/collection.json)
-
 <!-- END_INFO -->
 
 #general
@@ -56,12 +55,12 @@ $.ajax(settings).done(function (response) {
             "id": 1,
             "title": "Prolećni",
             "link": "https:\/\/www.google.rs\/",
-            "image": "storage\/uploads\/banners\/08-2018\/prolecni-1-7v.jpg",
+            "image": "storage\/uploads\/banners\/08-2018\/prolecni-1-sQ.jpg",
             "width": 600,
             "height": 180,
             "is_visible": 1,
-            "created_at": "2018-08-11 19:38:36",
-            "updated_at": "2018-08-11 19:38:37"
+            "created_at": "2018-07-13 19:38:36",
+            "updated_at": "2018-08-11 21:37:21"
         }
     ]
 }
