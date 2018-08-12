@@ -25,7 +25,18 @@ class CreateNewsletterRequest extends FormRequest
     {
         return [
             'title' => 'required',
-//            'template' => 'required'
+        ];
+    }
+
+    /**
+     * method used to translate error message
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'title.required' => 'Naziv newslettera je obavezan',
         ];
     }
 }

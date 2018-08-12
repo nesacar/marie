@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\UploudableImageTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use File;
 use Illuminate\Support\Facades\Cache;
@@ -24,6 +25,15 @@ class Banner extends Model{
      * @var array
      */
     protected $fillable = ['title', 'link', 'image', 'width', 'height', 'is_visible'];
+
+    /**
+     * set banner limitation in months
+     * example ($limited = 3) presents banners that were created less than 3 months ago
+     * example ($limited = 0) presents all created banners
+     *
+     * @var int
+     */
+    protected static $limited = 6;
 
     /**
      *method used when instance of this model is created
@@ -66,5 +76,26 @@ class Banner extends Model{
      */
     public function scopeVisible($query){
         return $query->where('is_visible', 1);
+    }
+
+    /**
+     * method use to centralise limited months Banner logic
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeLimited($query){
+        if(self::$limited > 0){
+            return $query->where('created_at', '>=', Carbon::now()->subMonth(self::$limited)->format('Y-m-d H:00'));
+        }
+    }
+
+    /**
+     * method used to make belongs-to-many connection between Banner and Click model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function click(){
+        return $this->hasMany(Click::class);
     }
 }

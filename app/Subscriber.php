@@ -28,4 +28,15 @@ class Subscriber extends Model
     public function setBlockAttribute($value){
         $this->attributes['block'] = !empty($value)?: 0;
     }
+
+
+    /**
+     * method used to make belongs-to-many connection between Subscriber and Click model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function click(){
+        return $this->hasMany(Click::class);
+    }
+
 }

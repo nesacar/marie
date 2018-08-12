@@ -11,7 +11,21 @@ class Newsletter extends Model
     protected $fillable = ['title', 'verification', 'received', 'skip', 'send', 'active', 'last_send'];
 
     /**
-     * method used to set newsleter
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot(){
+        parent::boot();
+
+        static::deleting(function ($newsletter) {
+            $newsletter->template()->delete();
+            $newsletter->click()->delete();
+        });
+    }
+
+    /**
+     * method used to set newsletter
      *
      * @param $newsletter
      */
@@ -64,5 +78,15 @@ class Newsletter extends Model
      */
     public function template(){
         return $this->hasMany(Newsletter_template::class);
+    }
+
+
+    /**
+     * method used to make belongs-to-many connection between Newsletter and Click model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function click(){
+        return $this->hasMany(Click::class);
     }
 }

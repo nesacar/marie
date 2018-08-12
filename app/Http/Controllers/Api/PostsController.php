@@ -98,7 +98,7 @@ class PostsController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function lists(){
-        $posts = Post::with('blog')->visible()->orderBy('created_at', 'DESC')->get();
+        $posts = Post::with('blog')->visible()->limited()->orderBy('created_at', 'DESC')->get();
 
         return response()->json([
             'posts' => $posts,

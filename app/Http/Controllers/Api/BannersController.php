@@ -86,7 +86,7 @@ class BannersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function lists(){
-        $banners = Banner::visible()->orderBy('id', 'DESC')->get();
+        $banners = Banner::visible()->limited()->orderBy('id', 'DESC')->get();
 
         return response()->json([
             'banners' => $banners,

@@ -50,6 +50,15 @@ class Post extends Model
     protected static $searchable = ['title', 'blog'];
 
     /**
+     * set post limitation in months
+     * example ($limited = 3) presents posts that were created less than 3 months ago
+     * example ($limited = 0) presents all created posts
+     *
+     * @var int
+     */
+    protected static $limited = 6;
+
+    /**
      * The "booting" method of the model.
      *
      * @return void
@@ -227,13 +236,40 @@ class Post extends Model
     }
 
     /**
+     * method used to insert Newsletter clicks
+     *
+     * @param $post
+     */
+    public static function newsletterClick($post){
+        if(request('email') && request('news')){
+            $newsletter = Newsletter::where('verification', request('news'))->first();
+            $subscriber = Subscriber::where('verification', request('email'))->first();
+            if(isset($newsletter) && isset($subscriber)){
+                Click::insertClick($newsletter->id, $post->id, false, $subscriber->id);
+            }
+        }
+    }
+
+    /**
      * method use to centralise is visible Post logic
      *
      * @param $query
      * @return mixed
      */
     public function scopeVisible($query){
-        return $query->where('is_visible', 1);
+        return $query->where('is_visible', 1)->where('publish_at',  '<=', Carbon::now()->format('Y-m-d H:00'))->orderBy('publish_at', 'DESC');
+    }
+
+    /**
+     * method use to centralise limited months Banner logic
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeLimited($query){
+        if(self::$limited > 0){
+            return $query->where('publish_at', '>=', Carbon::now()->subMonth(self::$limited)->format('Y-m-d H:00'));
+        }
     }
 
     /**
@@ -271,5 +307,15 @@ class Post extends Model
      */
     public function gallery(){
         return $this->morphMany(Gallery::class, 'gallery');
+    }
+
+
+    /**
+     * method used to make belongs-to-many connection between Post and Click model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function click(){
+        return $this->hasMany(Click::class);
     }
 }
