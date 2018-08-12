@@ -13,6 +13,19 @@ use Psy\Output\ProcOutputPager;
 class PostsController extends Controller
 {
     /**
+     * Display a listing of Post model
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(){
+        $posts = Post::with('blog')->visible()->limited()->orderBy('created_at', 'DESC')->paginate(Post::$paginate);
+
+        return response()->json([
+            'posts' => $posts,
+        ]);
+    }
+
+    /**
      * method used to store new post and return
      *
      * @param CreatePostRequest $request
