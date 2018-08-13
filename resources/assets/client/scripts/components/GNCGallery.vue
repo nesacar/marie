@@ -62,7 +62,7 @@ export default {
     onClick(n) {
       const next = this.current + n;
       const len = this.srcset.length - 1;
-      const current = Math.max(0, Math.min(current, len));
+      const current = Math.max(0, Math.min(next, len));
       this.current = current;
     },
   },
