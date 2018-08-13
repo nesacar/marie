@@ -1,12 +1,26 @@
 <template>
-  <div class="slider-item gallery-slide">
-    <image-slide
-      :src="image.src"
-      :alt="image.title"
-    >
-      <h2 class="text-sans-serif h6 mb-2">{{image.title}}</h2>
-      <p>{{image.desc}}</p>
-    </image-slide>
+  <div>
+    <div class="slider-item gallery-slide">
+      <image-slide
+        :src="image.src"
+        :alt="image.title"
+      >
+        <h2 class="text-sans-serif h6 mb-2">{{image.title}}</h2>
+        <p>{{image.desc}}</p>
+      </image-slide>
+    </div>
+    <div>
+      <button
+        aria-label="previous slide"
+        class="control control--prev"
+        @click="() => onClick(-1)"
+      ></button>
+      <button
+        aria-label="next slide"
+        class="control control--next"
+        @click="() => onClick(1)"
+      ></button>
+    </div>
   </div>
 </template>
 
@@ -30,14 +44,22 @@ export default {
     },
   },
 
+  data() {
+    return {
+      current: this.index,
+    };
+  },
+
   computed: {
     image() {
-      return this.srcset[this.index];
+      return this.srcset[this.current];
     },
   },
 
-  mounted() {
-    console.log('mounted', this.image)
+  methods: {
+    onClick(n) {
+      this.current += n;
+    },
   },
 }
 </script>
