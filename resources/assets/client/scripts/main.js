@@ -10,6 +10,7 @@ Vue.component('temporary-drawer', require('./components/TemporaryDrawer.vue'));
 Vue.component('modal-container', require('./components/ModalContainer.vue'));
 Vue.component('collapsible-container', require('./components/CollapsibleContainer.vue'));
 Vue.component('responsive-image', require('./components/ResponsiveImage.vue'));
+Vue.component('gnc-gallery', require('./components/GNCGallery.vue'));
 
 const mc = new Vue({
   el: '#app',

@@ -21,20 +21,24 @@
                 @if(!empty($post->gallery))
                     <div class="mb-3 gallery">
                         <div style="overflow-x: hidden;">
-                            <simple-carousel controls :index="{{ request('image')? (int) request('image') - 1 : 0 }}">
 
-                                @foreach($post->gallery as $image)
+                            @php
+                              $images =  array();
+                              foreach ($post->gallery as $key => $image) {
+                                $images[] = [
+                                  'src' => $image->file_path,
+                                  'desc' => $image->desc,
+                                  'title' => $image->title,
+                                ];
+                              }
+                            @endphp
+                            
+                            <gnc-gallery
+                              :srcset="{{ json_encode($images) }}"
+                              :index="{{ request('image')? (int) request('image') - 1 : 0 }}"
+                            >
+                            </gnc-gallery>
 
-                                    <div class="slider-item gallery-slide">
-                                        <image-slide src="{{ url($image->file_path) }}" alt="{{ $image->title }}">
-                                            <h2 class="text-sans-serif h6 mb-2">{{ $image->title }}</h2>
-                                            <p>{{ $image->desc }}</p>
-                                        </image-slide>
-                                    </div>
-
-                                @endforeach
-
-                            </simple-carousel>
                         </div>
                     </div>
                 @endif
