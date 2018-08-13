@@ -4,12 +4,22 @@
  * home page route
  **/
 Route::get('/', 'Web\HomePageController@homepage');
-Route::post('subscribe', 'Web\HomePageController@subscribe')->name('newsletter.subscribe');
+
+/**
+ * web subscribers routes
+ */
+Route::post('subscribe', 'Web\Admin\SubscribersController@subscribe')->name('newsletter.subscribe');
+Route::get('subscribe/logout', 'Web\Admin\SubscribersController@subscriberLogout');
+
+/**
+ * Newsletter banner preview
+ */
+Route::get('banners/click/{id}', 'Web\Admin\BannersController@click');
 
 /**
  * Newsletter preview
  */
-Route::get('mail', 'Web\HomePageController@newsletterPreview');
+Route::get('newsletter/preview', 'Web\Admin\NewslettersController@newsletterPreview');
 
 /**
  * gallery page routes

@@ -11,7 +11,7 @@
 
                     <div class="article_header">
                         <div class="image image--16-9 js-lazy-image"
-                             data-src="{{ $post->image? url(\Imagecache::get($post->image, '650x278')->src) : '' }}"
+                             data-src="{{ $post->image? url(\Imagecache::get($post->image, '650x366')->src) : '' }}"
                              data-alt="{{ $post->title }}"></div>
                         <div class="article_details">
                             @if(!empty($post->author)) {{ $post->author }}, @endif

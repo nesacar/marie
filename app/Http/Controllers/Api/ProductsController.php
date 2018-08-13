@@ -10,6 +10,18 @@ use App\Http\Controllers\Controller;
 
 class ProductsController extends Controller
 {
+    /**
+     * Display a listing of Product model
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(){
+        $products = Product::visible()->orderBy('created_at', 'DESC')->paginate(Product::$paginate);
+
+        return response()->json([
+            'products' => $products,
+        ]);
+    }
 
     /**
      * method used to store new product and return

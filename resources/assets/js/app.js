@@ -73,10 +73,11 @@ import faShoppingBasket from '@fortawesome/fontawesome-free-solid/faShoppingBask
 import faExclamation from '@fortawesome/fontawesome-free-solid/faExclamation';
 import faStream from '@fortawesome/fontawesome-free-solid/faStream';
 import faChess from '@fortawesome/fontawesome-free-solid/faChess';
+import faChartArea from '@fortawesome/fontawesome-free-solid/faChartArea';
 
 fontawesome.library.add(
     faPlus, faEnvelope, faBell, faCommentAlt, faChevronCircleDown, faCogs, faAngleRight, faHome, faUsers, faPaste, faShoppingCart, faAlignJustify, faPencilAlt, faTimes,
-    faLink, faBars, faAmountUp, faImages, faRandom, faThLarge, faTags, faCopy, faEye, faShoppingBasket, faExclamation, faStream, faChess
+    faLink, faBars, faAmountUp, faImages, faRandom, faThLarge, faTags, faCopy, faEye, faShoppingBasket, faExclamation, faStream, faChess, faChartArea,
 );
 
 Vue.use(Auth);
