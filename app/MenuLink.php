@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\UploudableImageTrait;
 use Illuminate\Database\Eloquent\Model;
 use File;
+use Illuminate\Support\Facades\Cache;
 
 class MenuLink extends Model
 {
@@ -75,6 +76,12 @@ class MenuLink extends Model
                 }
             }
         }
+    }
+
+    public static function getMenu($menu_id){
+        return Cache::remember('menu', Helper::getMinutesToTheNextHour(), function () use ($menu_id){
+            return self::tree($menu_id);
+        });
     }
 
     /**

@@ -3,7 +3,7 @@
         <div class="logo-holder">
             <div class="logo">
                 <a :href="domain" target="_blank">
-                    <!--<img :src="domain + 'img/logo.png'" alt="Fusion Tables">-->
+                    <img :src="domain + 'img/marie-claire-black-logo.png'" alt="Marie Clarie">
                 </a>
             </div>
         </div>
@@ -72,7 +72,7 @@
                 <a href="#" @click="changeShowNewslettersItemActive()">Newsletteri</a>
                 <font-awesome-icon icon="envelope" />
                 <ul>
-                    <li><a href="#">Newsletteri</a></li>
+                    <li><router-link tag="a" :to="'/newsletters'">Newsletteri</router-link></li>
                     <li><router-link tag="a" :to="'/subscribers'">Pretplatnici</router-link></li>
                     <li><router-link tag="a" :to="'/banners'">Banneri</router-link></li>
                 </ul>

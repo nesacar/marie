@@ -31,19 +31,15 @@
 
                             <email-field :value="setting.email2" :label="'Email 2'" :error="error? error.email2 : ''" @changeValue="setting.email2 = $event"></email-field>
 
-                            <text-field :value="setting.facebook" :label="'Facebook'" :error="error? error.facebook : ''" @changeValue="setting.facebook = $event"></text-field>
-
-                            <text-field :value="setting.twitter" :label="'Twitter'" :error="error? error.twitter : ''" @changeValue="setting.twitter = $event"></text-field>
-
-                            <text-field :value="setting.instagram" :label="'Instagram'" :error="error? error.instagram : ''" @changeValue="setting.instagram = $event"></text-field>
-
-                            <text-field :value="setting.pinterest" :label="'Pinterest'" :error="error? error.pinterest : ''" @changeValue="setting.pinterest = $event"></text-field>
-
-                            <text-field :value="setting.google" :label="'Google +'" :error="error? error.google : ''" @changeValue="setting.google = $event"></text-field>
-
-                            <text-field :value="setting.youtube" :label="'Youtube'" :error="error? error.youtube : ''" @changeValue="setting.youtube = $event"></text-field>
-
-                            <text-area-field :value="setting.analytics" :label="'Google Analitika'" :error="error? error.analytics : ''" @changeValue="setting.analytics = $event"></text-area-field>
+                            <upload-image-helper
+                                    :image="setting.magazine_image_path"
+                                    :defaultImage="null"
+                                    :titleImage="'magazina'"
+                                    :error="error.magazine_image"
+                                    :dimensions="''"
+                                    @uploadImage="prepare($event)"
+                                    @removeRow="remove($event)"
+                            ></upload-image-helper>
 
                         </form>
                     </div>
@@ -63,6 +59,24 @@
 
                                 <text-area-ckeditor-field v-if="setting.footer" :value="setting.footer" :label="'Opis'" :error="error? error.footer : ''" @changeValue="setting.footer = $event"></text-area-ckeditor-field>
 
+                                <text-field :value="setting.facebook" :label="'Facebook'" :error="error? error.facebook : ''" @changeValue="setting.facebook = $event"></text-field>
+
+                                <text-field :value="setting.twitter" :label="'Twitter'" :error="error? error.twitter : ''" @changeValue="setting.twitter = $event"></text-field>
+
+                                <text-field :value="setting.instagram" :label="'Instagram'" :error="error? error.instagram : ''" @changeValue="setting.instagram = $event"></text-field>
+
+                                <text-field :value="setting.pinterest" :label="'Pinterest'" :error="error? error.pinterest : ''" @changeValue="setting.pinterest = $event"></text-field>
+
+                                <text-field :value="setting.google" :label="'Google +'" :error="error? error.google : ''" @changeValue="setting.google = $event"></text-field>
+
+                                <text-field :value="setting.youtube" :label="'Youtube'" :error="error? error.youtube : ''" @changeValue="setting.youtube = $event"></text-field>
+
+                                <text-area-field :value="setting.analytics" :label="'Google Analitika'" :error="error? error.analytics : ''" @changeValue="setting.analytics = $event"></text-area-field>
+
+                                <text-field :value="setting.magazine_title" :label="'Naslov magazina'" :error="error? error.magazine_title : ''" @changeValue="setting.magazine_title = $event"></text-field>
+
+                                <text-field :value="setting.magazine_link" :label="'Link do magazina'" :error="error? error.magazine_link : ''" @changeValue="setting.magazine_link = $event"></text-field>
+
                                 <div class="form-group">
                                     <button class="btn btn-primary" type="submit">Izmeni</button>
                                 </div>
@@ -78,17 +92,24 @@
 <script>
     import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
     import swal from 'sweetalert2';
+    import UploadImageHelper from '../helper/UploadImageHelper.vue';
 
     export default {
         data(){
           return {
-              fillable: ['title', 'address', 'keywords', 'desc', 'footer', 'phone1', 'phone2', 'email1', 'email2', 'facebook', 'twitter', 'instagram', 'pinterest', 'google', 'youtube', 'analytics', 'map'],
+              fillable: [
+                  'title', 'address', 'keywords', 'desc', 'footer', 'phone1', 'phone2', 'email1', 'email2', 'facebook', 'twitter', 'instagram', 'pinterest', 'google', 'youtube', 'analytics', 'map',
+                  'magazine_title', 'magazine_link', 'magazine_image',
+              ],
               setting: false,
-              error: null,
+              error: {
+                  magazine_image: false,
+              },
           }
         },
         components: {
             'font-awesome-icon': FontAwesomeIcon,
+            'upload-image-helper': UploadImageHelper,
         },
         mounted(){
             this.getSetting();
@@ -98,11 +119,17 @@
                 axios.get('api/settings/1')
                     .then(res => {
                         this.setting = res.data.setting;
+                        this.setting.magazine_image_path = this.setting.magazine_image;
+                        this.setting.magazine_image = '';
                     })
                     .catch(e => {
                         console.log(e);
                         this.error = e.response.data.errors;
                     });
+            },
+            prepare(image){
+                this.setting.magazine_image_path = image.src;
+                this.setting.magazine_image = image.file;
             },
             submit(){
                 let data = fillForm(this.fillable, this.setting, 'PUT');

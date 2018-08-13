@@ -54,7 +54,7 @@ export const classNames = (el, obj) => {
     .filter((n) => !names.includes(n))
     .concat(names.filter((n) => obj[n]))
     .join(' ');
-}
+};
 
 /**
  * Creates new array of length `n`, with undefined values.

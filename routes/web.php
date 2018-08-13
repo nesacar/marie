@@ -4,7 +4,22 @@
  * home page route
  **/
 Route::get('/', 'Web\HomePageController@homepage');
-Route::post('subscribe', 'Web\HomePageController@subscribe')->name('newsletter.subscribe');
+
+/**
+ * web subscribers routes
+ */
+Route::post('subscribe', 'Web\Admin\SubscribersController@subscribe')->name('newsletter.subscribe');
+Route::get('subscribe/logout', 'Web\Admin\SubscribersController@subscriberLogout');
+
+/**
+ * Newsletter banner preview
+ */
+Route::get('banners/click/{id}', 'Web\Admin\BannersController@click');
+
+/**
+ * Newsletter preview
+ */
+Route::get('newsletter/preview', 'Web\Admin\NewslettersController@newsletterPreview');
 
 /**
  * gallery page routes
@@ -24,6 +39,11 @@ Route::get('slike/{category1}/{category2}/{post}/{id}', 'Web\ImagesController@su
 Route::get('shop', 'Web\ShopsController@shop');
 Route::get('shop/{category}', 'Web\ShopsController@shopCategory');
 Route::get('shop/{category1}/{category2}', 'Web\ShopsController@shopSubCategory');
+
+/**
+ * Search results helper route.
+ */
+Route::get('/search-results', 'DevController@search');
 
 /**
  * filemanager route
@@ -59,5 +79,4 @@ Route::get('{category1}/{category2}', 'Web\BlogsController@subCategory');
  **/
 Route::get('{category}/{post}/{id}', 'Web\PostsController@post');
 Route::get('{category1}/{category2}/{post}/{id}', 'Web\PostsController@subPost');
-
 
