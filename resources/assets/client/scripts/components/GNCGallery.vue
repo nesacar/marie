@@ -36,6 +36,14 @@ export default {
       type: Number,
       default: 0,
     },
+
+    pgnc: {
+      type: Number,
+      default: 0,
+      validator(value) {
+        return 0 <= value && value <= 100;
+      },
+    },
   },
 
   data() {
@@ -52,9 +60,10 @@ export default {
 
   methods: {
     onClick(n) {
-      const current = this.current + n;
+      const next = this.current + n;
       const len = this.srcset.length - 1;
-      this.current = Math.max(0, Math.min(current, len));
+      const current = Math.max(0, Math.min(current, len));
+      this.current = current;
     },
   },
 }

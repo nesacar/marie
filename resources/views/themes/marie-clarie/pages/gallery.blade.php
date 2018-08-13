@@ -32,10 +32,11 @@
                                 ];
                               }
                             @endphp
-                            
+
                             <gnc-gallery
                               :srcset="{{ json_encode($images) }}"
                               :index="{{ request('image')? (int) request('image') - 1 : 0 }}"
+                              :pgnc="50"
                             >
                             </gnc-gallery>
 
