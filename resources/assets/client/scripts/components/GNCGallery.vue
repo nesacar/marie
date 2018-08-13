@@ -40,7 +40,7 @@ export default {
 
     index: {
       type: Number,
-      default: 1,
+      default: 0,
     },
   },
 
@@ -58,7 +58,9 @@ export default {
 
   methods: {
     onClick(n) {
-      this.current += n;
+      const current = this.current + n;
+      const len = this.srcset.length - 1;
+      this.current = Math.max(0, Math.min(current, len));
     },
   },
 }
