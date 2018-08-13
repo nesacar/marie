@@ -25,13 +25,7 @@
 </template>
 
 <script>
-import ImageSlide from './ImageSlide.vue';
-
 export default {
-  components: {
-    'image-slide': ImageSlide,
-  },
-
   props: {
     srcset: {
       type: Array,

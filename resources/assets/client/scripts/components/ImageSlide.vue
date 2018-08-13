@@ -30,9 +30,6 @@ export default {
       orientation: 'portrait',
     };
   },
-  mounted() {
-    console.log('image slide')
-  },
 
   computed: {
     className() {
