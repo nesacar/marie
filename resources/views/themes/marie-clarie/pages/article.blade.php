@@ -14,7 +14,7 @@
                              data-src="{{ $post->image? url(\Imagecache::get($post->image, '650x278')->src) : '' }}"
                              data-alt="{{ $post->title }}"></div>
                         <div class="article_details">
-                            @if(!empty($post->author)) autor: {{ $post->author }}, @endif
+                            @if(!empty($post->author)) {{ $post->author }}, @endif
                             datum: {{ \Carbon\Carbon::parse($post->publish_at)->format('d.m.Y.') }}
                         </div>
                     </div>
