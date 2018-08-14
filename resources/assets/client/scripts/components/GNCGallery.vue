@@ -9,7 +9,7 @@
         <p>{{image.desc}}</p>
       </image-slide>
     </div>
-    <div>
+    <div class="controls">
       <button
         aria-label="previous slide"
         class="control control--prev"
