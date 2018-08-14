@@ -22,10 +22,8 @@ class NewslettersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $newsletters = Newsletter::orderBy('last_send', 'DESC')->paginate(50);
-
         return response()->json([
-            'newsletters' => $newsletters,
+            'newsletters' => Newsletter::latest()->paginate(50),
         ]);
     }
 
