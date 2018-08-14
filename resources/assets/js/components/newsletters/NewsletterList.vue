@@ -41,7 +41,7 @@
                                         <font-awesome-icon icon="chart-area" v-if="row.send == 1 && row.active == 0" @click="statisticsMont(row.id)" />
                                     </span>
                                     <span v-else>
-                                        <button class="btn btn-primary" @click="prepareRow(row.id)" v-if="row.active == 0">Primeri za slanje</button>
+                                        <button class="btn btn-primary" @click="prepareRow(row.id)" v-if="row.active == 0">Pripremi za slanje</button>
                                         <button class="btn btn-primary" @click="sendRow(row.id)" v-if="row.active == 1 && sent">Posalji</button>
                                     </span>
                                     <font-awesome-icon icon="eye" @click="previewRow(row)" />

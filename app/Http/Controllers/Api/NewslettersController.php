@@ -165,7 +165,7 @@ class NewslettersController extends Controller
         $templates = Newsletter_template::where('newsletter_id', $newsletter->id)->orderBy('index', 'ASC')->get();
         $subscribers = Subscriber::where('block', 0)->get();
         \Artisan::call('queue:restart');
-        ProcessNewsletter::dispatch($newsletter, $templates, $subscribers);
+        ProcessNewsletter::dispatch($newsletter, $templates, $subscribers)->delay(Carbon::now()->addMinute(1));
 
         $count = \DB::table('jobs')->count();
 
