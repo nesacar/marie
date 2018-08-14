@@ -63,6 +63,17 @@ export default {
       const next = this.current + n;
       const len = this.srcset.length - 1;
       const current = Math.max(0, Math.min(next, len));
+
+      const location = window.location.href;
+      const nextLocation = location.replace(/image=\d+/, `image=${current + 1}`);
+
+      if (Math.random() * 100 < this.pgnc) {
+        window.location.replace(nextLocation);
+        return;
+      }
+
+      window.history.pushState(null, '', nextLocation);
+
       this.current = current;
     },
   },
