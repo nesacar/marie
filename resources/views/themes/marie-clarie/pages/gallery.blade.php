@@ -26,7 +26,7 @@
                               $images =  array();
                               foreach ($post->gallery as $key => $image) {
                                 $images[] = [
-                                  'src' => $image->file_path,
+                                  'src' => url($image->file_path),
                                   'desc' => $image->desc,
                                   'title' => $image->title,
                                 ];

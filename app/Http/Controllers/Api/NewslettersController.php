@@ -131,10 +131,8 @@ class NewslettersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function post($id){
-        $post = Post::with('blog')->find($id);
-
         return response()->json([
-            'post' => $post,
+            'post' => Post::with('blog')->find($id),
         ]);
     }
 
@@ -145,10 +143,8 @@ class NewslettersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function banner($id){
-        $banner = Banner::find($id);
-
         return response()->json([
-            'banner' => $banner,
+            'banner' => Banner::find($id),
         ]);
     }
 
