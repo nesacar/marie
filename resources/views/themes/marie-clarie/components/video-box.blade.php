@@ -17,7 +17,7 @@
       data-alt=""
       style="background-color: lightgray;"
     ></div>
-    <h3 class="video-title text-serif">naslov very long title bla b;a tri</h3>
+    <h3 class="video-title text-serif">title</h3>
   </li>
   @endfor
 </ul>

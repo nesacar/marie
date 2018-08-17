@@ -5,10 +5,28 @@
         <h1 class="h4 text-serif text-capitalize">{{ $category->title }}</h1>
 
         @if(true)
+        @php
+          $thumbs = [
+            (object)[
+              'src' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6nqq36G8A9aB6x5q0taPrXmyCUoY-l8XZioehj7xTXn_autHg',
+              'alt' => 'girls',
+              'href' => 'https://www.youtube.com/embed/kKv_eZwJh34',
+              'title' => 'Girls!!!',
+            ],
+            (object)[
+              'src' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTibijHU5P6xpqJgQ18pQpl2OMtwCdmkqf-derdTEYHAPMEwAD',
+              'alt' => 'girl',
+              'href' => 'https://www.youtube.com/embed/6lcZ0redg1s',
+              'title' => 'Girl',
+            ],
+          ];
+        @endphp
         <div style="margin-bottom: 64px;">
           <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate in natus iusto delectus, quos facilis dignissimos, provident aspernatur qui, velit est possimus quis consequatur fugiat iure deleniti eius temporibus et.</p>
-          @video_box()
-          @endvideo_box
+          <video-box
+            index="0"
+            :thumbs="{{ json_encode($thumbs) }}"
+          ></video-box>
         </div>
         @endif
 
