@@ -31,7 +31,7 @@ class BeautyBoxesController extends Controller
     public function store(CreateBeautyBoxRequest $request){
         $beauty_box = BeautyBox::create(request()->except('image'));
         $beauty_box->update(['image' => $beauty_box->storeImage()]);
-        request('partner_ids')? $beauty_box->partner()->sync(explode(',', request('partner_ids'))) : $beauty_box->partner()->sync([]);
+        request('product_ids')? $beauty_box->product()->sync(explode(',', request('product_ids'))) : $beauty_box->product()->sync([]);
 
         return response([
             'beauty_box' => $beauty_box,
@@ -47,7 +47,7 @@ class BeautyBoxesController extends Controller
     public function show(BeautyBox $beauty_box){
         return response([
             'beauty_box' => $beauty_box,
-            'partner_ids' => $beauty_box->partner()->pluck('id'),
+            'product_ids' => $beauty_box->product()->get(['id', 'code as title']),
         ]);
     }
 
@@ -61,11 +61,11 @@ class BeautyBoxesController extends Controller
     public function update(CreateBeautyBoxRequest $request, BeautyBox $beauty_box){
         $beauty_box->update(request()->except('image'));
         $beauty_box->update(['image' => $beauty_box->storeImage()]);
-        request('partner_ids')? $beauty_box->partner()->sync(explode(',', request('partner_ids'))) : $beauty_box->partner()->sync([]);
+        request('product_ids')? $beauty_box->product()->sync(explode(',', request('product_ids'))) : $beauty_box->product()->sync([]);
 
         return response([
             'beauty_box' => $beauty_box,
-            'partner_ids' => $beauty_box->partner()->pluck('id'),
+            'product_ids' => $beauty_box->product()->get(['id', 'code as title']),
         ]);
     }
 

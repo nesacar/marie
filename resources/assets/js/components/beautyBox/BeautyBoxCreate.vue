@@ -40,6 +40,8 @@
 
                             <date-time-picker :label="'Publikovano do'" :value="beauty_box.end_to" :error="error? error.end_to : ''" @changeValue="beauty_box.end_to = $event"></date-time-picker>
 
+                            <select-multiple-field v-if="products" :error="error? error.product_ids : ''" :options="products" :labela="'Proizvodi'" @changeValue="beauty_box.product_ids = $event"></select-multiple-field>
+
                             <checkbox-field :value="beauty_box.is_visible" :label="'Vidljivo'" @changeValue="beauty_box.is_visible = $event"></checkbox-field>
 
                             <div class="form-group">
@@ -59,19 +61,6 @@
                             @removeRow="remove($event)"
                     ></upload-image-helper>
 
-
-                    <div class="card" v-if="lists">
-                        <div class="card-body">
-                            <h3>Partneri</h3>
-                            <small class="form-text text-muted" v-if="error != null && error.partner_ids">{{ error.partner_ids[0] }}</small>
-                            <ul class="no-parent">
-                                <li v-for="partner in lists" :id="`list_${partner.id}`">
-                                    <label><input type="checkbox" v-model="beauty_box.partner_ids" :value="partner.id"> {{ partner.title }}</label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -86,13 +75,13 @@
     export default {
         data(){
           return {
-              fillable: ['title', 'slug', 'overtitle', 'subtitle', 'link', 'price', 'image', 'start_from', 'end_to', 'is_visible', 'partner_ids'],
+              fillable: ['title', 'slug', 'overtitle', 'subtitle', 'link', 'price', 'image', 'start_from', 'end_to', 'is_visible', 'product_ids'],
               beauty_box: {
                   title: null,
                   is_visible: false,
                   partner_ids: [],
               },
-              lists: false,
+              products: false,
               error: null,
           }
         },
@@ -109,7 +98,7 @@
             'upload-image-helper': UploadImageHelper,
         },
         mounted(){
-            this.getList();
+            this.getProducts();
         },
         methods: {
             submit(){
@@ -134,10 +123,10 @@
                 this.beauty_box.image_path = image.src;
                 this.beauty_box.image = image.file;
             },
-            getList(){
-                axios.get('api/partners/lists')
+            getProducts(){
+                axios.get('api/products/lists')
                     .then(res => {
-                        this.lists = res.data.partners;
+                        this.products = res.data.products;
                     }).catch(e => {
                         console.log(e.response);
                         this.error = e.response.data.errors;
@@ -151,27 +140,3 @@
         },
     }
 </script>
-
-<style scoped>
-
-    ul.blogs{
-        list-style: none;
-    }
-
-    ul.no-parent{
-        padding-left: 0;
-        list-style: none;
-    }
-
-    ul.blogs li {
-        margin-top: 1em;
-    }
-
-    label {
-        font-weight: bold;
-    }
-
-    ul.blogs li input[type="checkbox"]{
-        margin-right: 5px;
-    }
-</style>

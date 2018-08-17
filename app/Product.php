@@ -138,4 +138,22 @@ class Product extends Model
     public function gender(){
         return $this->belongsTo(Gender::class);
     }
+
+    /**
+     * method used to make belongs-to connection between Product and Partner model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function partner(){
+        return $this->belongsTo(Partner::class);
+    }
+
+    /**
+     * method used to make belongs-to-many connection between Product and BeautyBox model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function beautyBox(){
+        return $this->belongsToMany(BeautyBox::class);
+    }
 }

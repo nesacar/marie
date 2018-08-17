@@ -24,14 +24,6 @@ class CreatePartnersTable extends Migration
             $table->boolean('is_visible')->defautl(1);
             $table->timestamps();
         });
-
-        Schema::create('beauty_box_partner', function (Blueprint $table) {
-            $table->integer('beauty_box_id')->unsigned()->index();
-            $table->foreign('beauty_box_id')->references('id')->on('beauty_boxes')->onDelete('cascade');
-
-            $table->integer('partner_id')->unsigned()->index();
-            $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');
-        });
     }
 
     /**
@@ -42,6 +34,5 @@ class CreatePartnersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('partners');
-        Schema::dropIfExists('beauty_box_partner');
     }
 }

@@ -109,4 +109,17 @@ class ProductsController extends Controller
             'products' => $products,
         ]);
     }
+
+    /**
+     * Display a listing of Product model
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function lists(){
+        $products = Product::select('id', 'code as title')->visible()->get();
+
+        return response()->json([
+            'products' => $products,
+        ]);
+    }
 }

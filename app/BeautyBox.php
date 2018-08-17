@@ -55,11 +55,11 @@ class BeautyBox extends Model
     }
 
     /**
-     * method used to make belongs-to-many connection between BeautyBox and Partner model
+     * method used to make belongs-to-many connection between BeautyBox and Product model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function partner(){
-        return $this->belongsToMany(Partner::class);
+    public function product(){
+        return $this->belongsToMany(Product::class);
     }
 }

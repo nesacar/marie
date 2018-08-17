@@ -58,7 +58,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('newsletters/{id}/prepare', 'Api\NewslettersController@prepare');
     Route::post('newsletters/{id}/send', 'Api\NewslettersController@send');
 
-    Route::get('partners/lists', 'Api\PartnersController@lists');
     Route::apiResource('partners', 'Api\PartnersController');
 
     Route::apiResource('permissions', 'Api\PermissionsController');
@@ -70,6 +69,7 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('posts', 'Api\PostsController');
     Route::post('posts/search', 'Api\PostsController@search');
 
+    Route::get('products/lists', 'Api\ProductsController@lists');
     Route::apiResource('products', 'Api\ProductsController');
     Route::post('products/search', 'Api\ProductsController@search');
 
