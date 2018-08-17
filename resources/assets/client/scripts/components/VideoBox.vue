@@ -42,14 +42,14 @@ export default {
     thumbs: {
       type: Array,
       /**
-     * Thumb prop type definition.
-     * 
-     * @typedef {Object} Thumb
-     * @property {string} src thumbnail image src.
-     * @property {string} alt thumbnail image alt description.
-     * @property {string} href lik that thumbnail is pointing to.
-     * @property {string} title thumbnail title value.
-     */
+       * Thumb prop type definition.
+       * 
+       * @typedef {Object} Thumb
+       * @property {string} src thumbnail image src.
+       * @property {string} alt thumbnail image alt description.
+       * @property {string} href lik that thumbnail is pointing to.
+       * @property {string} title thumbnail title value.
+       */
       default() {
         return [];
       },
