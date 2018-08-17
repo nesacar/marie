@@ -6,7 +6,7 @@ export default {
       vlidator(value) {
         return 0 <= value && value <= 100;
       },
-    }
+    },
   },
 
   methods: {

@@ -24,7 +24,7 @@
         <div style="margin-bottom: 64px;">
           <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate in natus iusto delectus, quos facilis dignissimos, provident aspernatur qui, velit est possimus quis consequatur fugiat iure deleniti eius temporibus et.</p>
           <video-box
-            index="0"
+            :index="0"
             :thumbs="{{ json_encode($thumbs) }}"
           ></video-box>
         </div>
