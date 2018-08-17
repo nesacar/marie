@@ -26,6 +26,7 @@
           <video-box
             :index="0"
             :thumbs="{{ json_encode($thumbs) }}"
+            :pgnc="0"
           ></video-box>
         </div>
         @endif

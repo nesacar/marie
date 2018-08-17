@@ -28,7 +28,11 @@
 </template>
 
 <script>
+import withGNC from '../mixins/withGNC';
+
 export default {
+  mixins: [withGNC],
+
   props: {
     index: {
       type: Number,
@@ -65,6 +69,11 @@ export default {
      * @param {number} index
      */
     onClick(index) {
+      const location = window.location.href;
+      // TODO: set propper location :)
+      const nextLocation = location.replace(/video=\d+/, `video=${index}`);
+      this.setLocation(nextLocation);
+
       this.videoSrc = this.thumbs[index].href;
     },
   },
