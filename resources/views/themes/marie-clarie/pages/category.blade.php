@@ -8,16 +8,16 @@
         @php
           $thumbs = [
             (object)[
-              'src' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6nqq36G8A9aB6x5q0taPrXmyCUoY-l8XZioehj7xTXn_autHg',
-              'alt' => 'girls',
-              'href' => 'https://www.youtube.com/embed/kKv_eZwJh34',
-              'title' => 'Girls!!!',
-            ],
-            (object)[
               'src' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTibijHU5P6xpqJgQ18pQpl2OMtwCdmkqf-derdTEYHAPMEwAD',
               'alt' => 'girl',
               'href' => 'https://www.youtube.com/embed/6lcZ0redg1s',
               'title' => 'Girl',
+            ],
+            (object)[
+              'src' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKprYuCtpcxUMUDHHQ_AehcFJoc5jyvw05yWFq0Inqs9Is80dzTg',
+              'alt' => 'girls',
+              'href' => 'https://www.youtube.com/embed/kKv_eZwJh34',
+              'title' => 'Girls!!!',
             ],
           ];
         @endphp

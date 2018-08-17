@@ -12,15 +12,15 @@
       <li v-for="(thumb, i) in thumbs"
         :key="i"
         class="video-box_list-item tint tint--light tint--hover"
-        :data-href="thumb.href"
         @click="() => onClick(i)"
         tabindex="0"
       >
-        <div class="image image--16-9 js-lazy-image"
-          :data-src="thumb.src"
-          :data-alt="thumb.alt"
-          style="background-color: lightgray;"
-        ></div>
+        <div class="video-box_thumbnail">
+          <div class="image image--16-9 js-lazy-image"
+            :data-src="thumb.src"
+            :data-alt="thumb.alt"
+          ></div>
+        </div>
         <h3 class="video-title text-serif">{{thumb.title}}</h3>
       </li>
     </ul>
