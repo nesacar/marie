@@ -25,7 +25,11 @@
 </template>
 
 <script>
+import withGNC from '../mixins/withGNC';
+
 export default {
+  mixins: [withGNC],
+
   props: {
     srcset: {
       type: Array,
@@ -35,14 +39,6 @@ export default {
     index: {
       type: Number,
       default: 0,
-    },
-
-    pgnc: {
-      type: Number,
-      default: 0,
-      validator(value) {
-        return 0 <= value && value <= 100;
-      },
     },
   },
 
@@ -67,12 +63,7 @@ export default {
       const location = window.location.href;
       const nextLocation = location.replace(/image=\d+/, `image=${current + 1}`);
 
-      if (Math.random() * 100 < this.pgnc) {
-        window.location.replace(nextLocation);
-        return;
-      }
-
-      window.history.pushState(null, '', nextLocation);
+      this.setLocation(nextLocation);
 
       this.current = current;
     },
