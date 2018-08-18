@@ -4,37 +4,22 @@
     <div class="container pt-4">
         <h1 class="h4 text-serif text-capitalize">{{ $category->title }}</h1>
 
-        @if(true)
-        @php
-          $thumbs = [
-            (object)[
-              'src' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTibijHU5P6xpqJgQ18pQpl2OMtwCdmkqf-derdTEYHAPMEwAD',
-              'alt' => 'girl',
-              'href' => 'https://www.youtube.com/embed/6lcZ0redg1s',
-              'title' => 'Girl',
-            ],
-            (object)[
-              'src' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKprYuCtpcxUMUDHHQ_AehcFJoc5jyvw05yWFq0Inqs9Is80dzTg',
-              'alt' => 'girls',
-              'href' => 'https://www.youtube.com/embed/kKv_eZwJh34',
-              'title' => 'Girls!!!',
-            ],
-          ];
-        @endphp
-        <div style="margin-bottom: 64px;">
-          <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate in natus iusto delectus, quos facilis dignissimos, provident aspernatur qui, velit est possimus quis consequatur fugiat iure deleniti eius temporibus et.</p>
-          <video-box
-            :index="0"
-            :thumbs="{{ json_encode($thumbs) }}"
-            :pgnc="0"
-          ></video-box>
-        </div>
+        @if(!empty($category->video) && count($category->video)>0)
+            <div style="margin-bottom: 64px;">
+                <p class="mb-4">{!! $category->short !!}</p>
+                <video-box
+                        :index="0"
+                        :thumbs="{{ $category->video }}"
+                        :pgnc="0"
+                ></video-box>
+            </div>
         @endif
 
         <div class="content-wrap">
             <div class="content-main">
                 @if(!empty($latest) && count($latest)>0)
-                    @article_teaser([ 'featured' => true, 'actions' => true, 'post' =>  $latest->slice(0, 1)->first(), ]) @endarticle_teaser
+                    @article_teaser([ 'featured' => true, 'actions' => true, 'post' =>  $latest->slice(0, 1)->first(),
+                    ]) @endarticle_teaser
 
                     <div class="row">
 

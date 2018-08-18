@@ -53,6 +53,7 @@ class ProductsController extends Controller
             'category_ids' => $product->category()->visible()->pluck('id'),
             'gender_id' => $product->gender()->select('id', 'title')->get(),
             'brand_id' => $product->brand()->select('id', 'title')->get(),
+            'partner_id' => $product->partner()->select('id', 'title')->get(),
             'categories' => Category::tree(),
         ]);
     }
@@ -76,6 +77,7 @@ class ProductsController extends Controller
             'category_ids' => $product->category()->visible()->pluck('id'),
             'gender_id' => $product->gender()->select('id', 'title')->get(),
             'brand_id' => $product->brand()->select('id', 'title')->get(),
+            'partner_id' => $product->partner()->select('id', 'title')->get(),
             'categories' => Category::tree(),
         ]);
     }

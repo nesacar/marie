@@ -163,4 +163,13 @@ class Blog extends Model
     public function post(){
         return $this->belongsToMany(Post::class);
     }
+
+    /**
+     * method used to make has-many connection between Blog and Video model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function video(){
+        return $this->hasMany(Video::class);
+    }
 }

@@ -8,7 +8,7 @@
     <div class="container">
 
         <div class="mb-5">
-            <p class="mt-4">{!! $category->short !!}</p>
+            {{--<p class="mt-4">{!! $beauty_box->short !!}</p>--}}
             <div class="text-center">
                 <img src="{{ url('client/images/marieclaire_sig.png') }}" alt="marie claire signature">
             </div>
@@ -26,11 +26,11 @@
         </div>
         @endif
 
-        @if(!empty($beauty_box->partner))
+        @if(!empty($partners))
         <h2 class="text-uppercase text-center mb-4 h5">partneri</h2>
 
         <div class="row mb-5">
-            @foreach($beauty_box->partner as $partner)
+            @foreach($partners as $partner)
                 <div class="col beautybox-list_item">
                     @beautybox_partner(['partner' => $partner]) @endbeautybox_partner
                 </div>

@@ -6,7 +6,8 @@
                     <div id="breadcrumbs">
                         <ul class="list-group list-group-flush">
                             <li><router-link tag="a" :to="'/home'">Početna</router-link></li>
-                            <li>Kategorije članka</li>
+                            <li><router-link tag="a" :to="'/blogs/' + blog.id + '/edit'">{{ blog.title }}</router-link></li>
+                            <li>Video</li>
                         </ul>
                     </div>
                 </div>
@@ -15,7 +16,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <h5>Kategorije članka</h5>
+                        <h5>Video</h5>
                         <font-awesome-icon icon="plus" @click="addRow()" class="new-link-add" />
                     </div>
                 </div>
@@ -26,23 +27,20 @@
                             <thead>
                             <tr>
                                 <th scope="col">id</th>
-                                <th scope="col">naslov</th>
-                                <th scope="col">nad kategorija</th>
-                                <th scope="col">publikovano</th>
-                                <th scope="col">kreirano</th>
+                                <th scope="col">naziv</th>
+                                <th scope="col">redosled</th>
+                                <th scope="col">vidljivo</th>
                                 <th>akcija</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="row in blogs">
+                            <tr v-for="row in videos">
                                 <td>{{ row.id }}</td>
                                 <td>{{ row.title }}</td>
-                                <td v-if="row.parent_blog">{{ row.parent_blog.title }}</td> <td v-else>/</td>
+                                <td>{{ row.order }}</td>
                                 <td>{{ row.is_visible? 'Da' : 'Ne' }}</td>
-                                <td>{{ row.created_at }}</td>
                                 <td>
-                                    <router-link tag="a" :to="'videos/' + row['id']" class="edit-link"><font-awesome-icon icon="video"/></router-link>
-                                    <router-link tag="a" :to="'blogs/' + row['id'] + '/edit'" class="edit-link"><font-awesome-icon icon="pencil-alt"/></router-link>
+                                    <router-link tag="a" :to="'/videos/' + row['id'] + '/edit'" class="edit-link"><font-awesome-icon icon="pencil-alt"/></router-link>
                                     <font-awesome-icon icon="times" @click="deleteRow(row)" />
                                 </td>
                             </tr>
@@ -51,47 +49,41 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <paginate-helper :paginate="paginate" @clickLink="clickToLink($event)"></paginate-helper>
-                </div>
-            </div>
         </div>
     </div>
 </template>
 
 <script>
-    import PaginateHelper from '../helper/PaginateHelper.vue';
     import swal from 'sweetalert2';
     import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
 
     export default {
         data(){
             return {
-                blogs: {},
-                paginate: {}
+                blog: {},
+                videos: {},
+                paginate: {},
             }
         },
         components: {
-            'paginate-helper': PaginateHelper,
-            'font-awesome-icon': FontAwesomeIcon
+            'font-awesome-icon': FontAwesomeIcon,
         },
         mounted(){
-            this.getBlogs();
+            this.getVideos();
         },
         methods: {
-            getBlogs(){
-                axios.get('api/blogs')
+            getVideos(){
+                axios.get('api/videos/' + this.$route.params.blog_id + '/lists')
                     .then(res => {
-                        this.blogs = res.data.blogs.data;
-                        this.paginate = res.data.blogs;
+                        this.blog = res.data.blog;
+                        this.videos = res.data.blog.video;
                     })
                     .catch(e => {
                         console.log(e);
                     });
             },
             editRow(id){
-                this.$router.push('blogs/' + id + '/edit');
+                this.$router.push('videos/' + id + '/edit');
             },
             deleteRow(row){
                 swal({
@@ -105,14 +97,14 @@
                     cancelButtonText: 'Odustani'
                 }).then((result) => {
                     if (result.value) {
-                        axios.delete('api/blogs/' + row.id)
+                        axios.delete('api/videos/' + row.id)
                             .then(res => {
-                                this.blogs = this.blogs.filter(function (item) {
+                                this.videos = this.videos.filter(function (item) {
                                     return row.id != item.id;
                                 });
                                 swal(
                                     'Obrisano!',
-                                    'Kategorija je uspešno obrisana.',
+                                    'Video je uspešno obrisan.',
                                     'success'
                                 );
                             })
@@ -122,19 +114,9 @@
                     }
                 });
             },
-            clickToLink(index){
-                axios.get('api/blogs?page=' + index)
-                    .then(res => {
-                        this.blogs = res.data.blogs.data;
-                        this.paginate = res.data.blogs;
-                    })
-                    .catch(e => {
-                        console.log(e);
-                    });
-            },
             addRow(){
-                this.$router.push('/blogs/create');
-            }
-        }
+                this.$router.push('/videos/' + this.$route.params.blog_id + '/create');
+            },
+        },
     }
 </script>

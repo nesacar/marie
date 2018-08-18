@@ -45,6 +45,18 @@ class BeautyBox extends Model
     }
 
     /**
+     * method used to return partners related to beauty_box products
+     *
+     * @param $products
+     * @return mixed
+     */
+    public static function getPartners($products){
+        return Partner::select('partners.*')->join('products', 'partners.id', '=', 'products.partner_id')
+            ->whereIn('products.id', $products->pluck('id')->toArray())->where('partners.is_visible', 1)->where('products.is_visible', 1)->get();
+
+    }
+
+    /**
      * method use to centralise is visible Beauty Box logic
      *
      * @param $query

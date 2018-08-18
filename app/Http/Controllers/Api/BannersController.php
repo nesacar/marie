@@ -15,10 +15,8 @@ class BannersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $banners = Banner::orderBy('id', 'DESC')->paginate(50);
-
         return response()->json([
-            'banners' => $banners,
+            'banners' => Banner::orderBy('id', 'DESC')->paginate(50),
         ]);
     }
 

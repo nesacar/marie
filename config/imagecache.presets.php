@@ -27,6 +27,11 @@ return array(
         'height' => 'auto',
         'method' => 'resize',
     ),
+    '218x132' => array(
+        'width' => 218,
+        'height' => 132,
+        'method' => 'crop',
+    ),
     '267x267' => array(
         'width' => 267,
         'height' => 267,

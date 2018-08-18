@@ -94,6 +94,9 @@ export const router = new VueRouter({
         { path: "/users/:id/edit", component: require('./components/users/UserEdit.vue'), meta: { forAuth: true } },
         { path: "/users/change-password", component: require('./components/users/UserChangePassword.vue'), meta: { forAuth: true } },
 
+        { path: "/videos/:blog_id", component: require('./components/videos/VideoList.vue'), meta: { forAuth: true } },
+        { path: "/videos/:blog_id/create", component: require('./components/videos/VideoCreate.vue'), meta: { forAuth: true } },
+        { path: "/videos/:id/edit", component: require('./components/videos/VideoEdit.vue'), meta: { forAuth: true } },
     ],
 
     linkActiveClass: 'active',

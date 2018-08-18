@@ -34,6 +34,8 @@
 
                             <select-field v-if="brands" :value="product.brand_list" :error="error? error.brand_id : ''" :options="brands" :labela="'Brend'" @changeValue="product.brand_id = $event"></select-field>
 
+                            <select-field v-if="partners" :value="product.partner_list" :error="error? error.partner_id : ''" :options="partners" :labela="'Partner'" @changeValue="product.partner_id = $event"></select-field>
+
                             <select-field v-if="genders" :value="product.gender_list" :error="error? error.gender_id : ''" :options="genders" :labela="'Pol'" @changeValue="product.gender_id = $event"></select-field>
 
                             <date-time-picker :label="'Publikovano od'" :value="product.publish_at" :error="error? error.publish_at : ''" @changeValue="product.publish_at = $event"></date-time-picker>
@@ -101,7 +103,7 @@
     export default {
         data(){
           return {
-              fillable: ['user_id', 'brand_id', 'title', 'slug', 'short', 'content', 'image', 'link', 'code', 'gender_id', 'price', 'outlet_price', 'publish_at', 'is_visible', 'category_ids'],
+              fillable: ['user_id', 'brand_id', 'partner_id', 'title', 'slug', 'short', 'content', 'image', 'link', 'code', 'gender_id', 'price', 'outlet_price', 'publish_at', 'is_visible', 'category_ids'],
               trigger: false,
               product: {
                   title: null,
@@ -133,6 +135,7 @@
             'upload-image-helper': UploadImageHelper,
         },
         mounted(){
+            this.getPartners();
             this.getBrands();
         },
         methods: {
@@ -144,6 +147,7 @@
                         this.product.category_ids = res.data.category_ids;
                         this.product.gender_list = res.data.gender_id;
                         this.product.brand_list = res.data.brand_id;
+                        this.product.partner_list = res.data.partner_id;
                         this.product.image_path = res.data.product.image;
                         this.product.image = '';
 
@@ -158,6 +162,15 @@
                     .then(res => {
                         this.brands = res.data.brands;
                         this.getProduct();
+                    }).catch(e => {
+                        console.log(e.response);
+                        this.error = e.response.data.errors;
+                    });
+            },
+            getPartners(){
+                axios.get('api/partners/lists')
+                    .then(res => {
+                        this.partners = res.data.partners;
                     }).catch(e => {
                         console.log(e.response);
                         this.error = e.response.data.errors;

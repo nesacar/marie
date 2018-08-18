@@ -30,7 +30,7 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'brand_id', 'title', 'slug', 'short', 'content', 'link', 'code', 'gender_id', 'image', 'price', 'outlet_price', 'publish_at', 'is_visible'];
+    protected $fillable = ['user_id', 'brand_id', 'partner_id', 'title', 'slug', 'short', 'content', 'link', 'code', 'gender_id', 'image', 'price', 'outlet_price', 'publish_at', 'is_visible'];
 
     /**
      * The attributes that are use for search

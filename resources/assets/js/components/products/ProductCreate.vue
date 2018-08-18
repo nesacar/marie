@@ -34,6 +34,8 @@
 
                             <select-field v-if="brands" :error="error? error.brand_id : ''" :options="brands" :labela="'Brend'" @changeValue="product.brand_id = $event"></select-field>
 
+                            <select-field v-if="partners" :error="error? error.partner_id : ''" :options="partners" :labela="'Partner'" @changeValue="product.partner_id = $event"></select-field>
+
                             <select-field v-if="genders" :error="error? error.gender_id : ''" :options="genders" :labela="'Pol'" @changeValue="product.gender_id = $event"></select-field>
 
                             <date-time-picker :label="'Publikovano od'" :value="product.publish_at" :error="error? error.publish_at : ''" @changeValue="product.publish_at = $event"></date-time-picker>
@@ -101,7 +103,7 @@
     export default {
         data(){
           return {
-              fillable: ['user_id', 'brand_id', 'title', 'slug', 'short', 'content', 'image', 'link', 'code', 'gender_id', 'price', 'outlet_price', 'publish_at', 'is_visible', 'category_ids'],
+              fillable: ['user_id', 'brand_id', 'partner_id', 'title', 'slug', 'short', 'content', 'image', 'link', 'code', 'gender_id', 'price', 'outlet_price', 'publish_at', 'is_visible', 'category_ids'],
               product: {
                   title: null,
                   category_ids: [],
@@ -110,6 +112,7 @@
               },
               categories: false,
               brands: false,
+              partners: false,
               error: {
                   image: null,
               },
@@ -136,6 +139,7 @@
         mounted(){
             this.getCategories();
             this.getBrands();
+            this.getPartners();
         },
         methods: {
             submit(){
@@ -173,6 +177,15 @@
                 axios.get('api/brands/lists')
                     .then(res => {
                         this.brands = res.data.brands;
+                    }).catch(e => {
+                        console.log(e.response);
+                        this.error = e.response.data.errors;
+                    });
+            },
+            getPartners(){
+                axios.get('api/partners/lists')
+                    .then(res => {
+                        this.partners = res.data.partners;
                     }).catch(e => {
                         console.log(e.response);
                         this.error = e.response.data.errors;

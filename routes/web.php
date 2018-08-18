@@ -65,8 +65,8 @@ Route::get('admin', function () {
 /**
  * beauty-box page route
  */
-Route::get('beauty-box', 'Web\BeautyBoxesController@beautyBox');
-Route::get('beauty-box/{category}', 'Web\BeautyBoxesController@beautyBoxCategory');
+Route::get('marie-clarie-preporucuje', 'Web\BeautyBoxesController@beautyBox');
+Route::get('marie-clarie-preporucuje/{category}', 'Web\BeautyBoxesController@beautyBoxCategory');
 
 /**
  * category page routes

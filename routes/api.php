@@ -58,6 +58,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('newsletters/{id}/prepare', 'Api\NewslettersController@prepare');
     Route::post('newsletters/{id}/send', 'Api\NewslettersController@send');
 
+    Route::get('partners/lists', 'Api\PartnersController@lists');
     Route::apiResource('partners', 'Api\PartnersController');
 
     Route::apiResource('permissions', 'Api\PermissionsController');
@@ -95,5 +96,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('user', function (Request $request) {
         return $request->user()->load('role');
     });
+
+    Route::get('videos/{blog_id}/lists', 'Api\VideosController@lists');
+    Route::apiResource('videos', 'Api\VideosController');
 
 });
