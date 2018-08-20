@@ -306,7 +306,7 @@ class Post extends Model
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function gallery(){
-        return $this->morphMany(Gallery::class, 'gallery');
+        return $this->morphMany(Gallery::class, 'gallery')->orderBy('order', 'ASC');
     }
 
 

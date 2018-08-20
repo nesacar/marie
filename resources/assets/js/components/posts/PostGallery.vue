@@ -7,7 +7,7 @@
                         <ul class="list-group list-group-flush">
                             <li><router-link tag="a" :to="'/home'">Početna</router-link></li>
                             <li><router-link tag="a" :to="'/posts'">Članci</router-link></li>
-                            <li>Galrija članka</li>
+                            <li>Galerija članka</li>
                         </ul>
                     </div>
                 </div>
@@ -43,6 +43,8 @@
                                 <text-field :value="photo.title" :label="'Naslov'" :error="error? error.title : ''" @changeValue="photo.title = $event"></text-field>
 
                                 <text-area-field :value="photo.desc" :label="'Opis'" :error="error? error.desc : ''" @changeValue="photo.desc = $event"></text-area-field>
+
+                                <text-field :value="photo.order" :label="'Redosled'" :error="error? error.order : ''" @changeValue="photo.order = $event"></text-field>
 
                             </div>
 

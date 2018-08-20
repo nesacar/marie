@@ -106,6 +106,7 @@
 
                                     <div class="form-group">
                                         <button class="btn btn-primary" type="submit">Izmeni</button>
+                                        <button class="btn btn-success" @click="preview()"">Pregled</button>
                                     </div>
                                 </form>
                             </div><!-- #srb -->
@@ -229,6 +230,9 @@
             prepareBox(image){
                 this.post.image_box_path = image.src;
                 this.post.image_box = image.file;
+            },
+            preview(){
+                window.open(this.post.link, '_blank');
             },
         },
         watch: {

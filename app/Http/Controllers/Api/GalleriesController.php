@@ -58,7 +58,7 @@ class GalleriesController extends Controller
         if(!empty(request('gallery'))){
             foreach (request('gallery') as $gallery){
                 $image = Gallery::find($gallery['id']);
-                $image->update(['title' => $gallery['title'], 'desc' => $gallery['desc']]);
+                $image->update(['title' => $gallery['title'], 'desc' => $gallery['desc'], 'order' => $gallery['order']]);
             }
         }
 
