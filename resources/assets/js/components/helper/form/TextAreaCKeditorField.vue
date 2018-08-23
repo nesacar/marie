@@ -16,6 +16,7 @@
                 config: {
                     toolbar: [
                         [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'Image', 'Link', 'Unlink', 'Source' ],
+                        { name: 'insert', items: ['Table', 'SpecialChar', 'Videoembed'] },
                         { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
                         '/',
                         { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
