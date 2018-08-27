@@ -187,11 +187,11 @@ class Post extends Model
     public static function getDoNotMissIt($category=false, $limit=6, $months=2){
         if($category){
             return Cache::remember($category->slug . '.do_not_miss_it', Helper::getMinutesToTheNextHour(), function () use ($category, $limit, $months){
-                return $category->post()->with('blog')->where('publish_at', '>', Carbon::now()->subMonth($months))->take($limit)->get();
+                return $category->post()->with('blog')->where('publish_at', '<=', Carbon::now()->subMonth($months))->take($limit)->get();
             });
         }else{
             return Cache::remember('home.do_not_miss_it', Helper::getMinutesToTheNextHour(), function () use ($limit, $months){
-                return self::with('blog')->where('publish_at', '>', Carbon::now()->subMonth($months))->inRandomOrder()->take($limit)->get();
+                return self::with('blog')->where('publish_at', '<=', Carbon::now()->subMonth($months))->inRandomOrder()->take($limit)->get();
             });
         }
     }
@@ -268,7 +268,7 @@ class Post extends Model
      */
     public function scopeLimited($query){
         if(self::$limited > 0){
-            return $query->where('publish_at', '>=', Carbon::now()->subMonth(self::$limited)->format('Y-m-d H:00'));
+            return $query->where('publish_at', '<=', Carbon::now()->subMonth(self::$limited)->format('Y-m-d H:00'));
         }
     }
 
