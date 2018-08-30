@@ -23,7 +23,7 @@ class PostsController extends Controller
         if(empty($post)) return redirect('/');
         Post::newsletterClick($post);
         $category = Blog::whereSlug($slug1)->first();
-        $do_not_miss_it = Post::getDoNotMissIt($category, 6, 2);
+        $do_not_miss_it = Post::getDoNotMissIt($category, 6, $post->id);
         return view('themes.' . env('APP_THEME') . '.pages.article', compact('category', 'latest', 'do_not_miss_it', 'post'));
     }
 
@@ -41,7 +41,7 @@ class PostsController extends Controller
         if(empty($post)) return redirect('/');
         Post::newsletterClick($post);
         $category = Blog::whereSlug($slug2)->first();
-        $do_not_miss_it = Post::getDoNotMissIt($category, 6, 2);
+        $do_not_miss_it = Post::getDoNotMissIt($category, 6, $post->id);
         return view('themes.' . env('APP_THEME') . '.pages.gallery', compact('category', 'latest', 'do_not_miss_it', 'post'));
     }
 }

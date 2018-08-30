@@ -92,7 +92,7 @@ class MenuLink extends Model
      */
     public static function tree($menu_id) {
         return static::where('menu_id', $menu_id)->with(implode('.', array_fill(0, 1, 'children')))
-            ->where('parent', 0)->orderBy('order', 'ASC')->get();
+            ->where('parent', 0)->where('is_visible', 1)->orderBy('order', 'ASC')->get();
     }
 
     /**

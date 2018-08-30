@@ -170,6 +170,6 @@ class Blog extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function video(){
-        return $this->hasMany(Video::class);
+        return $this->hasMany(Video::class)->where('is_visible',1);
     }
 }

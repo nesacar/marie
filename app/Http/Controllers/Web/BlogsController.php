@@ -18,7 +18,7 @@ class BlogsController extends Controller
     public function category($slug){
         $category = Blog::whereSlug($slug)->with('video')->first();
         $latest = Post::getLatest($category);
-        $do_not_miss_it = Post::getDoNotMissIt($category, 6, 2);
+        $do_not_miss_it = Post::getDoNotMissIt($category, 6);
         return view('themes.' . env('APP_THEME') . '.pages.category', compact('category', 'latest', 'do_not_miss_it'));
     }
 
@@ -32,7 +32,7 @@ class BlogsController extends Controller
     public function subCategory($slug1, $slug2){
         $category = Blog::whereSlug($slug2)->with('video')->first();
         $latest = Post::getLatest($category);
-        $do_not_miss_it = Post::getDoNotMissIt($category, 6, 2);
+        $do_not_miss_it = Post::getDoNotMissIt($category, 6);
         return view('themes.' . env('APP_THEME') . '.pages.category', compact('category', 'latest', 'do_not_miss_it'));
     }
 }

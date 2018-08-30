@@ -184,14 +184,14 @@ class Post extends Model
      * @param int $limit
      * @return mixed
      */
-    public static function getDoNotMissIt($category=false, $limit=6, $months=2){
+    public static function getDoNotMissIt($category=false, $limit=6, $except=0){
         if($category){
-            return Cache::remember($category->slug . '.do_not_miss_it', Helper::getMinutesToTheNextHour(), function () use ($category, $limit, $months){
-                return $category->post()->with('blog')->where('publish_at', '<=', Carbon::now()->subMonth($months))->take($limit)->get();
+            return Cache::remember($category->slug . '.do_not_miss_it', Helper::getMinutesToTheNextHour(), function () use ($category, $limit, $except){
+                return $category->post()->with('blog')->where('id', '<>', $except)->visible()->take($limit)->get();
             });
         }else{
-            return Cache::remember('home.do_not_miss_it', Helper::getMinutesToTheNextHour(), function () use ($limit, $months){
-                return self::with('blog')->where('publish_at', '<=', Carbon::now()->subMonth($months))->inRandomOrder()->take($limit)->get();
+            return Cache::remember('home.do_not_miss_it', Helper::getMinutesToTheNextHour(), function () use ($limit, $except){
+                return self::with('blog')->where('id', '<>', $except)->visible()->inRandomOrder()->take($limit)->get();
             });
         }
     }
