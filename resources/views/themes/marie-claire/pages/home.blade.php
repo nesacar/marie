@@ -15,9 +15,9 @@
             </div>
             <aside class="content-aside">
                 <div class="aside-box" style="width:100%; padding-top: 100%; background:hotpink;"></div>
-                <div class="aside-box">
+                <!--div class="aside-box">
                     @include('themes.' . env('APP_THEME') . '.partials.subscription')
-                </div>
+                </div-->
                 <div class="aside-box">
                     @include('themes.' . env('APP_THEME') . '.partials.newsletter')
                 </div>

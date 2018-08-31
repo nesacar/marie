@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     height: 234px;
-    color: $theme-primary;
+    color: red;
 
     @include media-breakpoint-down(md) {
       justify-content: center;
