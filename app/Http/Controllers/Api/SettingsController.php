@@ -11,12 +11,12 @@ class SettingsController extends Controller
     /**
      * method used to return Setting model
      *
-     * @param Setting $setting
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Setting $setting){
+    public function show($id){
         return response()->json([
-            'setting' => $setting,
+            'setting' => Setting::find($id),
         ]);
     }
 
@@ -24,10 +24,11 @@ class SettingsController extends Controller
      * method used to update Setting model
      *
      * @param Request $request
-     * @param Setting $setting
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Setting $setting){
+    public function update(Request $request, $id){
+        $setting = Setting::find($id);
         $setting->update(request()->except('magazine_image'));
         $setting->update(['magazine_image' => $setting->storeImage('magazine_image', 'magazine_image')]);
 
