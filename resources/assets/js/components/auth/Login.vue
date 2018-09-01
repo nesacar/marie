@@ -40,6 +40,7 @@
                     .then( res => {
                         this.$auth.setToken(res.data.access_token, res.data.expires_in + Date.now());
                         this.$router.push('/home');
+                        location.reload();
                     })
                     .catch( e => {
                         console.log(e.response);
