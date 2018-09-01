@@ -28,7 +28,7 @@
 
                             <text-field :value="position.title" :label="'Naziv'" :error="error? error.title : ''" :required="true" @changeValue="position.title = $event"></text-field>
 
-                            <text-field :value="position.numero" :label="'Numero'" :error="error? error.numero : ''" :required="true" @changeValue="position.numero = $event"></text-field>
+                            <text-field :value="position.numero" :label="'Numero'" :error="error? error.numero : ''" @changeValue="position.numero = $event"></text-field>
 
                             <text-field :value="position.class" :label="'Klasa'" :error="error? error.class : ''" :required="true" @changeValue="position.class = $event"></text-field>
 

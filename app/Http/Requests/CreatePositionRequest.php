@@ -29,7 +29,6 @@ class CreatePositionRequest extends FormRequest
                     return [
                         'position_id' => 'required|unique:positions',
                         'title' => 'required',
-                        'numero' => 'required',
                         'class' => 'required',
                     ];
                 }
@@ -40,7 +39,6 @@ class CreatePositionRequest extends FormRequest
                     return [
                         'position_id' => 'required|unique:positions,position_id,' . $this->segment(3),
                         'title' => 'required',
-                        'numero' => 'required',
                         'class' => 'required',
                     ];
                 }
@@ -53,7 +51,6 @@ class CreatePositionRequest extends FormRequest
             'position_id.required' => 'ID je obavezan',
             'position_id.unique' => 'ID već postoji',
             'title.required' => 'Naziv je obavezan',
-            'numero.required' => 'Numero je obavezan',
             'class.required' => 'Klasa je obavezna',
         ];
     }

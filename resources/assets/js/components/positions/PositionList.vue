@@ -27,7 +27,6 @@
                             <tr>
                                 <th scope="col">id</th>
                                 <th scope="col">naziv</th>
-                                <th scope="col">numero</th>
                                 <th scope="col">klasa</th>
                                 <th scope="col">vidljivo</th>
                                 <th>akcija</th>
@@ -37,7 +36,6 @@
                             <tr v-for="row in positions">
                                 <td>{{ row.id }}</td>
                                 <td>{{ row.title }}</td>
-                                <td>{{ row.numero }}</td>
                                 <td>{{ row.class }}</td>
                                 <td>{{ row.is_visible? 'Da' : 'Ne' }}</td>
                                 <td>
