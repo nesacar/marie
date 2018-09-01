@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Marie Claire</title>
   <link rel="stylesheet" href="{{ url('client/styles/main.css') }}">
+  {!! $settings->analytics !!}
 </head>
 <body>
   @include('themes.' . env('APP_THEME') . '.partials.graphics')
