@@ -66,6 +66,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('permission-groups/lists', 'Api\PermissionGroupsController@lists');
     Route::apiResource('permission-groups', 'Api\PermissionGroupsController');
 
+    Route::apiResource('positions', 'Api\PositionsController');
+
     Route::get('posts/lists', 'Api\PostsController@lists');
     Route::apiResource('posts', 'Api\PostsController');
     Route::post('posts/search', 'Api\PostsController@search');

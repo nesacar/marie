@@ -77,6 +77,10 @@ export const router = new VueRouter({
         { path: "/partners/create", component: require('./components/partners/PartnerCreate'), meta: { forAuth: true } },
         { path: "/partners/:id/edit", component: require('./components/partners/PartnerEdit'), meta: { forAuth: true } },
 
+        { path: "/positions", component: require('./components/positions/PositionList'), meta: { forAuth: true } },
+        { path: "/positions/create", component: require('./components/positions/PositionCreate'), meta: { forAuth: true } },
+        { path: "/positions/:id/edit", component: require('./components/positions/PositionEdit'), meta: { forAuth: true } },
+
         { path: "/tags", component: require('./components/tags/TagList.vue'), meta: { forAuth: true } },
         { path: "/tags/create", component: require('./components/tags/TagCreate.vue'), meta: { forAuth: true } },
         { path: "/tags/:id/edit", component: require('./components/tags/TagEdit.vue'), meta: { forAuth: true } },
