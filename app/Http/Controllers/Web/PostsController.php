@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Blog;
 use App\Post;
+use App\Seo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,6 +25,7 @@ class PostsController extends Controller
         Post::newsletterClick($post);
         $category = Blog::whereSlug($slug1)->first();
         $do_not_miss_it = Post::getDoNotMissIt($category, 6, $post->id);
+        Seo::post($post);
         return view('themes.' . env('APP_THEME') . '.pages.article', compact('category', 'latest', 'do_not_miss_it', 'post'));
     }
 
@@ -42,6 +44,7 @@ class PostsController extends Controller
         Post::newsletterClick($post);
         $category = Blog::whereSlug($slug2)->first();
         $do_not_miss_it = Post::getDoNotMissIt($category, 6, $post->id);
+        Seo::post($post);
         return view('themes.' . env('APP_THEME') . '.pages.gallery', compact('category', 'latest', 'do_not_miss_it', 'post'));
     }
 }

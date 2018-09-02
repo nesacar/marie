@@ -6,6 +6,7 @@ use App\BeautyBox;
 use App\Category;
 use App\Post;
 use App\Product;
+use App\Seo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,6 +23,7 @@ class BeautyBoxesController extends Controller
         $most_views = Post::getViewed(false);
         $products = $beauty_box->product()->orderBy('publish_at', 'DESC')->paginate(Product::$frontPaginate);
         $partners = BeautyBox::getPartners($products);
+        Seo::beautyBox($beauty_box);
         return view('themes.' . env('APP_THEME') . '.pages.beautybox', compact('latest', 'most_views', 'category', 'products', 'beauty_box', 'partners'));
     }
 
@@ -37,6 +39,7 @@ class BeautyBoxesController extends Controller
         $most_views = Post::getViewed(false);
         $products = $beauty_box->product()->orderBy('publish_at', 'DESC')->paginate(Product::$frontPaginate);
         $partners = BeautyBox::getPartners($products);
+        Seo::beautyBox($beauty_box);
         return view('themes.' . env('APP_THEME') . '.pages.beautybox', compact('latest', 'most_views', 'category', 'products', 'beauty_box', 'partners'));
     }
 }

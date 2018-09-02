@@ -1,9 +1,14 @@
 @extends('themes.' . env('APP_THEME') . '.layouts.main')
 
+@section('seo')
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+@endsection
+
 @section('content')
     <div class="container pt-4">
 
-        @banner(['position' => \App\Position::getBannerByTitle($positions, 'BH3')])@endbanner
+        @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
 
         <h1 class="h4 text-serif text-capitalize">{{ $category->title }}</h1>
 
@@ -54,9 +59,9 @@
 
             </div>
             <aside class="content-aside">
-                @banner(['position' => \App\Position::getBannerByTitle($positions, 'D1')])@endbanner
+                @banner(['position' => \App\Position::setBannerByPosition($positions, 'D1')])@endbanner
 
-                @banner(['position' => \App\Position::getBannerByTitle($positions, 'D2')])@endbanner
+                @banner(['position' => \App\Position::setBannerByPosition($positions, 'D2')])@endbanner
 
                 <div class="aside-box">
                     @include('themes.' . env('APP_THEME') . '.partials.subscription')

@@ -214,6 +214,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Imagecache' => Devfactory\Imagecache\Facades\ImagecacheFacade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'SEOMeta'   => Artesaos\SEOTools\Facades\SEOMeta::class,
+        'OpenGraph' => Artesaos\SEOTools\Facades\OpenGraph::class,
+        'Twitter'   => Artesaos\SEOTools\Facades\TwitterCard::class,
     ],
 
 ];

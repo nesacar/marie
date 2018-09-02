@@ -1,5 +1,10 @@
 @extends('themes.' . env('APP_THEME') . '.layouts.beautybox')
 
+@section('seo')
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+@endsection
+
 @section('content')
 
     <div class="py-4" style="background-color: #b5e2f5;">
@@ -8,7 +13,7 @@
 
     <div class="container">
 
-        @banner(['position' => \App\Position::getBannerByTitle($positions, 'BH3')])@endbanner
+        @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
 
         <div class="mb-5">
             {{--<p class="mt-4">{!! $beauty_box->short !!}</p>--}}

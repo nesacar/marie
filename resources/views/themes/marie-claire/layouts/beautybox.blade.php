@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Marie Claire</title>
+  @yield('seo')
   <link rel="stylesheet" href="{{ url('client/styles/main.css') }}">
   {!! $settings->analytics !!}
 </head>

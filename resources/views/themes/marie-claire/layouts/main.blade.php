@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $settings ? $settings->title : '' }}</title>
+    @yield('seo')
     <link rel="stylesheet" href="{{ url('client/styles/main.css') }}">
     {!! $settings->analytics !!}
 </head>
@@ -12,14 +13,14 @@
 @include('themes.' . env('APP_THEME') . '.partials.graphics')
 
 <div id="app" class="content">
-    @banner(['position' => \App\Position::getBannerByTitle($positions, 'BL')])@endbanner
-    @banner(['position' => \App\Position::getBannerByTitle($positions, 'BR')])@endbanner
+    @banner(['position' => \App\Position::setBannerByPosition($positions, 'BL')])@endbanner
+    @banner(['position' => \App\Position::setBannerByPosition($positions, 'BR')])@endbanner
 
     @include('themes.' . env('APP_THEME') . '.partials.sidenav')
     @include('themes.' . env('APP_THEME') . '.partials.header')
 
     @yield('content')
-    @banner(['position' => \App\Position::getBannerByTitle($positions, 'MBH3')])@endbanner
+    @banner(['position' => \App\Position::setBannerByPosition($positions, 'MBH3')])@endbanner
 </div>
 @include('themes.' . env('APP_THEME') . '.partials.footer')
 <script async src="//banners.ministudio.rs/www/delivery/asyncjs.php"></script>

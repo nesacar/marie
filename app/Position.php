@@ -36,7 +36,7 @@ class Position extends Model
      * @param $title
      * @return null
      */
-    public static function getBannerByTitle($positions, $title){
+    public static function setBannerByPosition($positions, $title){
         $res = null;
         if(!empty($positions)){
             foreach ($positions as $position){

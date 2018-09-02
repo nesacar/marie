@@ -1,11 +1,16 @@
 @extends('themes.' . env('APP_THEME') . '.layouts.main')
 
+@section('seo')
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+@endsection
+
 @section('content')
     <div class="container">
 
         @include('themes.' . env('APP_THEME') . '.partials.masthead')
 
-        @banner(['position' => \App\Position::getBannerByTitle($positions, 'BH3')])@endbanner
+        @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
 
         <div class="content-wrap">
             <div class="content-main">
@@ -17,9 +22,9 @@
             </div>
             <aside class="content-aside">
 
-                @banner(['position' => \App\Position::getBannerByTitle($positions, 'D1')])@endbanner
+                @banner(['position' => \App\Position::setBannerByPosition($positions, 'D1')])@endbanner
 
-                @banner(['position' => \App\Position::getBannerByTitle($positions, 'D2')])@endbanner
+                @banner(['position' => \App\Position::setBannerByPosition($positions, 'D2')])@endbanner
 
                 <!--div class="aside-box">
                     @include('themes.' . env('APP_THEME') . '.partials.subscription')

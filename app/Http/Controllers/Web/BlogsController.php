@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Blog;
 use App\Post;
+use App\Seo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -19,6 +20,7 @@ class BlogsController extends Controller
         $category = Blog::whereSlug($slug)->with('video')->first();
         $latest = Post::getLatest($category);
         $do_not_miss_it = Post::getDoNotMissIt($category, 6);
+        Seo::category($category);
         return view('themes.' . env('APP_THEME') . '.pages.category', compact('category', 'latest', 'do_not_miss_it'));
     }
 
@@ -33,6 +35,7 @@ class BlogsController extends Controller
         $category = Blog::whereSlug($slug2)->with('video')->first();
         $latest = Post::getLatest($category);
         $do_not_miss_it = Post::getDoNotMissIt($category, 6);
+        Seo::category($category);
         return view('themes.' . env('APP_THEME') . '.pages.category', compact('category', 'latest', 'do_not_miss_it'));
     }
 }
