@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\UploudableImageTrait;
 use Illuminate\Database\Eloquent\Model;
 use File;
+use Illuminate\Database\Eloquent\Builder;
 
 class Category extends Model
 {
@@ -25,11 +26,22 @@ class Category extends Model
     protected $fillable = ['title', 'slug', 'short', 'order', 'parent', 'level', 'image', 'is_visible'];
 
     /**
+     * append to Blog model link attribute
+     *
+     * @var array
+     */
+    protected $appends = ['link'];
+
+    /**
      *method used when instance of this model is created
      */
     public static function boot()
     {
         parent::boot();
+
+        static::addGlobalScope('parent', function (Builder $builder) {
+            $builder->with('parentCategory');
+        });
 
         self::deleting(function($category){
             self::where('parent', $category->id)->get()->each(function($item){
@@ -76,6 +88,25 @@ class Category extends Model
      */
     public function setIsVisibleAttribute($value){
         $this->attributes['is_visible'] = !empty($value)?: 0;
+    }
+
+    /**
+     * method used to set link attribute
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getLinkAttribute(){
+        return url($this->getLink());
+    }
+
+
+    /**
+     * method used to return blog link
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getLink(){
+        return $this->parentCategory? 'shop/' . $this->parentCategory->slug . '/' . $this->slug . '/' : 'shop/' . $this->slug . '/';
     }
 
     /**

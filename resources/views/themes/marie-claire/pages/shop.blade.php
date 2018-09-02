@@ -1,5 +1,10 @@
 @extends('themes.' . env('APP_THEME') . '.layouts.main')
 
+@section('seo')
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+@endsection
+
 @section('content')
     <div class="container">
 

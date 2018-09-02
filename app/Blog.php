@@ -105,7 +105,7 @@ class Blog extends Model
      * @return \Illuminate\Contracts\Routing\UrlGenerator|string
      */
     public function getLink(){
-        return $this->parent_blog? $this->parent_blog->slug . '/' . $this->slug . '/' : $this->slug . '/';
+        return $this->parentBlog? $this->parentBlog->slug . '/' . $this->slug . '/' : $this->slug . '/';
     }
 
     /**

@@ -41,7 +41,7 @@ class Seo extends Model
         SEOMeta::setCanonical($category->link);
         SEOMeta::addKeyword($category->seo_keywords);
 
-        OpenGraph::addImage(url( 'client/images/marie-clarie-social-share.jpg'), ['height' => 1200, 'width' => 630]);
+        OpenGraph::addImage($category->image? url( $category->image) : '', ['height' => 800, 'width' => 450]);
         OpenGraph::addProperty('locale', 'sr');
         OpenGraph::addProperty('type', 'articles');
         OpenGraph::setTitle($category->seo_title . ' - ' . $setting->title);
@@ -91,6 +91,50 @@ class Seo extends Model
         OpenGraph::setTitle($beauty_box->title . ' - ' . $setting->title);
         OpenGraph::setDescription($beauty_box->overtitle);
         OpenGraph::setUrl(url('marie-clarie-preporucuje/' . $beauty_box->slug));
+        OpenGraph::setSiteName($setting->title);
+    }
+
+    /**
+     * method used to set SEO optimization for shop page
+     *
+     * @param $category
+     */
+    public static function shop(){
+        $setting = Setting::get();
+
+        SEOMeta::setTitle('Shop - ' . $setting->title);
+        SEOMeta::setDescription($setting->desc);
+        SEOMeta::setCanonical(url('shop'));
+        SEOMeta::addKeyword($setting->keywords);
+
+        OpenGraph::addImage(url( 'client/images/marie-clarie-social-share.jpg'), ['height' => 1200, 'width' => 630]);
+        OpenGraph::addProperty('locale', 'sr');
+        OpenGraph::addProperty('type', 'articles');
+        OpenGraph::setTitle('Shop - ' . $setting->title);
+        OpenGraph::setDescription($setting->desc);
+        OpenGraph::setUrl(url('shop'));
+        OpenGraph::setSiteName($setting->title);
+    }
+
+    /**
+     * method used to set SEO optimization for shop page
+     *
+     * @param $category
+     */
+    public static function shopCategory($category){
+        $setting = Setting::get();
+
+        SEOMeta::setTitle($category->title . ' - ' . $setting->title);
+        SEOMeta::setDescription(strip_tags($category->short, ''));
+        SEOMeta::setCanonical($category->link);
+        SEOMeta::addKeyword($setting->keywords);
+
+        OpenGraph::addImage($category->image? url( $category->image) : '', ['height' => 800, 'width' => 450]);
+        OpenGraph::addProperty('locale', 'sr');
+        OpenGraph::addProperty('type', 'articles');
+        OpenGraph::setTitle($category->title . ' - ' . $setting->title);
+        OpenGraph::setDescription(strip_tags($category->short, ''));
+        OpenGraph::setUrl($category->link);
         OpenGraph::setSiteName($setting->title);
     }
 }

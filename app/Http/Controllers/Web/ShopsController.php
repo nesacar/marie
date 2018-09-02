@@ -7,6 +7,7 @@ use App\Category;
 use App\Gender;
 use App\Post;
 use App\Product;
+use App\Seo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,6 +24,7 @@ class ShopsController extends Controller
         $genders = Gender::get();
         $do_not_miss_it = Post::getDoNotMissIt(false, 6, 2);
         $products = Product::search()->orderBy('publish_at', 'DESC')->paginate(Product::$frontPaginate);
+        Seo::shop();
         return view('themes.' . env('APP_THEME') . '.pages.shop', compact('categories', 'products', 'brands', 'genders', 'do_not_miss_it'));
     }
 
@@ -40,6 +42,7 @@ class ShopsController extends Controller
         $genders = Gender::get();
         $do_not_miss_it = Post::getDoNotMissIt(false, 6, 2);
         $products = Product::search($category->id)->orderBy('publish_at', 'DESC')->paginate(Product::$frontPaginate);
+        Seo::shopCategory($category);
         return view('themes.' . env('APP_THEME') . '.pages.shop', compact('categories', 'products', 'brands', 'genders', 'do_not_miss_it'));
     }
 
@@ -58,6 +61,7 @@ class ShopsController extends Controller
         $genders = Gender::get();
         $do_not_miss_it = Post::getDoNotMissIt(false, 6, 2);
         $products = Product::search($category->id)->orderBy('publish_at', 'DESC')->paginate(Product::$frontPaginate);
+        Seo::shopCategory($category);
         return view('themes.' . env('APP_THEME') . '.pages.shop', compact('categories', 'products', 'brands', 'genders', 'do_not_miss_it'));
     }
 }
