@@ -82,7 +82,7 @@ class Seo extends Model
 
         SEOMeta::setTitle($beauty_box->title . ' - ' . $setting->title);
         SEOMeta::setDescription($beauty_box->overtitle);
-        SEOMeta::setCanonical(url('marie-clarie-preporucuje/' . $beauty_box->slug));
+        SEOMeta::setCanonical(url('marie-claire-preporucuje/' . $beauty_box->slug));
         SEOMeta::addKeyword($setting->keywords);
 
         OpenGraph::addImage(url( $beauty_box->image), ['height' => 800, 'width' => 450]);
@@ -90,7 +90,7 @@ class Seo extends Model
         OpenGraph::addProperty('type', 'articles');
         OpenGraph::setTitle($beauty_box->title . ' - ' . $setting->title);
         OpenGraph::setDescription($beauty_box->overtitle);
-        OpenGraph::setUrl(url('marie-clarie-preporucuje/' . $beauty_box->slug));
+        OpenGraph::setUrl(url('marie-claire-preporucuje/' . $beauty_box->slug));
         OpenGraph::setSiteName($setting->title);
     }
 
