@@ -15,8 +15,6 @@ class HomePageController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function homepage(){
-        \Artisan::call('config:clear');
-        \Artisan::call('config:cache');
         $slider = Post::getSlider();
         $latest = Post::getLatest(false);
         $most_views = Post::getViewed(false);
