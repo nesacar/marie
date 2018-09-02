@@ -30,6 +30,25 @@ class Position extends Model
     }
 
     /**
+     * method used to return banner position
+     *
+     * @param $positions
+     * @param $title
+     * @return null
+     */
+    public static function getBannerByTitle($positions, $title){
+        $res = null;
+        if(!empty($positions)){
+            foreach ($positions as $position){
+                if($position->title == $title){
+                    return $position;
+                }
+            }
+        }
+        return $res;
+    }
+
+    /**
      * method use to centralise is visible Position logic
      *
      * @param $query

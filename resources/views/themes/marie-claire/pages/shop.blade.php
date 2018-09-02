@@ -3,6 +3,8 @@
 @section('content')
     <div class="container">
 
+        @banner(['position' => \App\Position::getBannerByTitle($positions, 'BH3')])@endbanner
+
         <div class="shop-layout">
 
             @include('themes.' . env('APP_THEME') . '.partials.shop.filters')

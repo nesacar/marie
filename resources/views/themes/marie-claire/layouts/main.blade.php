@@ -12,12 +12,17 @@
 @include('themes.' . env('APP_THEME') . '.partials.graphics')
 
 <div id="app" class="content">
+    @banner(['position' => \App\Position::getBannerByTitle($positions, 'BL')])@endbanner
+    @banner(['position' => \App\Position::getBannerByTitle($positions, 'BR')])@endbanner
+
     @include('themes.' . env('APP_THEME') . '.partials.sidenav')
     @include('themes.' . env('APP_THEME') . '.partials.header')
 
     @yield('content')
+    @banner(['position' => \App\Position::getBannerByTitle($positions, 'MBH3')])@endbanner
 </div>
 @include('themes.' . env('APP_THEME') . '.partials.footer')
+<script async src="//banners.ministudio.rs/www/delivery/asyncjs.php"></script>
 <script src="{{ url('client/scripts/main.js') }}"></script>
 </body>
 </html>

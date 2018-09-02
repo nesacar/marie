@@ -18,6 +18,7 @@
     @yield('content')
   </div>
   @include('themes.' . env('APP_THEME') . '.partials.footer')
+  <script async src="//banners.ministudio.rs/www/delivery/asyncjs.php"></script>
   <script src="{{ url('client/scripts/main.js') }}"></script>
 </body>
 </html>

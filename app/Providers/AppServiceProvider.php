@@ -46,5 +46,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::component($components.'.beautybox.partner', 'beautybox_partner');
 
         Blade::component($components.'.shop.product', 'shop_product');
+
+        Blade::component($components.'.banner', 'banner');
     }
 }

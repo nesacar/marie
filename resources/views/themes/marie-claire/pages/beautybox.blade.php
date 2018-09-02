@@ -1,11 +1,14 @@
 @extends('themes.' . env('APP_THEME') . '.layouts.beautybox')
 
 @section('content')
+
     <div class="py-4" style="background-color: #b5e2f5;">
         @beautybox_hero(['beauty_box' => $beauty_box]) @endbeautybox_hero
     </div>
 
     <div class="container">
+
+        @banner(['position' => \App\Position::getBannerByTitle($positions, 'BH3')])@endbanner
 
         <div class="mb-5">
             {{--<p class="mt-4">{!! $beauty_box->short !!}</p>--}}

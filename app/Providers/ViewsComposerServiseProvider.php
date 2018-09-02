@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Banner;
 use App\Helper;
 use App\MenuLink;
+use App\Position;
 use App\Setting;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Cache;
@@ -20,6 +22,7 @@ class ViewsComposerServiseProvider extends ServiceProvider
         $this->composerMenuTop();
         $this->composerSettings();
         $this->composerBeautyBoxMenu();
+        $this->composerBanners();
     }
 
     /**
@@ -73,6 +76,18 @@ class ViewsComposerServiseProvider extends ServiceProvider
         });
         view()->composer('themes.' . env('APP_THEME') .'.partials.beautybox.header', function($view) use ($menu){
             $view->with('menu', $menu);
+        });
+    }
+
+    /**
+     * method used to return banner positions to all pages
+     */
+    private function composerBanners(){
+        $positions = Cache::remember('positions', Helper::getMinutesToTheNextHour(), function (){
+            return Position::visible()->get();
+        });
+        view()->composer('themes.' . env('APP_THEME') .'.*', function($view) use ($positions){
+            $view->with('positions', $positions);
         });
     }
 }

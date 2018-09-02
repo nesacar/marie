@@ -5,6 +5,8 @@
 
         @include('themes.' . env('APP_THEME') . '.partials.masthead')
 
+        @banner(['position' => \App\Position::getBannerByTitle($positions, 'BH3')])@endbanner
+
         <div class="content-wrap">
             <div class="content-main">
 
@@ -14,7 +16,11 @@
 
             </div>
             <aside class="content-aside">
-                <div class="aside-box" style="width:100%; padding-top: 100%; background:hotpink;"></div>
+
+                @banner(['position' => \App\Position::getBannerByTitle($positions, 'D1')])@endbanner
+
+                @banner(['position' => \App\Position::getBannerByTitle($positions, 'D2')])@endbanner
+
                 <!--div class="aside-box">
                     @include('themes.' . env('APP_THEME') . '.partials.subscription')
                 </div-->
