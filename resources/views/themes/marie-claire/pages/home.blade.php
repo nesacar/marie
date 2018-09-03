@@ -4,11 +4,14 @@
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
 @endsection
+
 @section('content')
-@banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
+
+    @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
+
     <div class="container">
         @include('themes.' . env('APP_THEME') . '.partials.masthead')
-      
+
         {{--  @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner  --}}
 
         <div class="content-wrap">
@@ -46,7 +49,7 @@
                             <a href="{{ $most->link }}" title="alt tag">
                                 <div class="js-lazy-image image image--1-1 tint tint--light tint--hover"
                                      data-src="{{ $most->image_box }}"
-                                     data-alt="alt tag"
+                                     data-alt="{{ $most->title }}"
                                 ></div>
                             </a>
                             <div class="home-popular_title">

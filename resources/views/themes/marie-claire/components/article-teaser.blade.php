@@ -12,7 +12,7 @@
         <a href="{{ $post->link }}" title="image alt">
             <div class="{{$image}} tint tint--light tint--hover"
                  data-src="{{ !empty($post->image)? ($isFeatured? url(\Imagecache::get($post->image, '650x366')->src) : url($post->image_box)) : '' }}"
-                 data-alt="image alt"
+                 data-alt="{{ $post->title }}"
             ></div>
         </a>
     </div>
@@ -26,7 +26,7 @@
     </div>
     @if($hasActions)
         <div class="teaser_actions">
-            <a href="{{ $post->link }}" class="btn btn--secondary">more</a>
+            <a href="{{ $post->link }}" class="btn btn--secondary">još</a>
         </div>
     @endif
 </div>

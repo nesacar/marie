@@ -6,7 +6,9 @@
 @endsection
 
 @section('content')
-    @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner 
+
+    @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
+
     <div class="container pt-4">
         <h1 class="h4 text-serif text-capitalize mb-3">{{ $post->title }}</h1>
 

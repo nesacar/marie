@@ -6,6 +6,11 @@
 Route::get('/', 'Web\HomePageController@homepage');
 
 /**
+ * search page route
+ **/
+Route::post('pretraga', 'Web\SearchController@search')->name('search');
+
+/**
  * web subscribers routes
  */
 Route::post('subscribe', 'Web\Admin\SubscribersController@subscribe')->name('newsletter.subscribe');

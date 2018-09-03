@@ -29,6 +29,26 @@ class Seo extends Model
     }
 
     /**
+     * method used to set SEO optimization for home page
+     */
+    public static function search($text){
+        $setting = Setting::get();
+
+        SEOMeta::setTitle('Pretraga po terminu ' . $text . ' - ' . $setting->title);
+        SEOMeta::setDescription($setting->desc);
+        SEOMeta::setCanonical(url('pretraga'));
+        SEOMeta::addKeyword($setting->keywords);
+
+        OpenGraph::addImage(url( 'client/images/marie-clarie-social-share.jpg'), ['height' => 1200, 'width' => 630]);
+        OpenGraph::addProperty('locale', 'sr');
+        OpenGraph::addProperty('type', 'articles');
+        OpenGraph::setTitle('Pretraga po terminu ' . $text . ' - ' . $setting->title);
+        OpenGraph::setDescription($setting->desc);
+        OpenGraph::setUrl(url('pretraga'));
+        OpenGraph::setSiteName($setting->title);
+    }
+
+    /**
      * method used to set SEO optimization for category page
      *
      * @param $category
