@@ -4,13 +4,12 @@
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
 @endsection
-
 @section('content')
+@banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
     <div class="container">
-
         @include('themes.' . env('APP_THEME') . '.partials.masthead')
-
-        @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
+      
+        {{--  @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner  --}}
 
         <div class="content-wrap">
             <div class="content-main">
@@ -26,9 +25,9 @@
 
                 @banner(['position' => \App\Position::setBannerByPosition($positions, 'D2')])@endbanner
 
-                <!--div class="aside-box">
+                <div class="aside-box">
                     @include('themes.' . env('APP_THEME') . '.partials.subscription')
-                </div-->
+                </div>
                 <div class="aside-box">
                     @include('themes.' . env('APP_THEME') . '.partials.newsletter')
                 </div>

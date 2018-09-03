@@ -6,10 +6,8 @@
 @endsection
 
 @section('content')
+    @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
     <div class="container pt-4">
-
-        @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
-
         <h1 class="h4 text-serif text-capitalize">{{ $category->title }}</h1>
 
         @if(!empty($category->video) && count($category->video)>0)

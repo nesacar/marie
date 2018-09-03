@@ -16,13 +16,12 @@
   display: none;
   width: 980px;
   height: 250px;
-  margin: 0 auto 32px auto;
+  margin: 0 auto -10px auto;
 
   @include media-breakpoint-up(sm) {
     display: block;
   }
 }
-
 .bnrMBH3{
   display: none;
   position: fixed;
@@ -47,7 +46,7 @@
   top: 0;
   width: 302px;
   overflow: hidden;
-  z-index: 1;
+  z-index: 11;
 }
 
 .bnrBr{
@@ -59,5 +58,5 @@
   top: 0;
   width: 302px;
   overflow: hidden;
-  z-index: 1;
+  z-index: 11;
 }
