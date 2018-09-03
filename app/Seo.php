@@ -34,7 +34,7 @@ class Seo extends Model
     public static function search($text){
         $setting = Setting::get();
 
-        SEOMeta::setTitle('Pretraga po terminu ' . $text . ' - ' . $setting->title);
+        SEOMeta::setTitle('Pretraga po terminu: ' . $text . ' - ' . $setting->title);
         SEOMeta::setDescription($setting->desc);
         SEOMeta::setCanonical(url('pretraga'));
         SEOMeta::addKeyword($setting->keywords);

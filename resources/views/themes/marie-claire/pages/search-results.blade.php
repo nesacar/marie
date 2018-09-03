@@ -1,5 +1,10 @@
 @extends('themes.' . env('APP_THEME') . '.layouts.main')
 
+@section('seo')
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+@endsection
+
 @section('content')
 
     @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
