@@ -1,5 +1,5 @@
 <div class="newsletter double-border aside-box">
-    <div class="newsletter-text">Prijavite se i otrkrijte novosti i promocije</div>
+    <div class="newsletter-text">Prijavite se i otkrijte novosti i promocije</div>
     <form method="POST" action="{{ route('newsletter.subscribe') }}">
         @csrf
         <div>
