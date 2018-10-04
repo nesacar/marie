@@ -50,3 +50,18 @@
 .gallery-slide {
   width: 100%;
 }
+
+///Sets this css for small screen
+@media all and (max-width: 500px) {
+  .small-screen-flex-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .order-flex-1 {
+    order: 0;
+    width: 100%;
+  }
+  .slide--portrait .slide_info {
+    width: 100%;
+  }
+}

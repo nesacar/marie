@@ -1,12 +1,14 @@
 <template>
   <div>
-    <div class="slider-item gallery-slide">
-      <image-slide
+    <div class="slider-item gallery-slide ">
+      <image-slide class="small-screen-flex-container"
         :src="image.src"
         :alt="image.title"
       >
+      <div class="order-flex-1">
         <h2 class="text-sans-serif h6 mb-2">{{image.title}}</h2>
         <p>{{image.desc}}</p>
+      </div>
       </image-slide>
     </div>
     <div class="controls">
