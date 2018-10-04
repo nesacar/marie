@@ -14,7 +14,7 @@ class Seo extends Model
     public static function home(){
         $setting = Setting::get();
 
-        SEOMeta::setTitle('Home - ' . $setting->title);
+        SEOMeta::setTitle('Home');
         SEOMeta::setDescription($setting->desc);
         SEOMeta::setCanonical(url('/'));
         SEOMeta::addKeyword($setting->keywords);
@@ -34,7 +34,7 @@ class Seo extends Model
     public static function search($text){
         $setting = Setting::get();
 
-        SEOMeta::setTitle('Pretraga po terminu: ' . $text . ' - ' . $setting->title);
+        SEOMeta::setTitle('Pretraga po terminu: ' . $text);
         SEOMeta::setDescription($setting->desc);
         SEOMeta::setCanonical(url('pretraga'));
         SEOMeta::addKeyword($setting->keywords);
@@ -56,7 +56,7 @@ class Seo extends Model
     public static function category($category){
         $setting = Setting::get();
 
-        SEOMeta::setTitle($category->seo_title . ' - ' . $setting->title);
+        SEOMeta::setTitle($category->seo_title);
         SEOMeta::setDescription(strip_tags($category->short, ''));
         SEOMeta::setCanonical($category->link);
         SEOMeta::addKeyword($category->seo_keywords);
@@ -78,7 +78,7 @@ class Seo extends Model
     public static function post($post){
         $setting = Setting::get();
 
-        SEOMeta::setTitle($post->title . ' - ' . $setting->title);
+        SEOMeta::setTitle($post->title);
         SEOMeta::setDescription($post->short);
         SEOMeta::setCanonical($post->link);
         SEOMeta::addKeyword(implode(', ', $post->tag->pluck('title')->toArray()));
@@ -100,7 +100,7 @@ class Seo extends Model
     public static function beautyBox($beauty_box){
         $setting = Setting::get();
 
-        SEOMeta::setTitle($beauty_box->title . ' - ' . $setting->title);
+        SEOMeta::setTitle($beauty_box->title);
         SEOMeta::setDescription($beauty_box->overtitle);
         SEOMeta::setCanonical(url('marie-claire-preporucuje/' . $beauty_box->slug));
         SEOMeta::addKeyword($setting->keywords);
@@ -122,7 +122,7 @@ class Seo extends Model
     public static function shop(){
         $setting = Setting::get();
 
-        SEOMeta::setTitle('Shop - ' . $setting->title);
+        SEOMeta::setTitle('Shop');
         SEOMeta::setDescription($setting->desc);
         SEOMeta::setCanonical(url('shop'));
         SEOMeta::addKeyword($setting->keywords);
@@ -144,7 +144,7 @@ class Seo extends Model
     public static function shopCategory($category){
         $setting = Setting::get();
 
-        SEOMeta::setTitle($category->title . ' - ' . $setting->title);
+        SEOMeta::setTitle($category->title);
         SEOMeta::setDescription(strip_tags($category->short, ''));
         SEOMeta::setCanonical($category->link);
         SEOMeta::addKeyword($setting->keywords);
