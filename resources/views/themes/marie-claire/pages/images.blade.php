@@ -10,7 +10,7 @@
 
         @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
 
-        <h1 class="h4 text-serif text-capitalize mb-3">{{ $post->title }}</h1>
+        <h1 class="h4 text-serif mb-3">{{ $post->title }}</h1>
 
         <div class="content-wrap">
 

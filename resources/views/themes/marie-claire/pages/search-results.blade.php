@@ -11,7 +11,7 @@
 
     <div class="container pt-4">
 
-        <h1 class="h4 text-serif text-capitalize">Rezultati pretrage za termin: {{ $text }}</h1>
+        <h1 class="h4 text-serif">Rezultati pretrage za termin: {{ $text }}</h1>
         <div class="content-wrap">
             <div class="content-main">
 

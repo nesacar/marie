@@ -15,6 +15,10 @@
         class="control control--prev"
         @click="() => onClick(-1)"
       ></button>
+      <div
+        class="control control--middle">
+         {{ this.current + 1 }} /  {{ this.srcset.length}}
+      </div>
       <button
         aria-label="next slide"
         class="control control--next"
@@ -28,7 +32,9 @@
 import withGNC from '../mixins/withGNC';
 
 export default {
-  mixins: [withGNC],
+  mixins: [
+    withGNC
+    ],
 
   props: {
     srcset: {
@@ -47,7 +53,6 @@ export default {
       current: this.index,
     };
   },
-
   computed: {
     image() {
       return this.srcset[this.current];
@@ -56,16 +61,34 @@ export default {
 
   methods: {
     onClick(n) {
-      const next = this.current + n;
+      let next = this.current + n;
       const len = this.srcset.length - 1;
-      const current = Math.max(0, Math.min(next, len));
-
+      let current = Math.max(0, Math.min(next, len));
+      let arrlength = this.srcset.length;
       const location = window.location.href;
-      const nextLocation = location.replace(/image=\d+/, `image=${current + 1}`);
-
+      let treutniIndex = this.current + n
+      let nextLocation = location.replace(/image=\d+/, `image=${current + 1}`);
       this.setLocation(nextLocation);
 
+
+
+      // FUNKCIJA ZA SLIDE SHOW
+      //  if ( next === arrlength ) {
+      //   current = 0;
+      //   console.log('radi', this.current)
+      //    this.setLocation(nextLocation);
+    
+      // }
+      // else if ( next < 0) {
+      //   current = len;
+      //   console.log('radi', this.current)
+      //    this.setLocation(nextLocation);
+    
+      // }
+      
       this.current = current;
+    
+
     },
   },
 }
