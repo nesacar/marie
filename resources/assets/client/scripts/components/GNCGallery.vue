@@ -68,7 +68,7 @@ export default {
       let current = Math.max(0, Math.min(next, len));
       let arrlength = this.srcset.length;
       const location = window.location.href;
-      let treutniIndex = this.current + n
+      let treutniIndex = this.current + n;
       let nextLocation = location.replace(/image=\d+/, `image=${current + 1}`);
       this.setLocation(nextLocation);
 
@@ -85,7 +85,6 @@ export default {
       //   current = len;
       //   console.log('radi', this.current)
       //    this.setLocation(nextLocation);
-    
       // }
       
       this.current = current;

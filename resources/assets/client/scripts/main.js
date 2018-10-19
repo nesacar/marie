@@ -12,6 +12,7 @@ Vue.component('collapsible-container', require('./components/CollapsibleContaine
 Vue.component('responsive-image', require('./components/ResponsiveImage.vue'));
 Vue.component('gnc-gallery', require('./components/GNCGallery.vue'));
 Vue.component('video-box', require('./components/VideoBox.vue'));
+Vue.component('date-counter', require('./components/DateCounter.vue'));
 
 const mc = new Vue({
   el: '#app',

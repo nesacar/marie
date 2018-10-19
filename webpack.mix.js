@@ -5,13 +5,15 @@ require('dotenv').config();
 const DEFAULT_PROXY_ULR = 'localhost/';
 const proxy_url = process.env.BROWSERSYNC_PROXY_URL || DEFAULT_PROXY_ULR;
 
-mix.browserSync({
-  proxy: proxy_url,
-  files: [
-    'resources/**/*.*',
-  ],
-  notify: false,
-});
+// mix.browserSync({
+//   proxy: proxy_url,
+//   files: [
+//     'resources/**/*.*',
+//   ],
+//   notify: false,
+// });
+
+mix.browserSync({proxy: 'localhost:8000'});
 
 /*
  |--------------------------------------------------------------------------

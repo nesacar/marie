@@ -10,6 +10,9 @@
     @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner
 
     <div class="container">
+        <date-counter
+          deadline="2018-10-25 00:00:00"
+        ></date-counter>
         @include('themes.' . env('APP_THEME') . '.partials.masthead')
 
         {{--  @banner(['position' => \App\Position::setBannerByPosition($positions, 'BH3')])@endbanner  --}}
