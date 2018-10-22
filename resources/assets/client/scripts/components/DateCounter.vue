@@ -83,9 +83,6 @@ export default {
 .minuti-div {
   margin-right: -25px;
 }
-.sekundi-div {
-
-}
 .vuejs-countdown .digit {
   font-weight: 600 !important;
   line-height: 1.4  !important;
