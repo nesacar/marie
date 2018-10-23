@@ -21,6 +21,9 @@
                         <div class="image image--16-9 js-lazy-image"
                              data-src="{{ $post->image? url(\Imagecache::get($post->image, '650x366')->src) : '' }}"
                              data-alt="{{ $post->title }}"></div>
+                        @if($post->gallery->count())
+                            <a href="{{ url($post->getGalleryLink()) }}">{{ $post->gallery->count() }}</a>
+                        @endif
                         <div class="article_details">
                             @if(!empty($post->author)) {{ $post->author }}, @endif
                             datum: {{ \Carbon\Carbon::parse($post->publish_at)->format('d.m.Y.') }}
