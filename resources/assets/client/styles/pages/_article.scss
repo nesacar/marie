@@ -34,3 +34,37 @@
     }
   }
 }
+
+.gallery-article-more-button {
+  align-items: center;
+  align-self: center;
+  width: 163px;
+  height: 64px;
+  background-color: rgba(0, 0, 0, 0.7);
+  float: right;
+  z-index: 999;
+  position: relative;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  transition: all 0.3s ease-out;
+}
+.gallery-article-more-button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+
+  .more-pictures {
+    text-decoration: none;
+    color: white;
+  }
+}
+.article-count-info {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .article-count-info {
+    font-size: 12px;
+  }
+}

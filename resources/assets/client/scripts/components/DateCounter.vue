@@ -1,5 +1,5 @@
 <template>
-  <div class="counter"  >
+  <div class="counter container">
     <div class="p-2">
       <svg class="counter-svg" >
           <use xlink:href="#logo"></use>
@@ -10,9 +10,13 @@
       <img src="/client/images/mag.png" alt="casopis" class="counter-image">
     </div>
 
-    <div class="p-2 counter-info-div">
+    <div class="p-2 " style="
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      text-align: center;">
       <div><p class="para" style="margin-bottom: -6px;">BUDITE SA NAMA OD PRVOG BROJA</p></div>
-      <Countdown :deadline="deadline" style="display: inline-flex;"></Countdown>
+      <Countdown :deadline="deadline" ></Countdown>
 
     </div>
   </div>
