@@ -7,7 +7,7 @@
       >
       <div class="order-flex-1">
         <h2 class="text-sans-serif h6 mb-2">{{image.title}}</h2>
-        <p>{{image.desc}}</p>
+        <p v-html="image.desc"></p>
       </div>
       </image-slide>
     </div>
