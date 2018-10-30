@@ -42,7 +42,7 @@
 
                                 <text-field :value="photo.title" :label="'Naslov'" :error="error? error.title : ''" @changeValue="photo.title = $event"></text-field>
 
-                                <text-area-field :value="photo.desc" :label="'Opis'" :error="error? error.desc : ''" @changeValue="photo.desc = $event"></text-area-field>
+                                <text-area-ckeditor-field :value="photo.desc" :label="'Opis'" :error="error? error.desc : ''" @changeValue="photo.desc = $event"></text-area-ckeditor-field>
 
                                 <text-field :value="photo.order" :label="'Redosled'" :error="error? error.order : ''" @changeValue="photo.order = $event"></text-field>
 
@@ -80,7 +80,7 @@
                 dropzoneOptions: {
                     url: 'api/galleries/' + this.$route.params.id,
                     thumbnailWidth: 150,
-                    maxFilesize: 0.5,
+                    maxFilesize: 5,
                     headers: { "Authorization": "Bearer " + this.$auth.getToken() }
                 },
             }
