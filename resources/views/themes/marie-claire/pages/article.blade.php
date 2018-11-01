@@ -35,12 +35,14 @@
                                   <div class="text-serif">
                                     <strong>Pogledajte galeriju </strong>
                                   </div>
-                                  <div id="slikee">{{ $post->gallery->count() }} 
-                                    @if (ends_with($post->gallery->count(), '2') || ends_with($post->gallery->count(), '3') || ends_with($post->gallery->count(), '4'))
+                                  <div id="slikee">{{ $post->gallery->count() }}
+                                    @if (ends_with($post->gallery->count(), '12') || ends_with($post->gallery->count(), '13') || ends_with($post->gallery->count(), '14'))
+                                      slika
+                                    @elseif(ends_with($post->gallery->count(), '2') || ends_with($post->gallery->count(), '3') || ends_with($post->gallery->count(), '4'))
                                       slike
                                     @else
                                       slika
-                                    @endif  
+                                    @endif
                                   </div> 
                                 </a>
                               </div>
