@@ -13,10 +13,10 @@
 }
 
 .bnrBH3{
-  display: none;
+  display: block;
   width: 980px;
   height: 250px;
-  margin: 0 auto -10px auto;
+  margin: 16px auto -16px auto;
 
   @include media-breakpoint-up(sm) {
     display: block;
