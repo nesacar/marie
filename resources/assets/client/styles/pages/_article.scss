@@ -23,6 +23,13 @@
       max-width: 100% !important;
       height: auto !important;
     }
+    .marker a {
+      color: red;
+      text-decoration: none;
+    }
+    .marker a:hover {
+      color: #000;
+    }
   }
 
   &_thumbs {
