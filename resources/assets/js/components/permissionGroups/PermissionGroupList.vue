@@ -22,6 +22,7 @@
                 </div>
 
                 <div class="col-md-12">
+                  <div class="card-scrollable">
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -43,6 +44,7 @@
                         </tr>
                         </tbody>
                     </table>
+                  </div>
                 </div>
             </div>
             <div class="row">

@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card-scrollable">
                         <table class="table table-hover">
                             <thead>
                             <tr>
