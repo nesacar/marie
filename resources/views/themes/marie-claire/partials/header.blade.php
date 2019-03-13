@@ -4,7 +4,7 @@
 
 @if($isRoot)
     <div class="announcement"
-         style="background-image: url({{ asset('client/images/marie_claire_header.jpg') }}?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"
+         style="background-image: url({{ asset('client/images/Najava_MC_Mart19.jpg') }}?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"
     >
         <div class="container announcement_container">
             <a href="{{ url('/') }}" class="logo-wrap">

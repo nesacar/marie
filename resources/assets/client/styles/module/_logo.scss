@@ -32,7 +32,7 @@
       @include logo(280px);
     }
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
       @include logo(470px);
     }
   }

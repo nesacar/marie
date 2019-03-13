@@ -4,19 +4,21 @@
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+  margin: 0 auto;
+  max-width: 1904px;
 
   &_container {
     display: flex;
     align-items: center;
     height: 234px;
-    color: red;
+    color: #9b1410;
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(lg) {
       justify-content: center;
     }
   }
   
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     display: block;
   }
 }
