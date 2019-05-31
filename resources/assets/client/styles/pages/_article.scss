@@ -30,6 +30,11 @@
     .marker a:hover {
       color: #000;
     }
+    ul {
+      list-style: unset;
+      font-family: "Playfair Display", serif;
+      margin-left: 20px;
+    }
   }
 
   &_thumbs {
