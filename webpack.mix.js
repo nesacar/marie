@@ -50,6 +50,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
 mix.js('resources/assets/client/scripts/main.js', 'public/client/scripts')
   .sass('resources/assets/client/styles/main.scss', 'public/client/styles')
   .purgeCss({
-    whitelistPatterns: [/^slide--/, /^bnr/],
+    whitelistPatterns: [/^slide--/, /^bnr/, /^marker/],
   });
   // .extract(['vue']);
